@@ -4,6 +4,7 @@
 const bcrypt = require('bcryptjs')
     , {STRING, VIRTUAL} = require('sequelize')
 
+//Including some additional flexibility in case a user logged in with oAuth
 module.exports = db => db.define('users', {
   name: STRING,
   email: {
