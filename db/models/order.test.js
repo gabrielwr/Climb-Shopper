@@ -24,7 +24,7 @@ describe('The `Order` model', () => {
   /**
    * Also, we empty the tables after each spec
    */
-  afterEach(function() {
+  afterEach(() => {
     return Promise.all([
       Order.truncate({ cascade: true })
     ])
@@ -38,8 +38,10 @@ describe('The `Order` model', () => {
           expect(savedOrder.status).to.equal('Pending')
         })
     })
+  })
 
-    it('requires `status`', function() {
+  describe('Validations', () => {
+    it('requires `status`', () => {
       order.status = null
       return order.validate()
         .then(function(result) {
@@ -47,6 +49,16 @@ describe('The `Order` model', () => {
           expect(result.message).to.contain('content cannot be null')
         })
     })
-  })
 
+    it('errors when status is not Pending or Completed', () => {
+      // Use in a feasible alternative status
+      order.status = 'Shipping'
+      return order.validate()
+        .then(function(result) {
+          expect(result).to.be.an.instanceOf(Error)
+          // Please review the Sequelize Error and uncomment/correct below
+          // expect(result.message).to.contain('content cannot be null')
+        })
+    })
+  })
 })
