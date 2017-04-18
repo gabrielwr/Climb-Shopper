@@ -26,9 +26,9 @@ describe('The `Review` model', () => {
   /**
    * Also, we empty the tables after each spec
    */
-  afterEach(function() {
+  afterEach(function () {
     return Promise.all([
-      Review.truncate({ cascade: true })
+      Review.truncate({cascade: true})
     ])
   })
 
@@ -42,17 +42,17 @@ describe('The `Review` model', () => {
           expect(savedReview.num_stars).to.equal(4.5)
         })
     })
+  })
 
+  describe('validations', () => {
     it('requires `title`', () => {
-      review.status = null
+      review.title = null
       return review.validate()
         .then(result => {
           expect(result).to.be.an.instanceOf(Error)
           expect(result.message).to.contain('title cannot be null')
         })
     })
-
-
     it('requires `content`', () => {
 
       review.content = null
@@ -63,7 +63,8 @@ describe('The `Review` model', () => {
           expect(result.message).to.contain('content cannot be null')
         })
     })
-    it('requires `content`', () => {
+
+    it('requires `num_stars`', () => {
 
       review.num_stars = null
 
