@@ -33,14 +33,18 @@ module.exports = db => db.define('products', {
     allowNull: false
   },
   description: {
-    type: Sequelize.TEXT
+    type: Sequelize.TEXT,
+    allowNull: false
   },
   images: {
     type: Sequelize.ARRAY(Sequelize.STRING)
                           )
   },
   quantity: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER,
+    validate: {
+      isInt: true
+    }
   },
   reviewStars: {
     type: Sequelize.DECIMAL(3,2)
