@@ -28,5 +28,9 @@ WHEN READY TO MAKE YOUR PULL REQUEST
 - **A** assigns some other person / people (**B**) to review it
 - **B** makes comments, suggests changes
 - **A** whines about it, but makes the changes
-- Eventually, **B** approves and hits Merge Pull Request in github
-- The whole team should now do `git checkout master` then `git pull origin master`
+- Eventually, **B** approves
+- **A** hits Merge Pull Request in github
+- **A** hits Delete Branch in github
+- **A** does `git checkout master`
+- **A** does `git branch -d the-name-of-the-feature-or-whatever` to delete the branch locally
+-Return to top!
