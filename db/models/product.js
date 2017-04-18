@@ -20,7 +20,14 @@ module.exports = db => db.define('products', {
     type: Sequelize.DECIMAL(7,2),
     allowNull: false,
     validate: {
-      is: /^\d{0,5}\.\d{2}$/
+      is: /^\d{0,5}\.\d{2}$/,
+      min: 0
+    }
+  },
+  images: {
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    validate: {
+      isUrl: true,
     }
   },
   color: {
@@ -32,21 +39,18 @@ module.exports = db => db.define('products', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  description: {
-    type: Sequelize.TEXT,
-    allowNull: false
-  },
-  images: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
-                          )
-  },
   quantity: {
     type: Sequelize.INTEGER,
     validate: {
-      isInt: true
+      isInt: true,
+      min: 0
     }
   },
   reviewStars: {
     type: Sequelize.DECIMAL(3,2)
+  },
+  description: {
+    type: Sequelize.TEXT,
+    allowNull: false
   }
 })
