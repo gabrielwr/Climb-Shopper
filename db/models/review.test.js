@@ -53,6 +53,16 @@ describe('The `Review` model', () => {
           expect(result.message).to.contain('title cannot be null')
         })
     })
+
+    it('errors if `title` is not a String', () => {
+      review.title = 12345
+      return review.validate()
+        .then(result => {
+          expect(result).to.be.an.instanceOf(Error)
+          expect(result.message).to.contain('title type should be String')
+        })
+    })
+
     it('requires `content`', () => {
 
       review.content = null
@@ -61,27 +71,6 @@ describe('The `Review` model', () => {
         .then(result => {
           expect(result).to.be.an.instanceOf(Error)
           expect(result.message).to.contain('content cannot be null')
-        })
-    })
-
-    it('requires `num_stars`', () => {
-
-      review.num_stars = null
-
-      return review.validate()
-        .then(result => {
-          expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('num_stars cannot be null')
-        })
-    })
-
-    it('requires `title` to include at least one letter', () => {
-      review.title = ''
-
-      return review.validate()
-        .then(result => {
-          expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('Validation error')
         })
     })
 
@@ -101,6 +90,39 @@ describe('The `Review` model', () => {
         })
     })
 
+    it('requires `num_stars`', () => {
+
+      review.num_stars = null
+
+      return review.validate()
+        .then(result => {
+          expect(result).to.be.an.instanceOf(Error)
+          expect(result.message).to.contain('num_stars cannot be null')
+        })
+    })
+
+    it('errors if `num_stars` is less than or equal to zero', () => {
+
+      review.num_stars = -1
+
+      return review.validate()
+        .then(result => {
+          expect(result).to.be.an.instanceOf(Error)
+          expect(result.message).to.contain('num_stars cannot be less than or equal to 0')
+        })
+    })
+
+    it('errors if `num_stars` is greater than 5 ', () => {
+
+      review.num_stars = 7
+
+      return review.validate()
+        .then(result => {
+          expect(result).to.be.an.instanceOf(Error)
+          expect(result.message).to.contain('num_stars cannot be greater than 5')
+        })
+    })
+
     it('requires `num_stars` to be a float number with one digit decimal', () => {
 
       review.num_stars = 3.45
@@ -108,7 +130,7 @@ describe('The `Review` model', () => {
       return review.validate()
         .then(result => {
           expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain(`Validation error`)
+          expect(result.message).to.contain(`num_stars cannot have more than one digit decimal`)
         })
     })
   })
