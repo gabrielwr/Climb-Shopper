@@ -1,11 +1,14 @@
 'use strict';
-var Sequelize = require('sequelize')
-var db = require('./index.js')
+const Sequelize = require('sequelize')
+const db = require('./index.js')
 
 
-// module.exports = db.define('order', {
-//   items: {
-//       //fix this
-//       type: Sequelize.ARRAY
-//   }
-// })
+module.exports = db => db.define('orders', {
+  status: {
+    type: Sequelize.ENUM('Pending','Complete'),
+    allowNull: false
+  }
+}
+
+
+
