@@ -36,14 +36,8 @@ describe('The `Item` model', () => {
     it('included `price` fields', function() {
       return item.save()
         .then(function(savedItem) {
-          expect(savedItem.price).to.equal('Pending')
-        })
-    })
-
-    it('included `quantity` fields', function() {
-      return item.save()
-        .then(function(savedItem) {
-          expect(savedItem.quantity).to.equal('Pending')
+          expect(savedItem.price).to.equal(1000.00)
+          expect(savedItem.quantity).to.equal(3)
         })
     })
   })
