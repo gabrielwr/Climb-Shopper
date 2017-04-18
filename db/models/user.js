@@ -2,17 +2,34 @@
 
 // bcrypt docs: https://www.npmjs.com/package/bcrypt
 const bcrypt = require('bcryptjs')
-    , {STRING, VIRTUAL} = require('sequelize')
+    , {STRING, VIRTUAL, BOOLEAN} = require('sequelize')
 
 //Including some additional flexibility in case a user logged in with oAuth
 module.exports = db => db.define('users', {
-  name: STRING,
+  //should we separate first and last name like done in tests or not?
+  name: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    }
+  },
+  user_name: {
+    type: STRING,
+    allowNull: false
+  },
   email: {
     type: STRING,
+    allowNull: false,
     validate: {
       isEmail: true,
       notEmpty: true,
     }
+  },
+  is_admin: {
+    type: BOOLEAN
+    // we could add our own custom validator for boolean:
+    // http://stackoverflow.com/questions/36069722/sequelize-datatypes-not-being-validated/36104158
   },
 
   // We support oauth, so users may or may not have passwords.
