@@ -90,16 +90,6 @@ describe('The `Product` model', () => {
       });
     });
 
-    it('errors when price is equal to 0', function () {
-      product.price = 0
-
-      return product.validate()
-      .then(function (result) {
-        expect(result).to.be.an.instanceOf(Error);
-        expect(result.message).to.contain('Validation error')
-      });
-    });
-
     it('errors when price is less than 0', function () {
       product.price = -44
 
@@ -140,8 +130,8 @@ describe('The `Product` model', () => {
       });
     });
 
-    it('errors when availability is not an integer' , function () {
-      product.availability = 1.5
+    it('errors when quantity is not an integer' , function () {
+      product.quantity = 1.5
 
       return product.validate()
       .then(function (result) {
@@ -150,8 +140,8 @@ describe('The `Product` model', () => {
       });
     });
 
-    it('errors when availability is less than 0' , function () {
-      product.availability = -4
+    it('errors when quantity is less than 0' , function () {
+      product.quantity = -4
 
       return product.validate()
       .then(function (result) {

@@ -7,14 +7,42 @@ const bcrypt = require('bcryptjs')
 module.exports = db => db.define('products', {
   name: {
     type: Sequelize.STRING,
+    allowNull: false,
     validate: {
-      notEmpty: true
+      notEmpty: true,
     }
   },
   category: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    allowNull: false
   },
   price: {
+    type: Sequelize.DECIMAL(7,2),
+    allowNull: false,
+    validate: {
+      is: /^\d{0,5}\.\d{2}$/
+    }
+  },
+  color: {
+    type: Sequelize.STRING,
+    allowNull: false
+
+  },
+  size: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  description: {
+    type: Sequelize.TEXT
+  },
+  images: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
+                          )
+  },
+  quantity: {
     type: Sequelize.INTEGER
+  },
+  reviewStars: {
+    type: Sequelize.DECIMAL(3,2)
   }
 })
