@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 const Sequelize = require('sequelize')
 
 module.exports = db => db.define('reviews', {
@@ -19,3 +19,8 @@ module.exports = db => db.define('reviews', {
     }
   }
 })
+
+module.exports.associations = (Review, { Product, User }) => {
+  Review.belongsTo(User)
+  Review.belongsTo(Product)
+}
