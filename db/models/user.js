@@ -7,7 +7,14 @@ const bcrypt = require('bcryptjs')
 //Including some additional flexibility in case a user logged in with oAuth
 module.exports = db => db.define('users', {
   //should we separate first and last name like done in tests or not?
-  name: {
+  first_name: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    }
+  },
+  last_name: {
     type: STRING,
     allowNull: false,
     validate: {
