@@ -23,7 +23,10 @@ module.exports = db => db.define('users', {
   },
   user_name: {
     type: STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    }
   },
   email: {
     type: STRING,
@@ -31,7 +34,8 @@ module.exports = db => db.define('users', {
     validate: {
       isEmail: true,
       notEmpty: true,
-    }
+    },
+    unique: true,
   },
   is_admin: {
     type: BOOLEAN
