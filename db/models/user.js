@@ -65,9 +65,12 @@ module.exports = db => db.define('users', {
   }
 })
 
-module.exports.associations = (User, {OAuth, Thing, Favorite}) => {
+module.exports.associations = (User, {OAuth, Review, Order}) => {
+
   User.hasOne(OAuth)
-  User.belongsToMany(Thing, {as: 'favorites', through: Favorite})
+  //do we need through tables here?
+  User.hasMany(Review, {as: 'reviews'}),
+  User.hasMany(Order, {as: 'orders'})
 }
 
 function setEmailAndPassword(user) {
