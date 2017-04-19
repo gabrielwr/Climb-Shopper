@@ -1,75 +1,183 @@
 'use strict'
 
-const db = require('APP/db')
-    , {User, Thing, Favorite, Promise} = db
-    , {mapValues} = require('lodash')
+/*
+* To Seed Your Local Database
+* Check Postico... do you have a lisas-bikes database?
+* NO: npm run dev will create the database
+* YES: npm run seed
+*/
+
+const db = require('APP/db'),
+  { User, Product, Review, Order, Item, Promise } = db,
+  { mapValues } = require('lodash')
 
 function seedEverything() {
   const seeded = {
     users: users(),
-    things: things(),
+    products: products(),
   }
 
-  seeded.favorites = favorites(seeded)
+  seeded.orders = orders(seeded)
+  seeded.items = items(seeded)
+  seeded.reviews = reviews(seeded)
 
   return Promise.props(seeded)
 }
 
 const users = seed(User, {
-  god: {
-    email: 'god@example.com',
-    name: 'So many names',
-    password: '1234',
+  adam: {
+    first_name: 'Adam',
+    last_name: 'Kim',
+    email: 'akim0@nationalgeographic.com',
+    user_name: 'akim',
+    password: 'ZzWHy0ZHRut',
+    is_admin: false
   },
-  barack: {
-    name: 'Barack Obama',
-    email: 'barack@example.gov',
-    password: '1234'
+  kathy: {
+    first_name: 'Kathy',
+    last_name: 'Bailey',
+    email: 'kbailey1@army.mil',
+    user_name: 'kbailey',
+    password: 'aSyjEu',
+    is_admin: false
   },
+  deborah: {
+    first_name: 'Deborah ',
+    last_name: 'Walker',
+    email: 'dwalker2@ning.com',
+    user_name: 'dwalker',
+    password: 'aJA7P3',
+    is_admin: true
+  }
 })
 
-const things = seed(Thing, {
-  surfing: {name: 'surfing'},
-  smiting: {name: 'smiting'},
-  puppies: {name: 'puppies'},
+const products = seed(Product, {
+  road: {
+    name: 'RoadMaster X-Treme',
+    category: 'Road',
+    price: 1359.99,
+    color: 'Khaki',
+    size: 'Medium',
+    images: ['http://www.placegoat.com/200/200', 'http://www.placecat.com/200/200'],
+    quantity: 7480,
+    reviewStars: 3.9,
+    description: 'SO EXTREME YOUR FACE WILL MELT! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
+  },
+  mountainLarge: {
+    name: 'Mount-Pain X-FIRE',
+    category: 'Mountain',
+    price: 2100.51,
+    color: 'Red',
+    size: 'Large',
+    images: ['http://www.placegoat.com/200/200', 'http://www.placecat.com/200/200'],
+    quantity: 2403,
+    reviewStars: 3.9,
+    description: 'SUCH PAIN AHHH! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
+  },
+  mountainMedium: {
+    name: 'Mount-Pain X-FIRE',
+    category: 'Mountain',
+    price: 2100.52,
+    color: 'Red',
+    size: 'Medium',
+    images: ['http://www.placegoat.com/200/200', 'http://www.placecat.com/200/200'],
+    quantity: 2403,
+    reviewStars: 3.2,
+    description: 'SUCH PAIN AHHH! MEDIUM IS ON THE SMALL SIDE OF THINGS! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
+  }
 })
 
-const favorites = seed(Favorite,
-  // We're specifying a function here, rather than just a rows object.
-  // Using a function lets us receive the previously-seeded rows (the seed
-  // function does this wiring for us).
-  //
-  // This lets us reference previously-created rows in order to create the join
-  // rows. We can reference them by the names we used above (which is why we used
-  // Objects above, rather than just arrays).
-  ({users, things}) => ({
-    // The easiest way to seed associations seems to be to just create rows
-    // in the join table.
-    'obama loves surfing': {
-      user_id: users.barack.id,    // users.barack is an instance of the User model
-                                   // that we created in the user seed above.
-                                   // The seed function wires the promises so that it'll
-                                   // have been created already.
-      thing_id: things.surfing.id  // Same thing for things.
+const orders = seed(Order,
+  ({ users }) => ({
+    orderOne: {
+      status: 'Complete',
+      user_id: users.adam.id
     },
-    'god is into smiting': {
-      user_id: users.god.id,
-      thing_id: things.smiting.id
+    orderTwo: {
+      status: 'Pending',
+      user_id: users.kathy.id
     },
-    'obama loves puppies': {
-      user_id: users.barack.id,
-      thing_id: things.puppies.id
+    orderThree: {
+      status: 'Complete',
+      user_id: users.deborah.id
     },
-    'god loves puppies': {
-      user_id: users.god.id,
-      thing_id: things.puppies.id
+    orderFour: {
+      status: 'Pending',
+      user_id: users.kathy.id
+    },
+  })
+)
+
+const items = seed(Item,
+  ({ orders, products }) => ({
+    'orderOne has two Medium Mountain Bikes': {
+      price: 2100.51,
+      quantity: 2,
+      order_id: orders.orderOne.id,
+      product_id: products.mountainMedium.id
+    },
+    'orderTwo has one discounted Medium Mountain Bikes': {
+      price: 1600.51,
+      quantity: 1,
+      order_id: orders.orderTwo.id,
+      product_id: products.mountainMedium.id
+    },
+    'orderThree has one Road Bike': {
+      price: 2100.52,
+      quantity: 1,
+      order_id: orders.orderThree.id,
+      product_id: products.road.id
+    },
+    'orderThree has one Large Mountain Bike ': {
+      price: 2100.53,
+      quantity: 1,
+      order_id: orders.orderThree.id,
+      product_id: products.mountainLarge.id
+    },
+    'orderFour has three discounted Large Mountain Bike ': {
+      price: 1500.04,
+      quantity: 3,
+      order_id: orders.orderFour.id,
+      product_id: products.mountainLarge.id
+    },
+    'orderFour has two Medium Mountain Bike ': {
+      price: 2100.58,
+      quantity: 2,
+      order_id: orders.orderFour.id,
+      product_id: products.mountainMedium.id
+    },
+  })
+)
+
+const reviews = seed(Review,
+  ({ users, products }) => ({
+    'dope bikez': {
+      title: 'Dope Bikez',
+      content: 'This bike is so dope, it is a firecracker under my keister (sp?)',
+      num_stars: 5,
+      user_id: users.adam.id,
+      product_id: products.mountainMedium.id
+    },
+    'this bike is trash': {
+      title: 'Too Expensive!',
+      content: 'I cannot believe how expensive this is. It barely goes 15 mph.  No motor. Bad.',
+      num_stars: 1,
+      user_id: users.deborah.id,
+      product_id: products.road.id
+    },
+    'my kids love it': {
+      title: 'gud starter bik',
+      content: 'my childern lov there chrismat prasnt. thanks',
+      num_stars: 2,
+      user_id: users.kathy.id,
+      product_id: products.road.id
     },
   })
 )
 
 if (module === require.main) {
   db.didSync
-    .then(() => db.sync({force: true}))
+    .then(() => db.sync({ force: true }))
     .then(seedEverything)
     .finally(() => process.exit(0))
 }
@@ -98,34 +206,36 @@ class BadRow extends Error {
 // The function form can be used to initialize rows that reference
 // other models.
 function seed(Model, rows) {
-  return (others={}) => {
+  return (others = {}) => {
     if (typeof rows === 'function') {
       rows = Promise.props(
         mapValues(others,
           other =>
-            // Is other a function? If so, call it. Otherwise, leave it alone.
-            typeof other === 'function' ? other() : other)
+          // Is other a function? If so, call it. Otherwise, leave it alone.
+          typeof other === 'function' ? other() : other)
       ).then(rows)
     }
 
     return Promise.resolve(rows)
       .then(rows => Promise.props(
         Object.keys(rows)
-          .map(key => {
-            const row = rows[key]
-            return {
-              key,
-              value: Promise.props(row)
-                .then(row => Model.create(row)
-                  .catch(error => { throw new BadRow(key, row, error) })
-                )
-            }
-          }).reduce(
-            (all, one) => Object.assign({}, all, {[one.key]: one.value}),
-            {}
-          )
+        .map(key => {
+          const row = rows[key]
+          return {
+            key,
+            value: Promise.props(row)
+              .then(row => Model.create(row)
+                .catch(error => {
+                  throw new BadRow(key, row, error)
+                })
+              )
+          }
+        }).reduce(
+          (all, one) => Object.assign({}, all, {
+            [one.key]: one.value
+          }), {}
         )
-      )
+      ))
       .then(seeded => {
         console.log(`Seeded ${Object.keys(seeded).length} ${Model.name} OK`)
         return seeded
@@ -135,4 +245,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, {users, things, favorites})
+module.exports = Object.assign(seed, { users, orders, items,products,reviews })
