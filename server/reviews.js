@@ -38,8 +38,7 @@ module.exports = require('express').Router()
     .then(review => review.update(req.body))
     .then(updatedreview => res.json(updatedreview))
     .catch(next))
-
-    .delete('/:id',
+  .delete('/:id',
     // TO DO: make sure that this user is Admin
     mustBeLoggedIn,
     (req, res, next) =>
@@ -49,7 +48,7 @@ module.exports = require('express').Router()
       if (wasDestroyedBool) {
         res.sendStatus(204)
       } else {
-        const err = Error('campus not destroyed')
+        const err = Error('review not destroyed')
         err.status = 400
         throw err
       }
