@@ -122,16 +122,5 @@ describe('The `Review` model', () => {
           expect(result.message).to.contain('num_stars cannot be greater than 5')
         })
     })
-
-    it('requires `num_stars` to be a float number with one digit decimal', () => {
-
-      review.num_stars = 3.45
-
-      return review.validate()
-        .then(result => {
-          expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain(`num_stars cannot have more than one digit decimal`)
-        })
-    })
   })
 })
