@@ -22,7 +22,7 @@ const users = seed(User, {
     first_name: 'Adam',
     last_name: 'Kim',
     email: 'akim0@nationalgeographic.com',
-    gender: 'Male',
+    user_name: 'akim',
     password: 'ZzWHy0ZHRut',
     is_admin: false
   },
@@ -30,7 +30,7 @@ const users = seed(User, {
     first_name: 'Kathy',
     last_name: 'Bailey',
     email: 'kbailey1@army.mil',
-    gender: 'Female',
+    user_name: 'kbailey',
     password: 'aSyjEu',
     is_admin: false
   },
@@ -38,7 +38,7 @@ const users = seed(User, {
     first_name: 'Deborah ',
     last_name: 'Walker',
     email: 'dwalker2@ning.com',
-    gender: 'Female',
+    user_name: 'dwalker',
     password: 'aJA7P3',
     is_admin: true
   }
@@ -51,6 +51,7 @@ const products = seed(Product, {
     price: 1359.99,
     color: 'Khaki',
     size: 'Medium',
+    images:['http://www.placegoat.com/200/200','http://www.placecat.com/200/200'],
     quantity: 7480,
     reviewStars: 3.9,
     description: 'SO EXTREME YOUR FACE WILL MELT! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
@@ -61,6 +62,7 @@ const products = seed(Product, {
     price: 2100.50,
     color: 'Red',
     size: 'Large',
+    images:['http://www.placegoat.com/200/200','http://www.placecat.com/200/200'],
     quantity: 2403,
     reviewStars: 3.9,
     description: 'SUCH PAIN AHHH! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
@@ -71,6 +73,7 @@ const products = seed(Product, {
     price: 2100.50,
     color: 'Red',
     size: 'Medium',
+    images:['http://www.placegoat.com/200/200','http://www.placecat.com/200/200'],
     quantity: 2403,
     reviewStars: 3.2,
     description: 'SUCH PAIN AHHH! MEDIUM IS ON THE SMALL SIDE OF THINGS! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
