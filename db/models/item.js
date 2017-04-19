@@ -6,17 +6,18 @@ const Sequelize = require('sequelize')
 module.exports = db => db.define('items', {
   price: {
     // e.g. 90210.00
-    type: Sequelize.FLOAT,
+    type: Sequelize.DECIMAL(7, 2),
     allowNull: false,
-    validations: {
-      // matches 0-5 digits before the . and exactly 2 digits after
-      is: /^\d{0,5}\.\d{2}$/i
+    validate: {
+      // Match 0-5 digits a period and then exactly 2 digits
+      // May cause grief down the line
+      is: /^\d{0,5}\.\d{2}$/
     }
   },
   quantity: {
     type: Sequelize.INTEGER,
     allowNull: false,
-    validations: {
+    validate: {
       min: 0,
       isInt: true
     }
