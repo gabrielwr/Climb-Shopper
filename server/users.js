@@ -29,3 +29,27 @@ module.exports = require('express').Router()
       User.findById(req.params.id)
       .then(user => res.json(user))
       .catch(next))
+  .put('/:id',
+   //must be logged in as this User
+     mustBeLoggedIn,
+     (req, res, next) =>
+     User.findById(req.params.id)
+     .then(user => user.update(req.body))
+     .then(updateduser => res.json(updateduser))
+     .catch(next))
+  .delete('/:id',
+  //must be logged in as this User
+     mustBeLoggedIn,
+     (req, res, next) =>
+     User.findById(req.params.id)
+     .then(user => user.destroy())
+     .then(wasDestroyedBool => {
+       if (wasDestroyedBool) {
+         res.sendStatus(204)
+       } else {
+         const err = Error('user not destroyed')
+         err.status = 400
+         throw err
+       }
+     })
+  .catch(next))
