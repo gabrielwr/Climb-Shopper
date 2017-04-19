@@ -12,11 +12,10 @@ module.exports = db => db.define('reviews', {
     allowNull: false
   },
   num_stars: {
-    type: Sequelize.DECIMAL(1, 2),
+    type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      is: /^\d{1}\.\d{0,1}$/,
-      min: 0,
+      min: 1,
       max: 5
     }
   }
