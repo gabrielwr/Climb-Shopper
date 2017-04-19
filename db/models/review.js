@@ -1,19 +1,21 @@
+'use strict';
+const Sequelize = require('sequelize')
+
 module.exports = db => db.define('reviews', {
-  title: STRING,
-  content: TEXT,
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  content: {
+    type: Sequelize.TEXT,
+    allowNull: false
+  },
   num_stars: {
-    type: FLOAT,
+    type: Sequelize.INTEGER,
+    allowNull: false,
     validate: {
-      min: 1, max: 5
+      min: 1,
+      max: 5
     }
   }
-},{
-  //  getterMethods: {
-  //    type: () => {
-  //
-  //    }
-  //  }
-  //
-  //
-  // }
-)
+})
