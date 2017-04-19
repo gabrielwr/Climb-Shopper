@@ -8,9 +8,9 @@ function seedEverything() {
   const seeded = {
     users: users(),
     products: products(),
-    orders: orders(),
   }
 
+  seeded.orders = orders(seeded)
   seeded.items = items(seeded)
   seeded.reviews = reviews(seeded)
 
@@ -59,7 +59,7 @@ const products = seed(Product, {
   mountainLarge: {
     name: 'Mount-Pain X-FIRE',
     category: 'Mountain',
-    price: 2100.50,
+    price: 2100.51,
     color: 'Red',
     size: 'Large',
     images: ['http://www.placegoat.com/200/200', 'http://www.placecat.com/200/200'],
@@ -70,7 +70,7 @@ const products = seed(Product, {
   mountainMedium: {
     name: 'Mount-Pain X-FIRE',
     category: 'Mountain',
-    price: 2100.50,
+    price: 2100.52,
     color: 'Red',
     size: 'Medium',
     images: ['http://www.placegoat.com/200/200', 'http://www.placecat.com/200/200'],
@@ -104,37 +104,37 @@ const orders = seed(Order,
 const items = seed(Item,
   ({ orders, products }) => ({
     'orderOne has two Medium Mountain Bikes': {
-      price: 2100.50,
+      price: 2100.51,
       quantity: 2,
       order_id: orders.orderOne.id,
       product_id: products.mountainMedium.id
     },
     'orderTwo has one discounted Medium Mountain Bikes': {
-      price: 1600.50,
+      price: 1600.51,
       quantity: 1,
       order_id: orders.orderTwo.id,
       product_id: products.mountainMedium.id
     },
     'orderThree has one Road Bike': {
-      price: 2100.50,
+      price: 2100.52,
       quantity: 1,
       order_id: orders.orderThree.id,
       product_id: products.road.id
     },
     'orderThree has one Large Mountain Bike ': {
-      price: 2100.50,
+      price: 2100.53,
       quantity: 1,
       order_id: orders.orderThree.id,
       product_id: products.mountainLarge.id
     },
     'orderFour has three discounted Large Mountain Bike ': {
-      price: 1500.00,
+      price: 1500.04,
       quantity: 3,
       order_id: orders.orderFour.id,
       product_id: products.mountainLarge.id
     },
     'orderFour has two Medium Mountain Bike ': {
-      price: 2100.50,
+      price: 2100.58,
       quantity: 2,
       order_id: orders.orderFour.id,
       product_id: products.mountainMedium.id
