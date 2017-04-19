@@ -40,8 +40,8 @@ module.exports.associations = (User, {OAuth, Review, Order}) => {
 
   User.hasOne(OAuth)
   //do we need through tables here?
-  User.hasMany(Review, {as: 'reviews', through: Review}),
-  User.hasMany(Order, {as: 'orders', through: Order})
+  User.hasMany(Review, {as: 'reviews'}),
+  User.hasMany(Order, {as: 'orders'})
 }
 
 function setEmailAndPassword(user) {
