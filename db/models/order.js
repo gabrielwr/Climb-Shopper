@@ -8,8 +8,7 @@ module.exports = db => db.define('orders', {
     type: Sequelize.ENUM('Pending','Complete'),
     allowNull: false
   }
-}
-
+})
 
 module.exports.associations = (Order, { Item, User }) => {
   Order.hasMany(Item)
