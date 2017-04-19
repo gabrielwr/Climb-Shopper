@@ -5,17 +5,16 @@ const mustBeLoggedIn = (req, res, next) => {
   next()
 }
 
-const selfOnly = action => (req, res, next) => {
-  if (req.params.id !== req.user.id) {
-    return res.status(403).send(`You can only ${action} yourself.`)
-  }
-  next()
-}
-
 const forbidden = message => (req, res) => {
   res.status(403).send(message)
 }
 
-// Feel free to add more filters here (suggested: something that keeps out non-admins)
+const orderBelongsToUser = (order) => (req, res, next) => {
+  if (order.user_id === req.user.id || req.user.is_admin) {
+    next()
+  }
+  res.status(403).send('Forbidden')
+}
+  // Feel free to add more filters here (suggested: something that keeps out non-admins)
 
-module.exports = {mustBeLoggedIn, selfOnly, forbidden}
+module.exports = { mustBeLoggedIn, orderBelongsToUser, forbidden }
