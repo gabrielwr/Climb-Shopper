@@ -10,8 +10,8 @@ module.exports = db => db.define('items', {
     allowNull: false,
     validate: {
       // Match 0-5 digits a period and then exactly 2 digits
-      // May cause grief down the line
-      is: /^\d{0,5}\.\d{2}$/
+      is: /^\d{0,5}\.\d{2}$/,
+      min: 0
     }
   },
   quantity: {
@@ -23,3 +23,8 @@ module.exports = db => db.define('items', {
     }
   }
 })
+
+module.exports.associations = (Item, { Order, Product }) => {
+  Item.belongsTo(Order)
+  Item.belongsTo(Product)
+}
