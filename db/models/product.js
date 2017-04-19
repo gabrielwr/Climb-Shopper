@@ -18,6 +18,7 @@ module.exports = db => db.define('products', {
     type: Sequelize.DECIMAL(7, 2),
     allowNull: false,
     validate: {
+      // Match 0-5 digits a period and then exactly 2 digits
       is: /^\d{0,5}\.\d{2}$/,
       min: 0
     }
@@ -50,6 +51,6 @@ module.exports = db => db.define('products', {
   }
 })
 
-module.exports.associations = (Product, {Review}) => {
+module.exports.associations = (Product, { Review }) => {
   Product.hasMany(Review)
 }

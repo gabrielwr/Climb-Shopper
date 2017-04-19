@@ -17,7 +17,7 @@ describe('The `Item` model', () => {
   let item
   beforeEach(() => {
     item = Item.build({
-      price: 1000.00,
+      price: 1000.01,
       quantity: 3
     })
   })
@@ -33,10 +33,11 @@ describe('The `Item` model', () => {
 
   describe('attributes definition', function() {
 
-    it('included `price` fields', function() {
+    it('included `price` and `quantity` fields', function() {
+      console.log("item", item.price);
       return item.save()
         .then(function(savedItem) {
-          expect(savedItem.price).to.equal(1000.00)
+          expect(savedItem.price).to.equal('1000.01')
           expect(savedItem.quantity).to.equal(3)
         })
     })
@@ -50,27 +51,26 @@ describe('The `Item` model', () => {
       return item.validate()
         .then(function(result) {
           expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('Validation Error')
+          expect(result.message).to.contain('notNull Violation')
         })
     })
 
     it('errors if `price` is an integer', () => {
       item.price = 20
-
       return item.validate()
         .then(function(result) {
           expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('Validation Error')
+          expect(result.message).to.contain('Validation error')
         })
     })
 
-    it('errors if `price` is a string', () => {
-      item.price = '1000.00'
+    it('errors if `price` is not a string of letters', () => {
+      item.price = 'test'
 
       return item.validate()
         .then(function(result) {
           expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('Validation Error')
+          expect(result.message).to.contain('Validation error')
         })
     })
 
@@ -80,7 +80,7 @@ describe('The `Item` model', () => {
       return item.validate()
         .then(function(result) {
           expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('Validation Error')
+          expect(result.message).to.contain('Validation error')
         })
     })
 
@@ -90,7 +90,7 @@ describe('The `Item` model', () => {
       return item.validate()
         .then(function(result) {
           expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('Validation Error')
+          expect(result.message).to.contain('Validation error')
         })
     })
 
@@ -100,7 +100,7 @@ describe('The `Item` model', () => {
       return item.validate()
         .then(function(result) {
           expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('Validation Error')
+          expect(result.message).to.contain('Validation error')
         })
     })
 
@@ -109,7 +109,7 @@ describe('The `Item` model', () => {
       return item.validate()
         .then(function(result) {
           expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('Validation Error')
+          expect(result.message).to.contain('notNull Violation')
         })
     })
 
@@ -118,7 +118,7 @@ describe('The `Item` model', () => {
       return item.validate()
         .then(function(result) {
           expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('Validation Error')
+          expect(result.message).to.contain('Validation error')
         })
     })
 
@@ -127,16 +127,16 @@ describe('The `Item` model', () => {
       return item.validate()
         .then(function(result) {
           expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('Validation Error')
+          expect(result.message).to.contain('Validation error')
         })
     })
 
     it('errors if `quantity` is a string', () => {
-      item.quantity = '2'
+      item.quantity = 'test'
       return item.validate()
         .then(function(result) {
           expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('Validation Error')
+          expect(result.message).to.contain('Validation error')
         })
     })
 
