@@ -51,7 +51,7 @@ const products = seed(Product, {
     price: 1359.99,
     color: 'Khaki',
     size: 'Medium',
-    images:['http://www.placegoat.com/200/200','http://www.placecat.com/200/200'],
+    images: ['http://www.placegoat.com/200/200', 'http://www.placecat.com/200/200'],
     quantity: 7480,
     reviewStars: 3.9,
     description: 'SO EXTREME YOUR FACE WILL MELT! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
@@ -62,7 +62,7 @@ const products = seed(Product, {
     price: 2100.50,
     color: 'Red',
     size: 'Large',
-    images:['http://www.placegoat.com/200/200','http://www.placecat.com/200/200'],
+    images: ['http://www.placegoat.com/200/200', 'http://www.placecat.com/200/200'],
     quantity: 2403,
     reviewStars: 3.9,
     description: 'SUCH PAIN AHHH! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
@@ -73,27 +73,33 @@ const products = seed(Product, {
     price: 2100.50,
     color: 'Red',
     size: 'Medium',
-    images:['http://www.placegoat.com/200/200','http://www.placecat.com/200/200'],
+    images: ['http://www.placegoat.com/200/200', 'http://www.placecat.com/200/200'],
     quantity: 2403,
     reviewStars: 3.2,
     description: 'SUCH PAIN AHHH! MEDIUM IS ON THE SMALL SIDE OF THINGS! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
   }
 })
 
-const orders = seed(Order, {
-  orderOne: {
-    status: 'Complete',
-  },
-  orderTwo: {
-    status: 'Pending',
-  },
-  orderThree: {
-    status: 'Complete',
-  },
-  orderFour: {
-    status: 'Pending',
-  },
-})
+const orders = seed(Order,
+  ({ users }) => ({
+    orderOne: {
+      status: 'Complete',
+      user_id: users.adam.id
+    },
+    orderTwo: {
+      status: 'Pending',
+      user_id: users.kathy.id
+    },
+    orderThree: {
+      status: 'Complete',
+      user_id: users.deborah.id
+    },
+    orderFour: {
+      status: 'Pending',
+      user_id: users.kathy.id
+    },
+  })
+)
 
 const items = seed(Item,
   ({ orders, products }) => ({
@@ -142,21 +148,21 @@ const reviews = seed(Review,
       title: 'Dope Bikez',
       content: 'This bike is so dope, it is a firecracker under my keister (sp?)',
       num_stars: 5,
-      user_id: orders.adam.id,
+      user_id: users.adam.id,
       product_id: products.mountainMedium.id
     },
     'this bike is trash': {
       title: 'Too Expensive!',
       content: 'I cannot believe how expensive this is. It barely goes 15 mph.  No motor. Bad.',
       num_stars: 1,
-      user_id: orders.deborah.id,
+      user_id: users.deborah.id,
       product_id: products.road.id
     },
     'my kids love it': {
       title: 'gud starter bik',
       content: 'my childern lov there chrismat prasnt. thanks',
       num_stars: 2,
-      user_id: orders.kathy.id,
+      user_id: users.kathy.id,
       product_id: products.road.id
     },
   })
@@ -232,4 +238,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, { users, things, favorites })
+module.exports = Object.assign(seed, { users, orders, items,products,reviews })
