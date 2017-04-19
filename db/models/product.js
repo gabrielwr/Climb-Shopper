@@ -1,8 +1,6 @@
 'use strict'
 
-// bcrypt docs: https://www.npmjs.com/package/bcrypt
-const bcrypt = require('bcryptjs')
-    , {STRING, VIRTUAL} = require('sequelize')
+const Sequelize = require('sequelize')
 
 module.exports = db => db.define('products', {
   name: {
@@ -17,7 +15,7 @@ module.exports = db => db.define('products', {
     allowNull: false
   },
   price: {
-    type: Sequelize.DECIMAL(7,2),
+    type: Sequelize.DECIMAL(7, 2),
     allowNull: false,
     validate: {
       is: /^\d{0,5}\.\d{2}$/,
@@ -26,9 +24,6 @@ module.exports = db => db.define('products', {
   },
   images: {
     type: Sequelize.ARRAY(Sequelize.STRING),
-    validate: {
-      isUrl: true,
-    }
   },
   color: {
     type: Sequelize.STRING,
@@ -47,10 +42,14 @@ module.exports = db => db.define('products', {
     }
   },
   reviewStars: {
-    type: Sequelize.DECIMAL(3,2)
+    type: Sequelize.DECIMAL(2, 1)
   },
   description: {
     type: Sequelize.TEXT,
     allowNull: false
   }
 })
+
+module.exports.associations = (Product, {Review}) => {
+  Product.hasMany(Review)
+}
