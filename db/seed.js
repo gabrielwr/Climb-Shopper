@@ -1,5 +1,12 @@
 'use strict'
 
+/*
+* To Seed Your Local Database
+* Check Postico... do you have a lisas-bikes database?
+* NO: npm run dev will create the database
+* YES: npm run seed
+*/
+
 const db = require('APP/db'),
   { User, Product, Review, Order, Item, Promise } = db,
   { mapValues } = require('lodash')
