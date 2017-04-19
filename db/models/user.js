@@ -38,7 +38,8 @@ module.exports = db => db.define('users', {
     unique: true,
   },
   is_admin: {
-    type: BOOLEAN
+    type: BOOLEAN,
+    defaultValue: false,
     // we could add our own custom validator for boolean:
     // http://stackoverflow.com/questions/36069722/sequelize-datatypes-not-being-validated/36104158
   },
