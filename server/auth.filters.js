@@ -18,4 +18,13 @@ const forbidden = message => (req, res) => {
 
 // Feel free to add more filters here (suggested: something that keeps out non-admins)
 
-module.exports = {mustBeLoggedIn, selfOnly, forbidden}
+// We assume that req.user is an instance of a sequelize user,
+// meaning they will have access to isAdmin bool column.
+const mustBeAdmin = (req, res, next) => {
+  if(!req.user.is_admin) {
+    return res.status(403).send(`You can only do this if you're an admin`)
+  }
+  next()
+}
+
+module.exports = {mustBeLoggedIn, selfOnly, forbidden, mustBeAdmin}
