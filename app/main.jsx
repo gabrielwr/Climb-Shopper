@@ -11,7 +11,8 @@ import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 
 const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
+  ({ auth }) => ({ user: auth }),
+
 )(
   ({ user, children }) =>
     <div>
@@ -22,14 +23,30 @@ const ExampleApp = connect(
     </div>
 )
 
+const EmptyApp = connect(
+  ({ }) => ({ })
+)(
+  ({ }) =>
+    <div>Hey there, hows it going whatcha doin</div>
+)
+
 render(
-  <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path="/" component={ExampleApp}>
-        <IndexRedirect to="/jokes" />
-        <Route path="/jokes" component={Jokes} />
+  <Provider store={ store }>
+    <Router history={ browserHistory }>
+      <Route path="/" component={ EmptyApp }>
+        <Route path="/" component={ EmptyApp } />
+        <Route path="/products" component={ EmptyApp } />
+        <Route path="/products/:id" component={ EmptyApp } />
+        <Route path="/users" component={ EmptyApp } />
+        <Route path="/users/:id" component={ EmptyApp } />
+        <Route path="/account" component={ EmptyApp } />
+        <Route path="/cart" component={ EmptyApp } />
+        <Route path="/orders" component={ EmptyApp } />
+        <Route path="/orders/:id" component={ EmptyApp } />
+        <Route path="/review" component={ EmptyApp } />
+        <Route path="/authenticate" component={ EmptyApp } />
       </Route>
-      <Route path='*' component={NotFound} />
+      <Route path='*' component={ NotFound } />
     </Router>
   </Provider>,
   document.getElementById('main')
