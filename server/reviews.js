@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('APP/db')
-const Review = db.model('review')
+const Review = db.model('reviews')
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 

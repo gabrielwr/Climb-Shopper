@@ -9,6 +9,7 @@ import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
+import AllProducts from './components/AllProducts'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth }),
@@ -26,15 +27,20 @@ const ExampleApp = connect(
 const EmptyApp = connect(
   ({ }) => ({ })
 )(
-  ({ }) =>
-    <div>Hey there, hows it going whatcha doin</div>
+  ({ children}) =>
+    <div>Hey there, replace with me an actual root element
+    {children}
+    </div>
 )
 
 render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
       <Route path="/" component={ EmptyApp }>
-        <Route path="/products" component={ EmptyApp } />
+
+        <Route path="/products" component={ AllProducts } />
+        {/*products/add is an admin only view*/}
+        <Route path="/products/add" component={ EmptyApp } />
         <Route path="/products/:id" component={ EmptyApp } />
         <Route path="/users" component={ EmptyApp } />
         <Route path="/users/:id" component={ EmptyApp } />
