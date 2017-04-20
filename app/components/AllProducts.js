@@ -3,7 +3,7 @@ import React from 'react'
 import { login } from 'APP/app/reducers/auth'
 import { connect } from 'react-redux'
 
-export const AllProducts = ({ products }) => (
+const AllProducts = () => (
   <div>I am all the products</div>
 )
 

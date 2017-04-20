@@ -27,5 +27,5 @@ const mustBeAdmin = (req, res, next) => {
   next()
 }
 
-module.exports = {mustBeLoggedIn, selfOnly, forbidden, mustBeAdmin, orderBelongsToUser }
+module.exports = {mustBeLoggedIn, forbidden, mustBeAdmin, orderBelongsToUser }
 
