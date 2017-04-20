@@ -21,6 +21,7 @@ module.exports = db => db.define('users', {
       notEmpty: true,
     }
   },
+  // OB/LP: consider unique
   user_name: {
     type: STRING,
     allowNull: false,

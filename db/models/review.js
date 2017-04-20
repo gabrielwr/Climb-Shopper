@@ -5,10 +5,12 @@ module.exports = db => db.define('reviews', {
   title: {
     type: Sequelize.STRING,
     allowNull: false
+    // OB/LP: watch out for empty strings
   },
   content: {
     type: Sequelize.TEXT,
     allowNull: false
+    // OB/LP: watch out for empty strings
   },
   num_stars: {
     type: Sequelize.INTEGER,

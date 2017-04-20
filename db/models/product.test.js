@@ -30,6 +30,7 @@ describe('The `Product` model', () => {
     });
   });
 
+  // OB/LP: might not be necessary, kind of just testing sequelize (I'm wrong)
   describe('includes all correct attributes,', () => {
     it('has correct values', () => {
       return product.save()

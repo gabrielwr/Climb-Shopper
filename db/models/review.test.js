@@ -26,6 +26,7 @@ describe('The `Review` model', () => {
   /**
    * Also, we empty the tables after each spec
    */
+  // OB/LP: consider adding this comment as a label to the `afterEach`
   afterEach(function () {
     return Promise.all([
       Review.truncate({cascade: true})
@@ -34,8 +35,9 @@ describe('The `Review` model', () => {
 
   describe('attributes definition', () => {
 
+    // OB/LP: might not need this spec
     it('included `title`, `content`, `num_stars` fields', () => {
-      return Review.save()
+      return Review.save() // OB/LP probably needs to be lowercase
         .then(savedReview => {
           expect(savedReview.title).to.equal("Funny Bike!")
           expect(savedReview.content).to.equal("It makes weird noise every time I ride it. haha funny")

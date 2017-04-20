@@ -23,6 +23,7 @@ module.exports = require('express').Router()
         Review.create(req.body)
         .then(review => res.status(201).json(review))
         .catch(next))
+  // OB/LP: consider router.param
   .get('/:id',
   // TO DO: make sure that this review belongs to user and review
     (req, res, next) =>

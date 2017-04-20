@@ -9,6 +9,15 @@ const alice = {
   password: '12345'
 }
 
+/* OB/LP: this one neat trick will blow your mind, doctors hate it, what science doesn't want you to know
+const review = {
+  text: 'loved it',
+  author: alice
+}
+
+Review.create(review, {include: [{model: User, as: 'author'}]})
+*/
+
 /* global describe it before afterEach beforeEach */
 describe('/api/auth', () => {
   before('Await database sync', () => db.didSync)

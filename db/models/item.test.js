@@ -34,6 +34,7 @@ describe('The `Item` model', () => {
   describe('attributes definition', function() {
 
     it('included `price` and `quantity` fields', function() {
+      // OB/LP: undead code
       console.log("item", item.price);
       return item.save()
         .then(function(savedItem) {
@@ -64,6 +65,7 @@ describe('The `Item` model', () => {
         })
     })
 
+    // OB/LP: not not a string of letters
     it('errors if `price` is not a string of letters', () => {
       item.price = 'test'
 

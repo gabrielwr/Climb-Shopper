@@ -4,6 +4,7 @@ const Sequelize = require('sequelize')
 
 // Including some additional flexibility in case a user logged in with oAuth
 module.exports = db => db.define('items', {
+  // OB/LP: standard to use integers (measure in cents) to avoid floating point woes
   price: {
     // e.g. 90210.00
     type: Sequelize.DECIMAL(7, 2),

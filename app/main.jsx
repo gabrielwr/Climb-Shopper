@@ -37,6 +37,13 @@ render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
       <Route path="/" component={ EmptyApp }>
+        {/* Maybe...
+        <Route path="/products" component={ All }>
+          <Route path='add' component={ TheAddPartOfThatView } />
+          <Route path=':id' component={ SOMETHING } />
+          <IndexRoute component={ SOMETHING } />
+        </Route>
+        */}
 
         <Route path="/products" component={ AllProducts } />
         {/*products/add is an admin only view*/}

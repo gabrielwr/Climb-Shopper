@@ -3,6 +3,7 @@
 const Sequelize = require('sequelize')
 
 module.exports = db => db.define('products', {
+  // OB/LP: might want this to be unique
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -13,8 +14,10 @@ module.exports = db => db.define('products', {
   category: {
     type: Sequelize.STRING,
     allowNull: false
+    // OB/LP: watch out for empty strings, consider ENUMs
   },
   price: {
+    // OB/LP: standard to use integers (measure in cents) to avoid floating point woes
     type: Sequelize.DECIMAL(7, 2),
     allowNull: false,
     validate: {
@@ -25,6 +28,7 @@ module.exports = db => db.define('products', {
   },
   images: {
     type: Sequelize.ARRAY(Sequelize.STRING),
+    // OB/LP: maybe custom validator for isUrl
   },
   color: {
     type: Sequelize.STRING,
@@ -38,11 +42,11 @@ module.exports = db => db.define('products', {
   quantity: {
     type: Sequelize.INTEGER,
     validate: {
-      isInt: true,
+      isInt: true, // OB/LP: probably redundant
       min: 0
     }
   },
-  reviewStars: {
+  reviewStars: { // OB/LP: recommend making this into an instance method
     type: Sequelize.DECIMAL(2, 1)
   },
   description: {
