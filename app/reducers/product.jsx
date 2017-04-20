@@ -12,6 +12,8 @@ const DELETE_PRODUCT = 'DELETE_PRODUCT'
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 const CREATE_PRODUCT = 'CREATE_PRODUCT'
 const ADD_PRODUCT_TO_ORDER = 'ADD_PRODUCT_TO_ORDER'
+  // Below might not be needed
+  // I am leaving here till we have the order reducer built out.
 const UPDATE_PRODUCT_IN_ORDER = 'UPDATE_PRODUCT_IN_ORDER'
 const REMOVE_PRODUCT_FROM_ORDER = 'REMOVE_PRODUCT_FROM_ORDER'
 
@@ -56,8 +58,56 @@ export const updateProductInOrder = (product) => ({
   type: UPDATE_PRODUCT_IN_ORDER,
   product: product
 })
-  /* ------------       REDUCERS     ------------------ */
 
+// const initialState = {
+//   products: [],
+//   selectedProduct: {}
+// }
+
+/* ------------       REDUCERS     ------------------ */
+export default function(state = initialState, action){
+  const newState = Object.assign({}, state)
+
+  switch (action.type) {
+  case SET_PRODUCTS:
+    newState.products = action.products
+    break
+
+  case SET_SELECTED_PRODUCT:
+    newState.selectedProduct = action.selectedProduct
+    break
+
+  case CREATE_PRODUCT:
+    newState.products = newState.products.concat([action.product])
+    break
+
+  case UPDATE_PRODUCT:
+    newState.products = newState.products.map((product) => (
+      (product.id === action.product.id) ? action.product : product
+    ))
+    break
+
+  case DELETE_PRODUCT:
+    newState.products = newState.products.filter((currentProduct) => (
+      (currentProduct.id !== action.productId)
+    ))
+    break
+
+  case ADD_PRODUCT_TO_ORDER:
+    newState.selectedProduct.students = newState.selectedProduct.students.concat([action.student])
+    break
+
+  case REMOVE_PRODUCT_FROM_ORDER:
+    newState.selectedProduct.students =
+      newState.selectedProduct.students.filter((student) => (student.id !== action.student.id))
+    break
+
+  default:
+    return state
+}
+
+return newState
+}
 /* ------------       DISPATCHERS     ------------------ */
 
 export const fetchUsers = () => dispatch => {
