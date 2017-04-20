@@ -1,6 +1,7 @@
 const request = require('supertest')
-const {expect} = require('chai')
-const db = require('APP/db'), {User} = db
+const { expect } = require('chai')
+const db = require('APP/db'),
+  { User } = db
 const app = require('./start')
 
 const alice = {
@@ -15,35 +16,38 @@ describe('/api/auth', () => {
 
   beforeEach('create a user', () =>
     User.create({
+      first_name: 'alice',
+      last_name: 'munro',
+      user_name: 'alice_munro',
       email: alice.username,
       password: alice.password
     })
   )
 
-  describe('POST /login/local (username, password)', () => {
+  describe.only('POST /login/local (username, password)', () => {
     it('succeeds with a valid username and password', () =>
       request(app)
-        .post('/api/auth/login/local')
-        .send(alice)
-        .expect(302)
-        .expect('Set-Cookie', /session=.*/)
-        .expect('Location', '/')
-      )
+      .post('/api/auth/login/local')
+      .send(alice)
+      .expect(302)
+      .expect('Set-Cookie', /session=.*/)
+      .expect('Location', '/')
+    )
 
     it('fails with an invalid username and password', () =>
       request(app)
-        .post('/api/auth/login/local')
-        .send({username: alice.username, password: 'wrong'})
-        .expect(401)
-      )
+      .post('/api/auth/login/local')
+      .send({ username: alice.username, password: 'wrong' })
+      .expect(401)
+    )
   })
 
   describe('GET /whoami', () => {
     describe('when not logged in', () =>
       it('responds with an empty object', () =>
         request(app).get('/api/auth/whoami')
-          .expect(200)
-          .then(res => expect(res.body).to.eql({}))
+        .expect(200)
+        .then(res => expect(res.body).to.eql({}))
       ))
 
     describe('when logged in', () => {
@@ -56,11 +60,11 @@ describe('/api/auth', () => {
 
       it('responds with the currently logged in user', () =>
         agent.get('/api/auth/whoami')
-          .set('Accept', 'application/json')
-          .expect(200)
-          .then(res => expect(res.body).to.contain({
-            email: alice.username
-          }))
+        .set('Accept', 'application/json')
+        .expect(200)
+        .then(res => expect(res.body).to.contain({
+          email: alice.username
+        }))
       )
     })
   })
@@ -79,8 +83,8 @@ describe('/api/auth', () => {
         .expect('Location', '/api/auth/whoami')
         .then(() =>
           agent.get('/api/auth/whoami')
-            .expect(200)
-            .then(rsp => expect(rsp.body).eql({}))
+          .expect(200)
+          .then(rsp => expect(rsp.body).eql({}))
         )
       )
     })
