@@ -34,7 +34,6 @@ render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
       <Route path="/" component={ EmptyApp }>
-        <Route path="/" component={ EmptyApp } />
         <Route path="/products" component={ EmptyApp } />
         <Route path="/products/:id" component={ EmptyApp } />
         <Route path="/users" component={ EmptyApp } />
