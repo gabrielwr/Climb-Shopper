@@ -48,7 +48,7 @@ module.exports = require('express').Router()
       if (wasDestroyedBool) {
         res.sendStatus(204)
       } else {
-        const err = Error('campus not destroyed')
+        const err = Error('order not destroyed')
         err.status = 400
         throw err
       }
