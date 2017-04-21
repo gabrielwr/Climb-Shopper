@@ -70,22 +70,22 @@ export default function(state = initialState, action) {
     case SET_PAST_ORDERS:
       newState.pastOrders = action.pastOrders
       break
-    // case UPDATE_PRODUCT_IN_ORDER:
-    //   newState.currentOrder = newState.currentCampuses.concat([action.campus])
-    //   break
-    //
-    //
-    // case DELETE_CAMPUS:
-    //   newState.currentCampuses = newState.currentCampuses.filter((currentCampus) => (
-    //     (currentCampus.id !== action.campusId && action.studentId !== 1)
-    //   ))
-    //   break;
+
+    case UPDATE_PRODUCT_IN_ORDER:
+      newState.currentOrder = newState.currentCampuses.concat([action.campus])
+      break
+
+    case ADD_PRODUCT_TO_ORDER:
+      newState.currentCampuses = newState.currentCampuses.filter((currentCampus) => (
+        (currentCampus.id !== action.campusId && action.studentId !== 1)
+      ))
+      break;
     //
     // case ADD_STUDENT_TO_CAMPUS:
     //   newState.selectedCampus.students = newState.selectedCampus.students.concat([action.student])
     //   break;
     //
-    // case REMOVE_STUDENT_FROM_CAMPUS:
+    // case REMOVE_PRODUCT_FROM_ORDER:
     //   newState.selectedCampus.students =
     //     newState.selectedCampus.students.filter((student) => (student.id !== action.student.id))
     //   break;
@@ -102,12 +102,24 @@ export default function(state = initialState, action) {
 /* ------------       DISPATCHERS     ------------------ */
 
 export const fetchOrders = () => dispatch => {
-  axios.get('/api/orders')
+  console.log("Here!")
+  return axios.get('/api/orders')
        .then(res => dispatch(setPastOrders(res.data)))
 }
 
 export const findOrCreateCurrentOrder = () => dispatch => {
-  dispatch(remove(id))
-  axios.delete(`/api/users/`)
-       .catch(err => console.error(`Removing user:  unsuccesful`, err));
-};
+  return axios.get(`/api/orders/`)
+    .then(res => )
+       .catch(err => console.error(`Removing user:  unsuccesful`, err))
+}
+
+export const updateCurrentOrder = (id) =>  dispatch => {
+  return axios.put('/api/orders')
+    .then(res => dispatch(addProductToOrder(res.data)))
+    .catch(err => console.error('Update failed', err))
+}
+
+export const addProductToCurrentOrder = (id) => dispatch => {
+  return axios.put('/api/orders')
+    .then(res => )
+}

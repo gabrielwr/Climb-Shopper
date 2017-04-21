@@ -11,7 +11,7 @@ import NotFound from './components/NotFound'
 import AllProducts from './components/AllProducts'
 import Root from './components/Root'
 import Authenticate from './components/Authenticate'
-
+import { fetchOrders } from './reducers/order'
 
 const EmptyApp = connect(
   ({ }) => ({ })
@@ -21,7 +21,12 @@ const EmptyApp = connect(
     </div>
 )
 
+const fetchInitialData = () => {
+    console.log("before")
+    store.dispatch(fetchOrders())
+  console.log('after')
 
+}
 
 const allProductsOnEnter = () => {
   // axios.get('/api')
@@ -30,7 +35,7 @@ const allProductsOnEnter = () => {
 render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
-      <Route path="/" component={ Root }>
+      <Route path="/" onEnter = { fetchInitialData } component={ Root }>
         <Route path="/products" onEnter={ allProductsOnEnter } component={ AllProducts } />
         {/*products/add is an admin only view*/}
         <Route path="/products/add" component={ EmptyApp } />
