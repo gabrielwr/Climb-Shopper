@@ -13,7 +13,7 @@ const ADD_PRODUCT_TO_ORDER = 'ADD_PRODUCT_TO_ORDER'
 const UPDATE_PRODUCT_IN_ORDER = 'UPDATE_PRODUCT_IN_ORDER'
 const REMOVE_PRODUCT_FROM_ORDER = 'REMOVE_PRODUCT_FROM_ORDER'
 const COMPLETE_ORDER = 'COMPLETE_ORDER'
-const SET_PAST_ORDER = 'SET_PAST_ORDER'
+const SET_PAST_ORDERS = 'SET_PAST_ORDERS'
 
 
 /* ------------   ACTION CREATORS     ------------------ */
@@ -49,67 +49,65 @@ export const completeOrder = () => ({
   type: COMPLETE_ORDER,
 })
 
-export const setPastOrder = (orders) => ({
-  type: SET_PAST_ORDER,
+export const setPastOrders = (orders) => ({
+  type: SET_PAST_ORDERS,
   pastOrders: orders
 })
 /* ------------       REDUCERS     ------------------ */
 export default function(state = initialState, action) {
 
-  const newState = Object.assign({}, state);
+  const newState = Object.assign({}, state)
 
   switch (action.type) {
-    case SET_CAMPUSES:
-      newState.currentCampuses = action.campuses;
-      break;
+    // case CREATE_ORDER:
+    //   newState.currentOrder = action.currentOrder
+    //   break
 
-    case SET_SELECTED_CAMPUS:
-      newState.selectedCampus = action.selectedCampus;
-      break;
+    case SET_CURRENT_ORDER:
+      newState.currentOrder = action.currentOrder
+      break
 
-    case CREATE_CAMPUS:
-      newState.currentCampuses = newState.currentCampuses.concat([action.campus]);
-      break;
-
-    case UPDATE_CAMPUS:
-      newState.currentCampuses = newState.currentCampuses.map((campus) => (
-        (campus.id === action.campus.id) ? action.campus : campus
-      ))
-      break;
-
-    case DELETE_CAMPUS:
-      newState.currentCampuses = newState.currentCampuses.filter((currentCampus) => (
-        (currentCampus.id !== action.campusId && action.studentId !== 1)
-      ))
-      break;
-
-    case ADD_STUDENT_TO_CAMPUS:
-      newState.selectedCampus.students = newState.selectedCampus.students.concat([action.student])
-      break;
-
-    case REMOVE_STUDENT_FROM_CAMPUS:
-      newState.selectedCampus.students =
-        newState.selectedCampus.students.filter((student) => (student.id !== action.student.id))
-      break;
+    case SET_PAST_ORDERS:
+      newState.pastOrders = action.pastOrders
+      break
+    // case UPDATE_PRODUCT_IN_ORDER:
+    //   newState.currentOrder = newState.currentCampuses.concat([action.campus])
+    //   break
+    //
+    //
+    // case DELETE_CAMPUS:
+    //   newState.currentCampuses = newState.currentCampuses.filter((currentCampus) => (
+    //     (currentCampus.id !== action.campusId && action.studentId !== 1)
+    //   ))
+    //   break;
+    //
+    // case ADD_STUDENT_TO_CAMPUS:
+    //   newState.selectedCampus.students = newState.selectedCampus.students.concat([action.student])
+    //   break;
+    //
+    // case REMOVE_STUDENT_FROM_CAMPUS:
+    //   newState.selectedCampus.students =
+    //     newState.selectedCampus.students.filter((student) => (student.id !== action.student.id))
+    //   break;
 
     default:
-      return state;
+      return state
 
   }
 
-  return newState;
+  return newState
 }
 
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export const fetchUsers = () => dispatch => {
-  axios.get('/api/users')
-       .then(res => dispatch(init(res.data)));
-};
+export const fetchOrders = () => dispatch => {
+  axios.get('/api/orders')
+       .then(res => dispatch(setPastOrders(res.data)))
+}
 
-export const removeUser = id => dispatch => {
-  dispatch(remove(id));
+export const findOrCreateCurrentOrder = () => dispatch => {
+  dispatch(remove(id))
   axios.delete(`/api/users/`)
        .catch(err => console.error(`Removing user:  unsuccesful`, err));
 };
