@@ -9,11 +9,8 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import AllProducts from './components/AllProducts'
-<<<<<<< HEAD
 import SingleProduct from './components/SingleProduct'
-=======
 import AllReviews from './components/AllReviews'
->>>>>>> master
 import Root from './components/Root'
 import Authenticate from './components/Authenticate'
 
