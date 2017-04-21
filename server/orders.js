@@ -13,7 +13,6 @@ module.exports = require('express').Router()
     // If you want to only let admins list all the orders, then you'll
     // have to add a role column to the orders table to support
     // the concept of admin orders.
-    (req, res, next) => console.log('HELP'),
     forbidden('listing orders is not allowed'),
     (req, res, next) =>
     Order.findAll()
