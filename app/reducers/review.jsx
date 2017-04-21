@@ -12,11 +12,11 @@ const DELETE_REVIEW = 'DELETE_REVIEW'
 const UPDATE_REVIEW = 'UPDATE_REVIEW'
 //do we need a create_review?
 const CREATE_REVIEW = 'CREATE_REVIEW'
-const ADD_REVIEW_TO_ORDER = 'ADD_REVIEW_TO_ORDER'
+const ADD_REVIEW_TO_PRODUCT = 'ADD_REVIEW_TO_PRODUCT'
   // Below might not be needed
   // I am leaving here till we have the order reducer built out.
-const UPDATE_REVIEW_IN_ORDER = 'UPDATE_REVIEW_IN_ORDER'
-const REMOVE_REVIEW_FROM_ORDER = 'REMOVE_REVIEW_FROM_ORDER'
+const UPDATE_REVIEW_IN_PRODUCT = 'UPDATE_REVIEW_IN_PRODUCT'
+const REMOVE_REVIEW_FROM_PRODUCT = 'REMOVE_REVIEW_FROM_PRODUCT'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -46,17 +46,17 @@ export const deleteReview = (reviewId) => ({
 })
 
 export const addReviewToOrder = (review) => ({
-  type: ADD_REVIEW_TO_ORDER,
+  type: ADD_REVIEW_TO_PRODUCT,
   review: review
 })
 
 export const removeReviewFromOrder = (review) => ({
-  type: REMOVE_REVIEW_FROM_ORDER,
+  type: REMOVE_REVIEW_FROM_PRODUCT,
   review: review
 })
 
 export const updateReviewInOrder = (review) => ({
-  type: UPDATE_REVIEW_IN_ORDER,
+  type: UPDATE_REVIEW_IN_PRODUCT,
   review: review
 })
 
@@ -90,11 +90,11 @@ export default function(state = initialState, action) {
       ))
       break
 
-    case ADD_REVIEW_TO_ORDER:
+    case ADD_REVIEW_TO_PRODUCT:
       newState.selectedReview.students = newState.selectedReview.students.concat([action.student])
       break
 
-    case REMOVE_REVIEW_FROM_ORDER:
+    case REMOVE_REVIEW_FROM_PRODUCT:
       newState.selectedReview.students =
         newState.selectedReview.students.filter((student) => (student.id !== action.student.id))
       break
