@@ -9,11 +9,8 @@ import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
-<<<<<<< HEAD
 import AllProducts from './components/AllProducts'
-=======
 import Root from './components/Root'
->>>>>>> master
 import Authenticate from './components/Authenticate'
 
 
