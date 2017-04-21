@@ -19,8 +19,8 @@ describe('/api/users', () => {
         .expect(200)
         .expect(function (res) {
           // res.body is the JSON return object
-          expect(res.body).to.be.an.instanceOf(Array);
-          expect(res.body).to.have.length(0);
+          expect(res.body).to.be.an.instanceOf(Array)
+          expect(res.body).to.have.length(0)
         })
     })
 
@@ -160,8 +160,8 @@ describe('/api/users', () => {
       })
       .expect(200)
       .expect(function (res) {
-        expect(res.body.user.id).to.not.be.an('undefined');
-        expect(res.body.user.first_name).to.equal('Simon Simon');
+        expect(res.body.user.id).to.not.be.an('undefined')
+        expect(res.body.user.first_name).to.equal('Simon Simon')
       })
     })
 
@@ -172,7 +172,7 @@ describe('/api/users', () => {
         first_name: 'Simon Simon'
       })
       .then(function () {
-        return User.findById(user.id);
+        return User.findById(user.id)
       })
       .then(function (foundUser) {
         expect(foundUser).to.exist
