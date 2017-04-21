@@ -10,6 +10,8 @@ import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 import AllProducts from './components/AllProducts'
+import Authenticate from './components/Authenticate'
+
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth }),
@@ -31,6 +33,11 @@ const EmptyApp = connect(
     <div>Hey there, replace with me an actual root element
     {children}
     </div>
+
+  ({children }) =>
+    <div>Hey there, hows it going whatcha doin
+    {children}
+    </div>
 )
 
 render(
@@ -49,7 +56,7 @@ render(
         <Route path="/orders" component={ EmptyApp } />
         <Route path="/orders/:id" component={ EmptyApp } />
         <Route path="/review" component={ EmptyApp } />
-        <Route path="/authenticate" component={ EmptyApp } />
+        <Route path="/authenticate" component={ Authenticate } />
       </Route>
       <Route path='*' component={ NotFound } />
     </Router>
