@@ -1,17 +1,24 @@
 'use strict'
+
+// Additional Libraries
+import axios from 'axios'
+
+// React Imports
 import React from 'react'
 import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
 import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
-import store from './store'
+
+// Components
 import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
-import AllProducts from './components/AllProducts'
+import AllProducts, { setProducts } from './components/AllProducts'
 import Root from './components/Root'
 import Authenticate from './components/Authenticate'
 
+import store from './store'
 
 const EmptyApp = connect(
   ({ }) => ({ })
@@ -21,6 +28,18 @@ const EmptyApp = connect(
     </div>
 )
 
+const onAppEnter = () => {
+  Promise.all([
+    axios.get('/api/products'),
+    axios.get('/api/reviews'),
+  ])
+  .then(responses => responses.map(r => r.data))
+  .then(([ products, reviews ]) => {
+    store.dispatch(setProducts(products))
+    store.dispatch(setReviews(reviews))
+  })
+  .catch(console.error)
+}
 
 
 const allProductsOnEnter = () => {
@@ -30,7 +49,7 @@ const allProductsOnEnter = () => {
 render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
-      <Route path="/" component={ Root }>
+      <Route path="/" component={ Root } onEnter={ onAppEnter }>
         <Route path="/products" onEnter={ allProductsOnEnter } component={ AllProducts } />
         {/*products/add is an admin only view*/}
         <Route path="/products/add" component={ EmptyApp } />
