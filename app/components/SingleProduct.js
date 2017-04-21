@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 const SingleProduct = (props) => (
   <div>
-    <h2>{props.singleProduct.name}</h2>
+    <h2>Product name</h2>
     <h3>Rest of the product description</h3>
   </div>
 
