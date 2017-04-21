@@ -54,6 +54,51 @@ export const setPastOrder = (orders) => ({
   pastOrders: orders
 })
 /* ------------       REDUCERS     ------------------ */
+export default function(state = initialState, action) {
+
+  const newState = Object.assign({}, state);
+
+  switch (action.type) {
+    case SET_CAMPUSES:
+      newState.currentCampuses = action.campuses;
+      break;
+
+    case SET_SELECTED_CAMPUS:
+      newState.selectedCampus = action.selectedCampus;
+      break;
+
+    case CREATE_CAMPUS:
+      newState.currentCampuses = newState.currentCampuses.concat([action.campus]);
+      break;
+
+    case UPDATE_CAMPUS:
+      newState.currentCampuses = newState.currentCampuses.map((campus) => (
+        (campus.id === action.campus.id) ? action.campus : campus
+      ))
+      break;
+
+    case DELETE_CAMPUS:
+      newState.currentCampuses = newState.currentCampuses.filter((currentCampus) => (
+        (currentCampus.id !== action.campusId && action.studentId !== 1)
+      ))
+      break;
+
+    case ADD_STUDENT_TO_CAMPUS:
+      newState.selectedCampus.students = newState.selectedCampus.students.concat([action.student])
+      break;
+
+    case REMOVE_STUDENT_FROM_CAMPUS:
+      newState.selectedCampus.students =
+        newState.selectedCampus.students.filter((student) => (student.id !== action.student.id))
+      break;
+
+    default:
+      return state;
+
+  }
+
+  return newState;
+}
 
 
 /* ------------       DISPATCHERS     ------------------ */
