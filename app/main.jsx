@@ -9,6 +9,7 @@ import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
+import Root from './components/Root'
 
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth }),
@@ -33,7 +34,7 @@ const EmptyApp = connect(
 render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
-      <Route path="/" component={ EmptyApp }>
+      <Route path="/" component={ Root }>
         <Route path="/products" component={ EmptyApp } />
         <Route path="/products/:id" component={ EmptyApp } />
         <Route path="/users" component={ EmptyApp } />
