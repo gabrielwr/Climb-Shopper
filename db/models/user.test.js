@@ -27,14 +27,14 @@ describe('The `User` model', () => {
     it('has correct values', () => {
       return user.save()
       .then( (savedUser) => {
-        expect(savedUser.first_name).to.equal('Simon');
-        expect(savedUser.last_name).to.equal('Cat');
-        expect(savedUser.user_name).to.equal(simoncat);
-        expect(savedUser.email).to.equal('scat@gmail.com');
-        expect(savedUser.password).to.equal('sssccc');
-        expect(savedUser.is_admin).to.equal(false);
+        expect(savedUser.first_name).to.equal('Simon')
+        expect(savedUser.last_name).to.equal('Cat')
+        expect(savedUser.user_name).to.equal(simoncat)
+        expect(savedUser.email).to.equal('scat@gmail.com')
+        expect(savedUser.password).to.equal('sssccc')
+        expect(savedUser.is_admin).to.equal(false)
       })
-    });
+    })
   })
 
   describe('Validations ', () => {
@@ -43,18 +43,18 @@ describe('The `User` model', () => {
 
       return user.validate()
       .then(function (result) {
-        expect(result).to.be.an.instanceOf(Error);
+        expect(result).to.be.an.instanceOf(Error)
         expect(result.message).to.contain('Validation error')
       })
     })
 
      it('requires `first name` to not be an empty string', function () {
 
-      user.first_name = '';
+      user.first_name = ''
 
       return user.validate()
       .then(function (result) {
-        expect(result).to.be.an.instanceOf(Error);
+        expect(result).to.be.an.instanceOf(Error)
         expect(result.message).to.contain('Validation error')
       })
     })
@@ -64,18 +64,18 @@ describe('The `User` model', () => {
 
       return user.validate()
       .then(function (result) {
-        expect(result).to.be.an.instanceOf(Error);
+        expect(result).to.be.an.instanceOf(Error)
         expect(result.message).to.contain('Validation error')
       })
     })
 
      it('requires `last name` to not be an empty string', function () {
 
-      user.last_name = '';
+      user.last_name = ''
 
       return user.validate()
       .then(function (result) {
-        expect(result).to.be.an.instanceOf(Error);
+        expect(result).to.be.an.instanceOf(Error)
         expect(result.message).to.contain('Validation error')
       })
     })
@@ -86,30 +86,30 @@ describe('The `User` model', () => {
 
       return user.validate()
       .then(function (result) {
-        expect(result).to.be.an.instanceOf(Error);
+        expect(result).to.be.an.instanceOf(Error)
         expect(result.message).to.contain('Validation error')
-      });
-    });
+      })
+    })
 
     it('errors when no email is entered', function () {
       user.email = null
 
       return user.validate()
       .then(function (result) {
-        expect(result).to.be.an.instanceOf(Error);
+        expect(result).to.be.an.instanceOf(Error)
         expect(result.message).to.contain('Validation error')
-      });
-    });
+      })
+    })
 
     it('errors when  email format is invalid', function () {
       user.email = 'clearly_not_an_email'
 
       return user.validate()
       .then(function (result) {
-        expect(result).to.be.an.instanceOf(Error);
+        expect(result).to.be.an.instanceOf(Error)
         expect(result.message).to.contain('Validation error')
-      });
-    });
+      })
+    })
 
 
     it('errors when no password is entered' , function () {
@@ -117,30 +117,30 @@ describe('The `User` model', () => {
 
       return user.validate()
       .then(function (result) {
-        expect(result).to.be.an.instanceOf(Error);
+        expect(result).to.be.an.instanceOf(Error)
         expect(result.message).to.contain('Validation error')
-      });
-    });
+      })
+    })
 
   it('errors when is_admin is not specified' , function () {
       user.is_admin = null
 
       return user.validate()
       .then(function (result) {
-        expect(result).to.be.an.instanceOf(Error);
+        expect(result).to.be.an.instanceOf(Error)
         expect(result.message).to.contain('Validation error')
-      });
-    });
+      })
+    })
 
   it('errors when is_admin is not a boolean' , function () {
       user.is_admin = 25
 
       return user.validate()
       .then(function (result) {
-        expect(result).to.be.an.instanceOf(Error);
+        expect(result).to.be.an.instanceOf(Error)
         expect(result.message).to.contain('Validation error')
-      });
-    });
+      })
+    })
 
 
   })
