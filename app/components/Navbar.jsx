@@ -35,8 +35,8 @@ class Navbar extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapProps = ({ auth }) => ({ user: auth });
+const mapProps = ({ auth }) => ({ user: auth })
 
 const mapDispatch = null
 
-export default connect(mapProps, mapDispatch)(Navbar);
+export default connect(mapProps, mapDispatch)(Navbar)
