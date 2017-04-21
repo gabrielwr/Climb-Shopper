@@ -89,14 +89,6 @@ export default function(state = initialState, action) {
       ))
       break
 
-    case ADD_PRODUCT_TO_ORDER:
-      newState.selectedProduct.students = newState.selectedProduct.students.concat([action.student])
-      break
-
-    case REMOVE_PRODUCT_FROM_ORDER:
-      newState.selectedProduct.students =
-        newState.selectedProduct.students.filter((student) => (student.id !== action.student.id))
-      break
 
     default:
       return state
