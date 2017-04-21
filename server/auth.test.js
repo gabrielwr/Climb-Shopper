@@ -24,7 +24,7 @@ describe('/api/auth', () => {
     })
   )
 
-  describe.only('POST /login/local (username, password)', () => {
+  describe('POST /login/local (username, password)', () => {
     it('succeeds with a valid username and password', () =>
       request(app)
       .post('/api/auth/login/local')
