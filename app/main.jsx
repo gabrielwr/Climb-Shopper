@@ -1,18 +1,26 @@
 'use strict'
+
+// Additional Libraries
+import axios from 'axios'
+
+// React Imports
 import React from 'react'
 import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
 import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
-import store from './store'
+
+// Components
 import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
-import AllProducts from './components/AllProducts'
-import AllReviews from './components/AllReviews'
+import AllProducts, { setProducts } from './components/AllProducts'
+import AllReviews, { setReviews } from './components/AllReviews'
 import Root from './components/Root'
 import Authenticate from './components/Authenticate'
+import SingleUser from './components/SingleUser'
 
+import store from './store'
 
 const EmptyApp = connect(
   ({ }) => ({ })
@@ -37,7 +45,7 @@ render(
         <Route path="/products/add" component={ EmptyApp } />
         <Route path="/products/:id" component={ EmptyApp } />
         <Route path="/users" component={ EmptyApp } />
-        <Route path="/users/:id" component={ EmptyApp } />
+        <Route path="/users/:id" component={ SingleUser } />
         <Route path="/account" component={ EmptyApp } />
         <Route path="/cart" component={ EmptyApp } />
         <Route path="/orders" component={ EmptyApp } />
