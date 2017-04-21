@@ -40,12 +40,16 @@ const EmptyApp = connect(
     </div>
 )
 
+const allProductsOnEnter = () => {
+  // axios.get('/api')
+}
+
 render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
       <Route path="/" component={ EmptyApp }>
 
-        <Route path="/products" component={ AllProducts } />
+        <Route path="/products" onEnter={ allProductsOnEnter } component={ AllProducts } />
         {/*products/add is an admin only view*/}
         <Route path="/products/add" component={ EmptyApp } />
         <Route path="/products/:id" component={ EmptyApp } />
