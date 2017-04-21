@@ -3,7 +3,7 @@ import React from 'react'
 import { login } from 'APP/app/reducers/auth'
 import { connect } from 'react-redux'
 
-const AllProducts = () => (
+const AllUsers = () => (
   <div>I am all the users</div>
 )
 
@@ -11,4 +11,4 @@ const AllProducts = () => (
 export default connect(
   state => ({}),
   {}
-)(AllProducts)
+)(AllUsers)
