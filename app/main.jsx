@@ -14,8 +14,8 @@ import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
-import AllProducts from './components/AllProducts'
-import AllReviews from './components/AllReviews'
+import AllProducts, { setProducts } from './components/AllProducts'
+import AllReviews, { setReviews } from './components/AllReviews'
 import Root from './components/Root'
 import Authenticate from './components/Authenticate'
 
@@ -42,16 +42,11 @@ const onAppEnter = () => {
   .catch(console.error)
 }
 
-
-const allProductsOnEnter = () => {
-  // axios.get('/api')
-}
-
 render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
       <Route path="/" component={ Root } onEnter={ onAppEnter }>
-        <Route path="/products" onEnter={ allProductsOnEnter } component={ AllProducts } />
+        <Route path="/products" component={ AllProducts } />
         {/*products/add is an admin only view*/}
         <Route path="/products/add" component={ EmptyApp } />
         <Route path="/products/:id" component={ EmptyApp } />
