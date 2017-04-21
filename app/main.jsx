@@ -34,7 +34,6 @@ render(
         <Route path="/products" onEnter={ allProductsOnEnter } component={ AllProducts } />
         {/*products/add is an admin only view*/}
         <Route path="/products/add" component={ EmptyApp } />
-        <Route path="/products" component={ EmptyApp } />
         <Route path="/products/:id" component={ EmptyApp } />
         <Route path="/users" component={ EmptyApp } />
         <Route path="/users/:id" component={ EmptyApp } />
