@@ -1,13 +1,13 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link, browserHistory } from 'react-router';
-import Login from './Login';
+import React from 'react'
+import { connect } from 'react-redux'
+import { Link, browserHistory } from 'react-router'
+import Login from './Login'
 
 /* -----------------    COMPONENT     ------------------ */
 
 class Navbar extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
@@ -23,4 +23,4 @@ const mapProps = null
 
 const mapDispatch = null
 
-export default connect(mapProps, mapDispatch)(Navbar);
+export default connect(mapProps, mapDispatch)(Navbar)
