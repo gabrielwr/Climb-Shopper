@@ -59,64 +59,60 @@ export const updateProductInOrder = (product) => ({
   product: product
 })
 
-// const initialState = {
-//   products: [],
-//   selectedProduct: {}
-// }
 
 /* ------------       REDUCERS     ------------------ */
-export default function(state = initialState, action){
+export default function(state = initialState, action) {
   const newState = Object.assign({}, state)
 
   switch (action.type) {
-  case SET_PRODUCTS:
-    newState.products = action.products
-    break
+    case SET_PRODUCTS:
+      newState.products = action.products
+      break
 
-  case SET_SELECTED_PRODUCT:
-    newState.selectedProduct = action.selectedProduct
-    break
+    case SET_SELECTED_PRODUCT:
+      newState.selectedProduct = action.selectedProduct
+      break
 
-  case CREATE_PRODUCT:
-    newState.products = newState.products.concat([action.product])
-    break
+    case CREATE_PRODUCT:
+      newState.products = newState.products.concat([action.product])
+      break
 
-  case UPDATE_PRODUCT:
-    newState.products = newState.products.map((product) => (
-      (product.id === action.product.id) ? action.product : product
-    ))
-    break
+    case UPDATE_PRODUCT:
+      newState.products = newState.products.map((product) => (
+        (product.id === action.product.id) ? action.product : product
+      ))
+      break
 
-  case DELETE_PRODUCT:
-    newState.products = newState.products.filter((currentProduct) => (
-      (currentProduct.id !== action.productId)
-    ))
-    break
+    case DELETE_PRODUCT:
+      newState.products = newState.products.filter((currentProduct) => (
+        (currentProduct.id !== action.productId)
+      ))
+      break
 
-  case ADD_PRODUCT_TO_ORDER:
-    newState.selectedProduct.students = newState.selectedProduct.students.concat([action.student])
-    break
+    case ADD_PRODUCT_TO_ORDER:
+      newState.selectedProduct.students = newState.selectedProduct.students.concat([action.student])
+      break
 
-  case REMOVE_PRODUCT_FROM_ORDER:
-    newState.selectedProduct.students =
-      newState.selectedProduct.students.filter((student) => (student.id !== action.student.id))
-    break
+    case REMOVE_PRODUCT_FROM_ORDER:
+      newState.selectedProduct.students =
+        newState.selectedProduct.students.filter((student) => (student.id !== action.student.id))
+      break
 
-  default:
-    return state
-}
+    default:
+      return state
+  }
 
-return newState
+  return newState
 }
 /* ------------       DISPATCHERS     ------------------ */
 
-export const fetchUsers = () => dispatch => {
-  axios.get('/api/users')
-    .then(res => dispatch(init(res.data)));
-};
+export const fetchProducts = () => dispatch => {
+  axios.get('/api/products')
+    .then(res => dispatch(setProducts(res.data)))
+}
 
-export const removeUser = id => dispatch => {
-  dispatch(remove(id));
-  axios.delete(`/api/users/`)
+export const removeProduct = id => dispatch => {
+  dispatch(deleteProduct(id))
+  axios.delete(`/api/products/`)
     .catch(err => console.error(`Removing user:  unsuccesful`, err));
-};
+}
