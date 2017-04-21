@@ -11,6 +11,7 @@ import WhoAmI from './components/WhoAmI'
 import NotFound from './components/NotFound'
 <<<<<<< HEAD
 import AllProducts from './components/AllProducts'
+import SingleProduct from './components/SingleProduct'
 =======
 import Root from './components/Root'
 >>>>>>> master
@@ -58,7 +59,7 @@ render(
         <Route path="/products/add" component={ EmptyApp } />
       <Route path="/" component={ Root }>
         <Route path="/products" component={ EmptyApp } />
-        <Route path="/products/:id" component={ EmptyApp } />
+        <Route path="/products/:id" component={ SingleProduct } />
         <Route path="/users" component={ EmptyApp } />
         <Route path="/users/:id" component={ EmptyApp } />
         <Route path="/account" component={ EmptyApp } />
