@@ -1,8 +1,8 @@
 'use strict'
 import React from 'react'
-import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
-import {render} from 'react-dom'
-import {connect, Provider} from 'react-redux'
+import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
+import { render } from 'react-dom'
+import { connect, Provider } from 'react-redux'
 import store from './store'
 import Jokes from './components/Jokes'
 import Login from './components/Login'
@@ -12,21 +12,24 @@ import AllProducts from './components/AllProducts'
 import AllReviews from './components/AllReviews'
 import Root from './components/Root'
 import Authenticate from './components/Authenticate'
-import { fetchOrders } from './reducers/order'
+import { fetchPastOrders, fetchCurrentOrder } from './reducers/order'
+import {whoami} from './reducers/auth'
+
 
 const EmptyApp = connect(
-  ({ }) => ({ })
+  ({}) => ({})
 )(
-  ({ }) =>
-    <div>
+  ({}) =>
+  <div>
     </div>
 )
 
-const fetchInitialData = () => {
-    console.log("before")
-    store.dispatch(fetchOrders())
-  console.log('after')
-
+const fetchInitialData = (nextRouterState) => {
+  // Set the auth info at start
+  store.dispatch(whoami())
+  .then(()=>console.log('beer'))
+  store.dispatch(fetchPastOrders())
+  store.dispatch(fetchCurrentOrder(nextRouterState.params.id))
 }
 
 const allProductsOnEnter = () => {

@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 const initialState = {
-    pastOrders: [],
-    currentOrder: {}
-  }
+  pastOrders: [],
+  currentOrder: {}
+}
 
 
 /* -----------------    ACTION TYPES     ------------------ */
@@ -50,10 +50,10 @@ export const completeOrder = () => ({
 })
 
 export const setPastOrders = (orders) => ({
-  type: SET_PAST_ORDERS,
-  pastOrders: orders
-})
-/* ------------       REDUCERS     ------------------ */
+    type: SET_PAST_ORDERS,
+    pastOrders: orders
+  })
+  /* ------------       REDUCERS     ------------------ */
 export default function(state = initialState, action) {
 
   const newState = Object.assign({}, state)
@@ -80,15 +80,15 @@ export default function(state = initialState, action) {
         (currentCampus.id !== action.campusId && action.studentId !== 1)
       ))
       break;
-    //
-    // case ADD_STUDENT_TO_CAMPUS:
-    //   newState.selectedCampus.students = newState.selectedCampus.students.concat([action.student])
-    //   break;
-    //
-    // case REMOVE_PRODUCT_FROM_ORDER:
-    //   newState.selectedCampus.students =
-    //     newState.selectedCampus.students.filter((student) => (student.id !== action.student.id))
-    //   break;
+      //
+      // case ADD_STUDENT_TO_CAMPUS:
+      //   newState.selectedCampus.students = newState.selectedCampus.students.concat([action.student])
+      //   break;
+      //
+      // case REMOVE_PRODUCT_FROM_ORDER:
+      //   newState.selectedCampus.students =
+      //     newState.selectedCampus.students.filter((student) => (student.id !== action.student.id))
+      //   break;
 
     default:
       return state
@@ -101,25 +101,33 @@ export default function(state = initialState, action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export const fetchOrders = () => dispatch => {
-  console.log("Here!")
+export const fetchPastOrders = () => dispatch => {
   return axios.get('/api/orders')
-       .then(res => dispatch(setPastOrders(res.data)))
+    .then(res => dispatch(setPastOrders(res.data)))
+    .catch(err => console.error(`Fetching past orders unsuccesful`, err))
+
 }
 
-export const findOrCreateCurrentOrder = () => dispatch => {
-  return axios.get(`/api/orders/`)
-    .then(res => )
-       .catch(err => console.error(`Removing user:  unsuccesful`, err))
+export const fetchCurrentOrder = id => dispatch => {
+  return axios.get(`/api/orders/${id}`)
+    .then(res => dispatch(setCurrentOrder(res.data)))
+    .catch(err => console.error(`Fetching current order unsuccesful`, err))
+
 }
 
-export const updateCurrentOrder = (id) =>  dispatch => {
+// export const findOrCreateCurrentOrder = () => dispatch => {
+//   return axios.get(`/api/orders/`)
+//     .then(res => )
+//        .catch(err => console.error(`Removing user:  unsuccesful`, err))
+// }
+
+export const updateCurrentOrder = (id) => dispatch => {
   return axios.put('/api/orders')
     .then(res => dispatch(addProductToOrder(res.data)))
     .catch(err => console.error('Update failed', err))
 }
 
-export const addProductToCurrentOrder = (id) => dispatch => {
-  return axios.put('/api/orders')
-    .then(res => )
-}
+// export const addProductToCurrentOrder = (id) => dispatch => {
+//   return axios.put('/api/orders')
+//     .then(res => )
+// }
