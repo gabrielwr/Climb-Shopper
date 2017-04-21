@@ -114,5 +114,5 @@ export const fetchProducts = () => dispatch => {
 export const removeProduct = id => dispatch => {
   dispatch(deleteProduct(id))
   axios.delete(`/api/products/:id`)
-    .catch(err => console.error(`Removing user:  unsuccesful`, err))
+    .catch(err => console.error(`Removing product:  unsuccesful`, err))
 }
