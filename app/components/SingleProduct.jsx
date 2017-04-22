@@ -84,12 +84,11 @@ class SingleProduct extends React.Component {
 
         <ul className= "list-group">
           {
-            reviews && reviews.filter(review => review.productId === product.id)
-              .map(review => (
+            reviews && reviews.map(review => (
                 <tr key = { review.id }>
                   <td> { review.title }</td>
                   <td> { review.num_stars }</td>
-                  <td> { review.contents }</td>
+                  <td> { review.content }</td>
                 </tr>
               ))
           }
