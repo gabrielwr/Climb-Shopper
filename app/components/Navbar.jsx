@@ -26,6 +26,9 @@ class Navbar extends React.Component {
         <li>
           <Link to="/cart">Cart</Link>
         </li>
+        <li>
+          <Link to="/users">Admin Only: All Users</Link>
+        </li>
       </ul>
 
       </nav>

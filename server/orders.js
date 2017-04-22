@@ -26,10 +26,12 @@ module.exports = require('express').Router()
   .get('/:id',
     // TO DO: make sure that this order belongs to this user or user is Admin
     mustBeLoggedIn,
-    (req, res, next) =>
-    Order.findById(req.params.id)
-    .then(order => res.json(order))
-    .catch(next))
+    (req, res, next) => {
+      console.log(req.params.id)
+      Order.findOrCreate({ where: { id: req.params.id } })
+        .then(order => res.json(order))
+        .catch(next)
+    })
   .put('/:id',
     // TO DO: make sure that this order belongs to this user or user is Admin
     mustBeLoggedIn,

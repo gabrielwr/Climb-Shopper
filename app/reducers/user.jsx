@@ -7,7 +7,7 @@ const initialState = {
 
 /* -----------------    ACTION TYPES     ------------------ */
 const SET_USERS = 'SET_USERS'
-const SET_SELECTED_USER = 'SET_SELECTED_USER'
+const SET_SELECTED_USERS = 'SET_SELECTED_USERS'
 const DELETE_USER = 'DELETE_USER'
 const UPDATE_USER = 'UPDATE_USER'
 const CREATE_USER = 'CREATE_USER'

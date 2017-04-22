@@ -5,31 +5,52 @@ import axios from 'axios'
 
 // React Imports
 import React from 'react'
-import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
-import {render} from 'react-dom'
-import {connect, Provider} from 'react-redux'
-
-// Components
-import Jokes from './components/Jokes'
-import Login from './components/Login'
-import WhoAmI from './components/WhoAmI'
-import NotFound from './components/NotFound'
-import AllProducts, { setProducts } from './components/AllProducts'
-import AllReviews, { setReviews } from './components/AllReviews'
-import SingleProduct from './components/SingleProduct'
-import Root from './components/Root'
-import Authenticate from './components/Authenticate'
-import AllUsers from './components/AllUsers'
-
+import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
+import { render } from 'react-dom'
+import { connect, Provider } from 'react-redux'
 import store from './store'
 
+// Root Imports
+import Root from './components/Root'
+
+// Product Imports
+import AllProducts, { setProducts } from './components/AllProducts'
+import SingleProduct from './components/SingleProduct'
+
+// User Imports
+import AllUsers from './components/AllUsers'
+import SingleUser from './components/SingleUser'
+
+// Review Imports
+import AllReviews, { setReviews } from './components/AllReviews'
+
+// Cart Imports
+import Cart from './components/Cart'
+import { fetchPastOrders, fetchCurrentOrder } from './reducers/order'
+
+// Authentication Imports
+import Authenticate from './components/Authenticate'
+import Login from './components/Login'
+import NotFound from './components/NotFound'
+import WhoAmI from './components/WhoAmI'
+import { whoami } from './reducers/auth'
+
 const EmptyApp = connect(
-  ({ }) => ({ })
+  ({}) => ({})
 )(
-  ({ }) =>
-    <div>
-    </div>
+  ({}) =>
+  <div>
+    I am the EmptyApp
+  </div>
 )
+
+const fetchInitialData = (nextRouterState) => {
+  // Set the auth info at start
+  store.dispatch(whoami())
+    .then(() => console.log('beer'))
+  store.dispatch(fetchPastOrders())
+  store.dispatch(fetchCurrentOrder(nextRouterState.params.id))
+}
 
 const onAppEnter = () => {
   Promise.all([
@@ -37,7 +58,7 @@ const onAppEnter = () => {
     axios.get('/api/reviews'),
   ])
   .then(responses => responses.map(r => r.data))
-  .then(([ products, reviews ]) => {
+  .then(([products, reviews]) => {
     store.dispatch(setProducts(products))
     store.dispatch(setReviews(reviews))
   })
@@ -57,7 +78,7 @@ render(
         <Route path="/users" component={ EmptyApp } />
         <Route path="/users/:id" component={ SingleUser } />
         <Route path="/account" component={ EmptyApp } />
-        <Route path="/cart" component={ EmptyApp } />
+        <Route path="/cart" component={ Cart } />
         <Route path="/orders" component={ EmptyApp } />
         <Route path="/orders/:id" component={ EmptyApp } />
         <Route path="/review" component={ AllReviews } />
