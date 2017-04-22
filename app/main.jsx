@@ -19,6 +19,9 @@ import AllReviews, { setReviews } from './components/AllReviews'
 import SingleProduct from './components/SingleProduct'
 import Root from './components/Root'
 import Authenticate from './components/Authenticate'
+import SingleUser from './components/SingleUser'
+
+import store from './store'
 
 import store from './store'
 
