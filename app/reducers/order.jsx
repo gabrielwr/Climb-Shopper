@@ -1,10 +1,9 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const initialState = {
   pastOrders: [],
   currentOrder: {}
 }
-
 
 /* -----------------    ACTION TYPES     ------------------ */
 const SET_CURRENT_ORDER = 'SET_CURRENT_ORDER'
