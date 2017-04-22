@@ -21,7 +21,7 @@ class Navbar extends React.Component {
         </li>
         <li>
           <Link to="/authenticate" >Sign Up</Link>
-          {this.props.user ? <WhoAmI/> : <Login/>}
+          {(this.props.user) ? <WhoAmI/> : <Login/>}
         </li>
         <li>
           <Link to="/cart">Cart</Link>

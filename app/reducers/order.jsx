@@ -108,26 +108,9 @@ export const fetchPastOrders = () => dispatch => {
 
 }
 
-export const fetchCurrentOrder = id => dispatch => {
-  return axios.get(`/api/orders/${id}`)
-    .then(res => dispatch(setCurrentOrder(res.data)))
-    .catch(err => console.error(`Fetching current order unsuccesful`, err))
-
-}
-
-// export const findOrCreateCurrentOrder = () => dispatch => {
-//   return axios.get(`/api/orders/`)
-//     .then(res => )
-//        .catch(err => console.error(`Removing user:  unsuccesful`, err))
-// }
-
 export const updateCurrentOrder = (id) => dispatch => {
   return axios.put('/api/orders')
     .then(res => dispatch(addProductToOrder(res.data)))
     .catch(err => console.error('Update failed', err))
 }
 
-// export const addProductToCurrentOrder = (id) => dispatch => {
-//   return axios.put('/api/orders')
-//     .then(res => )
-// }

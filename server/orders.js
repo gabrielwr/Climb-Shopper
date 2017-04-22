@@ -27,7 +27,6 @@ module.exports = require('express').Router()
     // TO DO: make sure that this order belongs to this user or user is Admin
     mustBeLoggedIn,
     (req, res, next) => {
-      console.log(req.params.id)
       Order.findOrCreate({ where: { id: req.params.id } })
         .then(order => res.json(order))
         .catch(next)
