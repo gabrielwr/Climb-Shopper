@@ -49,14 +49,14 @@ export const addUserToOrder = (user) => ({
   user: user
 })
 
-export const removeUserFromOrder = (user) => ({
+export const removeOrderFromUser = (order) => ({
   type: REMOVE_ORDER_FROM_USER,
-  user: user
+  order: order
 })
 
-export const updateUserInOrder = (user) => ({
+export const updateOrderInUser = (order) => ({
   type: UPDATE_ORDER_IN_USER,
-  user: user
+  order: order
 })
 
 
