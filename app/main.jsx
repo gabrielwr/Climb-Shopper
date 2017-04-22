@@ -21,7 +21,7 @@ const EmptyApp = connect(
 )(
   ({}) =>
   <div>
-    </div>
+  </div>
 )
 
 const fetchInitialData = (nextRouterState) => {
