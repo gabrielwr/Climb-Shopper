@@ -53,16 +53,16 @@ const fetchInitialData = (nextRouterState) => {
 }
 
 const onAppEnter = () => {
-  Promise.all([
-    axios.get('/api/products'),
-    axios.get('/api/reviews'),
-  ])
-  .then(responses => responses.map(r => r.data))
-  .then(([products, reviews]) => {
-    store.dispatch(setProducts(products))
-    store.dispatch(setReviews(reviews))
-  })
-  .catch(console.error)
+  // Promise.all([
+  //   axios.get('/api/products'),
+  //   axios.get('/api/reviews'),
+  // ])
+  // .then(responses => responses.map(r => r.data))
+  // .then(([products, reviews]) => {
+  //   store.dispatch(setProducts(products))
+  //   store.dispatch(setReviews(reviews))
+  // })
+  // .catch(console.error)
 }
 
 render(
