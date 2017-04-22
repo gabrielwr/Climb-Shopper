@@ -16,7 +16,7 @@ class Navbar extends React.Component {
       <nav className="navbar navbar-inverse">
         <ul className="nav navbar-nav">
           <li>
-            <Link to="/home" >Lisa's Bikes</Link>
+            <Link to="/" >Lisa's Bikes</Link>
           </li>
           <li>
             <Link to="/products" >Bicycles</Link>
