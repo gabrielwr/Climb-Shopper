@@ -23,6 +23,15 @@ module.exports = require('express').Router()
     Order.create(req.body)
     .then(order => res.status(201).json(order))
     .catch(next))
+  .get('/new',
+    (req, res, next) => {
+      Order.findOrCreate({ where: { id: req.session.orderId } })
+        .spread((order, created) => {
+          req.session.orderId = order.id
+          res.json(order)
+        })
+        .catch(next)
+    })
   .get('/:id',
     // TO DO: make sure that this order belongs to this user or user is Admin
     mustBeLoggedIn,

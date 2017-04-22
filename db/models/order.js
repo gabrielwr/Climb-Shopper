@@ -5,7 +5,7 @@ const db = require('./index.js')
 module.exports = db => db.define('orders', {
   status: {
     type: Sequelize.ENUM('Pending', 'Complete'),
-    allowNull: false
+    defaultValue: 'Pending'
   }
 }, {
   defaultScope: {

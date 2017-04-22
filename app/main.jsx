@@ -24,7 +24,7 @@ import SingleUser from './components/SingleUser'
 
 // Cart Imports
 import Cart from './components/Cart'
-import { setCurrentOrder, fetchCurrentOrder, fetchAllOrders } from './reducers/order'
+import { fetchSessionOrder, fetchAllOrders } from './reducers/order'
 
 // Authentication Imports
 import Authenticate from './components/Authenticate'
@@ -52,8 +52,7 @@ const fetchInitialData = (nextRouterState) => {
         store.dispatch(setCurrentOrder(authenticatedUser.orders[0]))
       } else {
         store.dispatch(fetchProducts())
-        store.dispatch(fetchCurrentOrder())
-        // store.dispatch(fetchOrderFromSession())
+        store.dispatch(fetchSessionOrder())
       }
     })
 }

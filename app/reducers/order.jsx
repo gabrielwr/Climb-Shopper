@@ -55,7 +55,7 @@ export const fetchPastOrders = () => dispatch => {
     .catch(err => console.error(`Fetching past orders unsuccesful`, err))
 }
 
-export const fetchCurrentOrder = () => dispatch => {
+export const fetchSessionOrder = () => dispatch => {
   return axios.get('/api/orders/new')
     .then(res => dispatch(setCurrentOrder(res.data)))
     .catch(err => console.error(`Fetching new order unsuccesful`, err))
