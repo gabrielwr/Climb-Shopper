@@ -19,7 +19,7 @@ import AllReviews, { setReviews } from './components/AllReviews'
 import SingleProduct from './components/SingleProduct'
 import Root from './components/Root'
 import Authenticate from './components/Authenticate'
-import SingleUser from './components/SingleUser'
+import AllUsers from './components/AllUsers'
 
 import store from './store'
 
@@ -31,20 +31,29 @@ const EmptyApp = connect(
     </div>
 )
 
-
-
-const allProductsOnEnter = () => {
-  // axios.get('/api')
+const onAppEnter = () => {
+  Promise.all([
+    axios.get('/api/products'),
+    axios.get('/api/reviews'),
+  ])
+  .then(responses => responses.map(r => r.data))
+  .then(([ products, reviews ]) => {
+    store.dispatch(setProducts(products))
+    store.dispatch(setReviews(reviews))
+  })
+  .catch(console.error)
 }
 
 render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
-      <Route path="/" component={ Root }>
-        <Route path="/products" onEnter={ allProductsOnEnter } component={ AllProducts } />
+      <Route path="/" component={ Root } onEnter={ onAppEnter }>
+        <Route path="/products" component={ AllProducts } />
         {/*products/add is an admin only view*/}
         <Route path="/products/add" component={ EmptyApp } />
         <Route path="/products/:id" component={ SingleProduct } />
+        <Route path="/users" component={ AllUsers } />
+        <Route path="/users/:id" component={ EmptyApp } />
         <Route path="/users" component={ EmptyApp } />
         <Route path="/users/:id" component={ SingleUser } />
         <Route path="/account" component={ EmptyApp } />
