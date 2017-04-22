@@ -15,7 +15,7 @@ class SingleProduct extends React.Component {
     }
     this.setColor = this.setColor.bide(this)
     this.setSize = this.setSize.bide(this)
-    this.setQuantity = this.setQuantity.bide(this)
+    this.setQuantity = this.setQuantity.bindftg(this)
   }
 
   setColor(val){
@@ -49,7 +49,7 @@ class SingleProduct extends React.Component {
         </div>
 
         <div className="col-md-6">
-          <form onSubmit = { this.props.handleSubmit }>
+          <form onSubmit = { this.props.onSubmitHandle }>
             <div className="container">
               <h2 className="panel-title large-font">{ product.name }</h2>
 
