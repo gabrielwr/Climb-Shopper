@@ -33,8 +33,7 @@ export default function(state = initialState, action) {
   const newState = Object.assign({}, state)
   switch (action.type) {
   case SET_CURRENT_ORDER:
-    newState.currentOrder.items && newState.currentOrder.items.map(item => action.order.items.push(item))
-    newState.currentOrder = action.order
+    newState.currentOrder = _naiveMergeOrders(action.order, newState.currentOrder)
     break
   case SET_PAST_ORDERS:
     newState.pastOrders = action.pastOrders
@@ -66,4 +65,15 @@ export const updateCurrentOrder = (id, order) => dispatch => {
   return axios.put(`/api/stories/${id}`, order)
     .then(res => dispatch(updateOrder(res.data)))
     .catch(err => console.error(`Updating order #${id} unsuccessful`, err))
+}
+
+/* ------------       HELPER FUNCTIONS     ------------------ */
+
+/* Naively merge orders with the follow strategy:
+ *  1) Include everything from primary
+ *  2) Add all items from secondary to primary
+ */
+export const _naiveMergeOrders = (primary, secondary) => {
+  const mergedItems = primary.items.concat(secondary.items)
+  return Object.assign({}, primary, { items: mergedItems })
 }
