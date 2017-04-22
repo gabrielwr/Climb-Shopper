@@ -13,8 +13,7 @@ import AllReviews from './components/AllReviews'
 import Root from './components/Root'
 import Authenticate from './components/Authenticate'
 import { fetchPastOrders, fetchCurrentOrder } from './reducers/order'
-import {whoami} from './reducers/auth'
-
+import { whoami } from './reducers/auth'
 
 const EmptyApp = connect(
   ({}) => ({})
@@ -27,7 +26,7 @@ const EmptyApp = connect(
 const fetchInitialData = (nextRouterState) => {
   // Set the auth info at start
   store.dispatch(whoami())
-  .then(()=>console.log('beer'))
+    .then(() => console.log('beer'))
   store.dispatch(fetchPastOrders())
   store.dispatch(fetchCurrentOrder(nextRouterState.params.id))
 }
