@@ -10,19 +10,29 @@ import { render } from 'react-dom'
 import { connect, Provider } from 'react-redux'
 import store from './store'
 
-// Components
-import Jokes from './components/Jokes'
-import Login from './components/Login'
-import WhoAmI from './components/WhoAmI'
-import NotFound from './components/NotFound'
-import AllProducts, { setProducts } from './components/AllProducts'
-import AllReviews, { setReviews } from './components/AllReviews'
-import AllUsers from './components/AllUsers'
-import SingleProduct from './components/SingleProduct'
-import SingleUser from './components/SingleUser'
+// Root Imports
 import Root from './components/Root'
-import Authenticate from './components/Authenticate'
+
+// Product Imports
+import AllProducts, { setProducts } from './components/AllProducts'
+import SingleProduct from './components/SingleProduct'
+
+// User Imports
+import AllUsers from './components/AllUsers'
+import SingleUser from './components/SingleUser'
+
+// Review Imports
+import AllReviews, { setReviews } from './components/AllReviews'
+
+// Cart Imports
+import Cart from './components/Cart'
 import { fetchPastOrders, fetchCurrentOrder } from './reducers/order'
+
+// Authentication Imports
+import Authenticate from './components/Authenticate'
+import Login from './components/Login'
+import NotFound from './components/NotFound'
+import WhoAmI from './components/WhoAmI'
 import { whoami } from './reducers/auth'
 
 const EmptyApp = connect(
@@ -30,6 +40,7 @@ const EmptyApp = connect(
 )(
   ({}) =>
   <div>
+    I am the EmptyApp
   </div>
 )
 
@@ -43,15 +54,15 @@ const fetchInitialData = (nextRouterState) => {
 
 const onAppEnter = () => {
   Promise.all([
-      axios.get('/api/products'),
-      axios.get('/api/reviews'),
-    ])
-    .then(responses => responses.map(r => r.data))
-    .then(([products, reviews]) => {
-      store.dispatch(setProducts(products))
-      store.dispatch(setReviews(reviews))
-    })
-    .catch(console.error)
+    axios.get('/api/products'),
+    axios.get('/api/reviews'),
+  ])
+  .then(responses => responses.map(r => r.data))
+  .then(([products, reviews]) => {
+    store.dispatch(setProducts(products))
+    store.dispatch(setReviews(reviews))
+  })
+  .catch(console.error)
 }
 
 render(
@@ -67,7 +78,7 @@ render(
         <Route path="/users" component={ EmptyApp } />
         <Route path="/users/:id" component={ SingleUser } />
         <Route path="/account" component={ EmptyApp } />
-        <Route path="/cart" component={ EmptyApp } />
+        <Route path="/cart" component={ Cart } />
         <Route path="/orders" component={ EmptyApp } />
         <Route path="/orders/:id" component={ EmptyApp } />
         <Route path="/review" component={ AllReviews } />

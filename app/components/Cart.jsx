@@ -14,22 +14,9 @@ class Cart extends React.Component {
 
   render() {
     return (
-      <nav style= {{backgroundColor: '#ADD8E6'}} >
-        <div>This is the NavBar Fix Me Later</div>
-        <ul className="nav navbar-nav navbar-right">
-          <li>
-            <Link to="/products" >Bicycles</Link>
-          </li>
-          <li>
-            <Link to="/authenticate" >Sign Up</Link>
-            {this.props.user ? <WhoAmI/> : <Login/>}
-          </li>
-          <li>
-            <Link to="/cart">Cart</Link>
-          </li>
-        </ul>
-
-      </nav>
+      <div>
+        I am your cart!
+      </div>
     )
   }
 }
