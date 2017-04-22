@@ -24,7 +24,7 @@ import SingleUser from './components/SingleUser'
 
 // Cart Imports
 import Cart from './components/Cart'
-import { setCurrentOrder, fetchOrderFromSession } from './reducers/order'
+import { setCurrentOrder, fetchCurrentOrder, fetchAllOrders } from './reducers/order'
 
 // Authentication Imports
 import Authenticate from './components/Authenticate'
@@ -43,12 +43,16 @@ const EmptyApp = connect(
 )
 
 const fetchInitialData = (nextRouterState) => {
+  // Dispatching whoami first ensures user is authenticated.
   store.dispatch(whoami())
-    .then(user => {
-      if (user) {
-        store.dispatch(setCurrentOrder(user.order))
+    .then(() => {
+      // load the correct data based on the state's auth property
+      const authenticatedUser = store.getState().auth
+      if (authenticatedUser.id) {
+        store.dispatch(setCurrentOrder(authenticatedUser.orders[0]))
       } else {
         store.dispatch(fetchProducts())
+        store.dispatch(fetchCurrentOrder())
         // store.dispatch(fetchOrderFromSession())
       }
     })
@@ -83,7 +87,6 @@ render(
         <Route path="/cart" component={ Cart } />
         <Route path="/orders" component={ EmptyApp } />
         <Route path="/orders/:id" component={ EmptyApp } />
-        <Route path="/review" component={ AddReviews } />
         <Route path="/authenticate" component={ Authenticate } />
       </Route>
       <Route path='*' component={ NotFound } />

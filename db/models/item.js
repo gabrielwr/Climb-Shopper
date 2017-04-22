@@ -22,6 +22,12 @@ module.exports = db => db.define('items', {
       isInt: true
     }
   }
+}, {
+  defaultScope: {
+    include: [{
+      model: db.model('products'),
+    }]
+  }
 })
 
 module.exports.associations = (Item, { Order, Product }) => {

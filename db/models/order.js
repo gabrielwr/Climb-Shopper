@@ -7,6 +7,12 @@ module.exports = db => db.define('orders', {
     type: Sequelize.ENUM('Pending', 'Complete'),
     allowNull: false
   }
+}, {
+  defaultScope: {
+    include: [{
+      model: db.model('items')
+    }]
+  }
 })
 
 module.exports.associations = (Order, { Item, User }) => {
