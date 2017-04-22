@@ -23,7 +23,6 @@ import SingleUser from './components/SingleUser'
 
 import store from './store'
 
-
 const EmptyApp = connect(
   ({ }) => ({ })
 )(
@@ -47,7 +46,7 @@ render(
         <Route path="/products/add" component={ EmptyApp } />
         <Route path="/products/:id" component={ SingleProduct } />
         <Route path="/users" component={ EmptyApp } />
-        <Route path="/users/:id" component={ EmptyApp } />
+        <Route path="/users/:id" component={ SingleUser } />
         <Route path="/account" component={ EmptyApp } />
         <Route path="/cart" component={ EmptyApp } />
         <Route path="/orders" component={ EmptyApp } />
