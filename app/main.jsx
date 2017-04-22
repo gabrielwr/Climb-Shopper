@@ -70,6 +70,7 @@ const fetchInitialData = (nextRouterState) => {
 //   .catch(console.error)
 // }
 
+
 render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
