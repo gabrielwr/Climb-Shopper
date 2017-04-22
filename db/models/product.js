@@ -15,11 +15,9 @@ module.exports = db => db.define('products', {
     allowNull: false
   },
   price: {
-    type: Sequelize.DECIMAL(7, 2),
+    type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      // Match 0-5 digits a period and then exactly 2 digits
-      is: /^\d{0,5}\.\d{2}$/,
       min: 0
     }
   },
@@ -27,12 +25,12 @@ module.exports = db => db.define('products', {
     type: Sequelize.ARRAY(Sequelize.STRING),
   },
   color: {
-    type: Sequelize.STRING,
+    type: Sequelize.ARRAY(Sequelize.STRING),
     allowNull: false
 
   },
   size: {
-    type: Sequelize.STRING,
+    type: Sequelize.ARRAY(Sequelize.STRING),
     allowNull: false
   },
   quantity: {

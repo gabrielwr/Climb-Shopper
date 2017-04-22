@@ -15,7 +15,7 @@ class SingleProduct extends React.Component {
     }
     this.setColor = this.setColor.bide(this)
     this.setSize = this.setSize.bide(this)
-    this.setQuantity = this.setQuantity.bindftg(this)
+    this.setQuantity = this.setQuantity.bind(this)
   }
 
   setColor(val){
