@@ -7,15 +7,15 @@ const initialState = {
 
 /* -----------------    ACTION TYPES     ------------------ */
 const SET_USERS = 'SET_USERS'
-const SET_SELECTED_USERS = 'SET_SELECTED_USERS'
+const SET_SELECTED_USER = 'SET_SELECTED_USER'
 const DELETE_USER = 'DELETE_USER'
 const UPDATE_USER = 'UPDATE_USER'
 const CREATE_USER = 'CREATE_USER'
-const ADD_USER_TO_ORDER = 'ADD_USER_TO_ORDER'
+const ADD_ORDER_TO_USER = 'ADD_ORDER_TO_USER'
   // Below might not be needed
   // I am leaving here till we have the order reducer built out.
-const UPDATE_USER_IN_ORDER = 'UPDATE_USER_IN_ORDER'
-const REMOVE_USER_FROM_ORDER = 'REMOVE_USER_FROM_ORDER'
+const UPDATE_ORDER_IN_USER = 'UPDATE_ORDER_IN_USER'
+const REMOVE_ORDER_FROM_USER = 'REMOVE_ORDER_FROM_USER'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -24,8 +24,8 @@ export const setUsers = (users) => ({
   users: users
 })
 
-export const setUser = (user) => ({
-  type: SET_SELECTED_USERS,
+export const setSelectedUser = (user) => ({
+  type: SET_SELECTED_USER,
   selectedUser: user
 })
 
@@ -45,17 +45,17 @@ export const deleteUser = (userId) => ({
 })
 
 export const addUserToOrder = (user) => ({
-  type: ADD_USER_TO_ORDER,
+  type: ADD_ORDER_TO_USER,
   user: user
 })
 
 export const removeUserFromOrder = (user) => ({
-  type: REMOVE_USER_FROM_ORDER,
+  type: REMOVE_ORDER_FROM_USER,
   user: user
 })
 
 export const updateUserInOrder = (user) => ({
-  type: UPDATE_USER_IN_ORDER,
+  type: UPDATE_ORDER_IN_USER,
   user: user
 })
 
@@ -89,11 +89,16 @@ export default function(state = initialState, action) {
       ))
       break
 
-    case ADD_USER_TO_ORDER:
+    case ADD_ORDER_TO_USER:
       newState.selectedUser.students = newState.selectedUser.students.concat([action.student])
       break
 
-    case REMOVE_USER_FROM_ORDER:
+    case REMOVE_ORDER_FROM_USER:
+      newState.selectedUser.students =
+        newState.selectedUser.students.filter((student) => (student.id !== action.student.id))
+      break
+
+    case UPDATE_ORDER_IN_USER:
       newState.selectedUser.students =
         newState.selectedUser.students.filter((student) => (student.id !== action.student.id))
       break
