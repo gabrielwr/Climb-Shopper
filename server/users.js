@@ -13,9 +13,9 @@ module.exports = require('express').Router()
     // If you want to only let admins list all the users, then you'll
     // have to add a role column to the users table to support
     // the concept of admin users.
-    forbidden('listing users is not allowed'),
+    // forbidden('listing users is not allowed'),
     (req, res, next) =>
-      User.findAll()
+      User.scope('currentOrder').findAll()
         .then(users => res.json(users))
         .catch(next))
   .post('/',

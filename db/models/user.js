@@ -1,12 +1,11 @@
 'use strict'
 
 // bcrypt docs: https://www.npmjs.com/package/bcrypt
-const bcrypt = require('bcryptjs')
-    , {STRING, VIRTUAL, BOOLEAN} = require('sequelize')
+const bcrypt = require('bcryptjs'),
+  { STRING, VIRTUAL, BOOLEAN } = require('sequelize')
 
-//Including some additional flexibility in case a user logged in with oAuth
 module.exports = db => db.define('users', {
-  //should we separate first and last name like done in tests or not?
+  // should we separate first and last name like done in tests or not?
   first_name: {
     type: STRING,
     allowNull: false,
@@ -48,13 +47,21 @@ module.exports = db => db.define('users', {
   password_digest: STRING, // This column stores the hashed password in the DB, via the beforeCreate/beforeUpdate hooks
   password: VIRTUAL // Note that this is a virtual, and not actually stored in DB
 }, {
-  indexes: [{fields: ['email'], unique: true}],
+  indexes: [{ fields: ['email'], unique: true }],
   hooks: {
     beforeCreate: setEmailAndPassword,
     beforeUpdate: setEmailAndPassword,
   },
   defaultScope: {
-    attributes: {exclude: ['password_digest']}
+    attributes: { exclude: ['password_digest'] }
+  },
+  scopes: {
+    currentOrder: {
+      include: [{
+        model: db.model('orders'),
+        where: {status: 'Pending'}
+      }]
+    }
   },
   instanceMethods: {
     // This method is a Promisified bcrypt.compare
@@ -64,12 +71,11 @@ module.exports = db => db.define('users', {
   }
 })
 
-module.exports.associations = (User, {OAuth, Review, Order}) => {
-  User.Order = Order
+module.exports.associations = (User, { OAuth, Review, Order }) => {
   User.hasOne(OAuth)
-  // do we need through tables here?
-  User.hasMany(Review, {as: 'reviews'})
-  User.hasMany(Order, {as: 'orders'})
+    // do we need through tables here?
+  User.hasMany(Review)
+  User.hasMany(Order)
 }
 
 function setEmailAndPassword(user) {
