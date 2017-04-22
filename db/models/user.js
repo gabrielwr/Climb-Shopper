@@ -65,10 +65,10 @@ module.exports = db => db.define('users', {
 })
 
 module.exports.associations = (User, {OAuth, Review, Order}) => {
-
+  User.Order = Order
   User.hasOne(OAuth)
-  //do we need through tables here?
-  User.hasMany(Review, {as: 'reviews'}),
+  // do we need through tables here?
+  User.hasMany(Review, {as: 'reviews'})
   User.hasMany(Order, {as: 'orders'})
 }
 
