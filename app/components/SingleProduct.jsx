@@ -13,8 +13,8 @@ class SingleProduct extends React.Component {
       size: '',
       quantity: 0
     }
-    this.setColor = this.setColor.bide(this)
-    this.setSize = this.setSize.bide(this)
+    this.setColor = this.setColor.bind(this)
+    this.setSize = this.setSize.bind(this)
     this.setQuantity = this.setQuantity.bind(this)
   }
 
