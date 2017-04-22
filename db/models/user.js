@@ -59,7 +59,8 @@ module.exports = db => db.define('users', {
     currentOrder: {
       include: [{
         model: db.model('orders'),
-        where: {status: 'Pending'}
+        where: { status: 'Pending' },
+        required: false
       }]
     }
   },

@@ -32,17 +32,18 @@ export const updateOrder = (order) => ({
 export default function(state = initialState, action) {
   const newState = Object.assign({}, state)
   switch (action.type) {
-    case SET_CURRENT_ORDER:
-      newState.currentOrder = action.order
-      break
-    case SET_PAST_ORDERS:
-      newState.pastOrders = action.pastOrders
-      break
-    case UPDATE_ORDER:
-      newState.currentOrder = action.order
-      break
-    default:
-      return state
+  case SET_CURRENT_ORDER:
+    newState.currentOrder.items && newState.currentOrder.items.map(item => action.order.items.push(item))
+    newState.currentOrder = action.order
+    break
+  case SET_PAST_ORDERS:
+    newState.pastOrders = action.pastOrders
+    break
+  case UPDATE_ORDER:
+    newState.currentOrder = action.order
+    break
+  default:
+    return state
   }
   return newState
 }

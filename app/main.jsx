@@ -24,7 +24,7 @@ import SingleUser from './components/SingleUser'
 
 // Cart Imports
 import Cart from './components/Cart'
-import { fetchSessionOrder, fetchAllOrders } from './reducers/order'
+import { setCurrentOrder, fetchSessionOrder } from './reducers/order'
 
 // Authentication Imports
 import Authenticate from './components/Authenticate'
