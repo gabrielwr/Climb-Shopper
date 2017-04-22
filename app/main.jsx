@@ -13,6 +13,9 @@ import store from './store'
 // Root Imports
 import Root from './components/Root'
 
+// Home Imports
+import Home from './components/Home'
+
 // Product Imports
 import AllProducts, { setProducts } from './components/AllProducts'
 import SingleProduct from './components/SingleProduct'
@@ -69,6 +72,7 @@ render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
       <Route path="/" component={ Root } onEnter={ onAppEnter }>
+        <Route path="/home" component={ Home } />
         <Route path="/products" component={ AllProducts } />
         {/*products/add is an admin only view*/}
         <Route path="/products/add" component={ EmptyApp } />
