@@ -8,11 +8,15 @@ module.exports = db => db.define('products', {
     allowNull: false,
     validate: {
       notEmpty: true,
-    }
+    },
+    unique: true
   },
   category: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   price: {
     type: Sequelize.INTEGER,
@@ -23,6 +27,15 @@ module.exports = db => db.define('products', {
   },
   images: {
     type: Sequelize.ARRAY(Sequelize.STRING),
+    validate: {
+      isValidUrl: (arr) => {
+        arr.forEach(img => {
+          if (!img.isUrl) {
+            throw new Error('should be an url.')
+          }
+        })
+      }
+    }
   },
   color: {
     type: Sequelize.ARRAY(Sequelize.STRING),
