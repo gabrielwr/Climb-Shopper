@@ -29,7 +29,7 @@ describe('The `User` model', () => {
       .then( (savedUser) => {
         expect(savedUser.first_name).to.equal('Simon')
         expect(savedUser.last_name).to.equal('Cat')
-        expect(savedUser.user_name).to.equal(simoncat)
+        expect(savedUser.user_name).to.equal('simoncat')
         expect(savedUser.email).to.equal('scat@gmail.com')
         expect(savedUser.password).to.equal('sssccc')
         expect(savedUser.is_admin).to.equal(false)
@@ -44,7 +44,7 @@ describe('The `User` model', () => {
       return user.validate()
       .then(function (result) {
         expect(result).to.be.an.instanceOf(Error)
-        expect(result.message).to.contain('Validation error')
+        expect(result.message).to.contain('notNull Violation')
       })
     })
 
@@ -65,7 +65,7 @@ describe('The `User` model', () => {
       return user.validate()
       .then(function (result) {
         expect(result).to.be.an.instanceOf(Error)
-        expect(result.message).to.contain('Validation error')
+        expect(result.message).to.contain('notNull Violation')
       })
     })
 
@@ -81,23 +81,23 @@ describe('The `User` model', () => {
     })
 
 
-    it('errors when no user name is entered', function () {
+    it('errors when no user name is entered', function() {
       user.user_name = null
 
       return user.validate()
       .then(function (result) {
         expect(result).to.be.an.instanceOf(Error)
-        expect(result.message).to.contain('Validation error')
+        expect(result.message).to.contain('notNull Violation')
       })
     })
 
-    it('errors when no email is entered', function () {
+    it('errors when no email is entered', function() {
       user.email = null
 
       return user.validate()
       .then(function (result) {
         expect(result).to.be.an.instanceOf(Error)
-        expect(result.message).to.contain('Validation error')
+        expect(result.message).to.contain('notNull Violation')
       })
     })
 
@@ -110,38 +110,5 @@ describe('The `User` model', () => {
         expect(result.message).to.contain('Validation error')
       })
     })
-
-
-    it('errors when no password is entered' , function () {
-      user.password = null
-
-      return user.validate()
-      .then(function (result) {
-        expect(result).to.be.an.instanceOf(Error)
-        expect(result.message).to.contain('Validation error')
-      })
-    })
-
-  it('errors when is_admin is not specified' , function () {
-      user.is_admin = null
-
-      return user.validate()
-      .then(function (result) {
-        expect(result).to.be.an.instanceOf(Error)
-        expect(result.message).to.contain('Validation error')
-      })
-    })
-
-  it('errors when is_admin is not a boolean' , function () {
-      user.is_admin = 25
-
-      return user.validate()
-      .then(function (result) {
-        expect(result).to.be.an.instanceOf(Error)
-        expect(result.message).to.contain('Validation error')
-      })
-    })
-
-
   })
 })
