@@ -5,7 +5,7 @@ const request = require('supertest'),
 
 /* global describe it before afterEach */
 
-describe.only('/api/review', () => {
+describe('/api/review', () => {
   before('Await database sync', () => db.didSync)
   afterEach('Clear the tables', () => db.truncate({ cascade: true }))
 
@@ -15,11 +15,6 @@ describe.only('/api/review', () => {
         request(app)
         .get(`/api/reviews/`)
         .expect(403)
-      )
-
-      it('get one review using reviewId', () =>
-        request(app)
-        .get(`/api/reviews/:id`)
       )
     }))
 
