@@ -5,7 +5,7 @@ const db = require('APP/db'),
   { expect } = require('chai'),
   Promise = require('bluebird')
 
-describe.only('The `Order` model', () => {
+describe('The `Order` model', () => {
   /**
    * First we clear the database and recreate the tables before beginning a run
    */

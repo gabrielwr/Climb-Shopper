@@ -4,7 +4,10 @@ const Sequelize = require('sequelize')
 module.exports = db => db.define('reviews', {
   title: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    validate:{
+      notEmpty:true
+    }
   },
   content: {
     type: Sequelize.TEXT,
