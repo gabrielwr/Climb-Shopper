@@ -17,7 +17,7 @@ describe('The `Item` model', () => {
   let item
   beforeEach(() => {
     item = Item.build({
-      price: 1000.01,
+      price: 100001,
       quantity: 3
     })
   })
@@ -36,7 +36,7 @@ describe('The `Item` model', () => {
     it('included `price` and `quantity` fields', function() {
       return item.save()
         .then(function(savedItem) {
-          expect(savedItem.price).to.equal('1000.01')
+          expect(savedItem.price).to.equal(100001)
           expect(savedItem.quantity).to.equal(3)
         })
     })
@@ -54,24 +54,6 @@ describe('The `Item` model', () => {
         })
     })
 
-    it('errors if `price` is an integer', () => {
-      item.price = 20
-      return item.validate()
-        .then(function(result) {
-          expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('Validation error')
-        })
-    })
-
-    it('errors if `price` is not a string of letters', () => {
-      item.price = 'test'
-
-      return item.validate()
-        .then(function(result) {
-          expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('Validation error')
-        })
-    })
 
     it('errors if `price` is less than zero', () => {
       item.price = -20
@@ -83,25 +65,6 @@ describe('The `Item` model', () => {
         })
     })
 
-    it('errors if `price` has too many decimals', () => {
-      item.price = 20.234
-
-      return item.validate()
-        .then(function(result) {
-          expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('Validation error')
-        })
-    })
-
-    it('errors if `price` has too few decimals', () => {
-      item.price = 20.2
-
-      return item.validate()
-        .then(function(result) {
-          expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('Validation error')
-        })
-    })
 
     it('requires `quantity` ', () => {
       item.quantity = null
