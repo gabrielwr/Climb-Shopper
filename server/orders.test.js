@@ -5,7 +5,7 @@ const request = require('supertest'),
 
 /* global describe it before afterEach */
 
-describe.only('/api/orders', () => {
+describe('/api/orders', () => {
   before('Await database sync', () => db.didSync)
   afterEach('Clear the tables', () => db.truncate({ cascade: true }))
 
