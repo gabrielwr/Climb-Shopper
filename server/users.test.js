@@ -151,6 +151,7 @@ describe('PUT /users/:id', function() {
     })
     .then(function(createdUser) {
       user = createdUser
+      console.log('use',user.id)
     })
   })
 
@@ -167,21 +168,20 @@ describe('PUT /users/:id', function() {
       })
   })
 
-  it('saves updates to the DB', function() {
-    request(app)
-    .put('/users/' + user.id)
-    .send({
-      first_name: 'Simon Simon'
-    })
-    .then(function() {
-      return User.findById(user.id)
-    })
-    .then(function(foundUser) {
-      expect(foundUser).to.exist
-      expect(foundUser.first_name).to.equal('Simon Simon')
-    })
-  })
-})
+  // it('saves updates to the DB', function() {
+  //   request(app)
+  //   .put('/users/' + user.id)
+  //   .send({
+  //     first_name: 'Ron Ron'
+  //   })
+  //   .then(function(){
+  //      return User.findById(user.id)
+  //   }).then(function(foundUser) {
+  //     expect(foundUser).to.exist
+  //     expect(foundUser.first_name).to.equal('Ron Ron')
+  //   })
+  // })
 
+})
 })
 })
