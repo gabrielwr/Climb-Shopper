@@ -34,7 +34,6 @@ describe('The `Item` model', () => {
   describe('attributes definition', function() {
 
     it('included `price` and `quantity` fields', function() {
-      console.log("item", item.price)
       return item.save()
         .then(function(savedItem) {
           expect(savedItem.price).to.equal('1000.01')
