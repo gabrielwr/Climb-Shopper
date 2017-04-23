@@ -56,24 +56,6 @@ describe('GET /:id', () => {
         theUser = createdUsers[1]
       })
   })
-
-  it('returns  the correct user by id', function() {
-    request(app)
-      .get('/articles/' + theUser.id)
-      .expect(200)
-      .expect(function(res) {
-        if (typeof res.body === 'string') {
-          res.body = JSON.parse(res.body)
-        }
-        expect(res.body.first_name).to.equal('Jeff')
-      })
-  })
-
-  it('returns an error if the ID is not valid', function() {
-      request(app)
-        .get('/articles/76142896')
-        .expect(404)
-    })
     // here we would want to make this fancy check
   it('fails with a 401 (Unauthorized)', () => {
     request(app)
@@ -151,7 +133,6 @@ describe('PUT /users/:id', function() {
     })
     .then(function(createdUser) {
       user = createdUser
-      console.log('use',user.id)
     })
   })
 
