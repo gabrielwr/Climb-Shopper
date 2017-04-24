@@ -55,10 +55,10 @@ const products = seed(Product, {
   road: {
     name: 'RoadMaster X-Treme',
     category: 'Road',
-    price: 1359.99,
-    color: 'Khaki',
-    size: 'Medium',
-    images: ['http://www.placegoat.com/200/200', 'http://www.placecat.com/200/200'],
+    price: 135900,
+    color: ['White', 'Red', 'Black'],
+    size: ['Large', 'Medium', 'Small'],
+    images: ['http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-org-2100.jpg', 'http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-wht-2100.jpg', 'http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-blk-2100.jpg'],
     quantity: 7480,
     reviewStars: 3.9,
     description: 'SO EXTREME YOUR FACE WILL MELT! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
@@ -66,10 +66,10 @@ const products = seed(Product, {
   mountainLarge: {
     name: 'Mount-Pain X-FIRE',
     category: 'Mountain',
-    price: 2100.51,
-    color: 'Red',
-    size: 'Large',
-    images: ['http://www.placegoat.com/200/200', 'http://www.placecat.com/200/200'],
+    price: 210051,
+    color: ['White', 'Red', 'Pink'],
+    size: ['Large', 'Medium', 'Small'],
+    images: ['http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-org-2100.jpg', 'http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-wht-2100.jpg'],
     quantity: 2403,
     reviewStars: 3.9,
     description: 'SUCH PAIN AHHH! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
@@ -77,10 +77,10 @@ const products = seed(Product, {
   mountainMedium: {
     name: 'Mount-Pain X-FIRE',
     category: 'Mountain',
-    price: 2100.52,
-    color: 'Red',
-    size: 'Medium',
-    images: ['http://www.placegoat.com/200/200', 'http://www.placecat.com/200/200'],
+    price: 210052,
+    color: ['Red', 'Blue'],
+    size: ['Large', 'Medium', 'Small'],
+    images: ['http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-blk-2100.jpg'],
     quantity: 2403,
     reviewStars: 3.2,
     description: 'SUCH PAIN AHHH! MEDIUM IS ON THE SMALL SIDE OF THINGS! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
