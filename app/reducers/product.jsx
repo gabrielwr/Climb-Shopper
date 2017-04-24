@@ -12,6 +12,8 @@ const DELETE_PRODUCT = 'DELETE_PRODUCT'
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 const CREATE_PRODUCT = 'CREATE_PRODUCT'
 const ADD_PRODUCT_TO_ORDER = 'ADD_PRODUCT_TO_ORDER'
+// Below might not be needed
+// I am leaving here till we have the order reducer built out.
 const UPDATE_PRODUCT_IN_ORDER = 'UPDATE_PRODUCT_IN_ORDER'
 const REMOVE_PRODUCT_FROM_ORDER = 'REMOVE_PRODUCT_FROM_ORDER'
 
@@ -105,4 +107,10 @@ export const removeProduct = id => dispatch => {
   dispatch(deleteProduct(id))
   axios.delete(`/api/products/:id`)
     .catch(err => console.error(`Removing product:  unsuccesful`, err))
+}
+
+export const fetchSingleProduct = id => dispatch => {
+  axios.get(`/api/products/${id}`)
+    .then(res => dispatch(setProduct(res.data)) )
+    .catch(err => console.error(`Fetching product failed..`, err))
 }
