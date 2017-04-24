@@ -13,7 +13,7 @@ module.exports = require('express').Router()
     // If you want to only let admins list all the orders, then you'll
     // have to add a role column to the orders table to support
     // the concept of admin orders.
-    forbidden('listing orders is not allowed'),
+    // forbidden('listing orders is not allowed'),
     (req, res, next) =>
     Order.findAll()
     .then(orders => res.json(orders))
@@ -23,11 +23,19 @@ module.exports = require('express').Router()
     Order.create(req.body)
     .then(order => res.status(201).json(order))
     .catch(next))
+  .get('/new',
+    (req, res, next) => {
+      Order.findOrCreate({ where: { id: req.session.orderId } })
+        .spread((order, created) => {
+          req.session.orderId = order.id
+          res.json(order)
+        })
+        .catch(next)
+    })
   .get('/:id',
     // TO DO: make sure that this order belongs to this user or user is Admin
     mustBeLoggedIn,
     (req, res, next) => {
-      console.log(req.params.id)
       Order.findOrCreate({ where: { id: req.params.id } })
         .then(order => res.json(order))
         .catch(next)
