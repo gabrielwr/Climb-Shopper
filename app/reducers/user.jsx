@@ -118,6 +118,7 @@ export const fetchUsers = () => dispatch => {
 
 export const removeUser = id => dispatch => {
   dispatch(deleteUser(id))
-  axios.delete(`/api/users/:id`)
+  axios.delete(`/api/users/:id`) // <= OB/LP need ${id} instead of :id
     .catch(err => console.error(`Removing user:  unsuccesful`, err))
+  }
 }

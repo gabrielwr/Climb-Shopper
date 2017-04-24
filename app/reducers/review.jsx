@@ -114,6 +114,6 @@ export const fetchReviews = () => dispatch => {
 
 export const removeReview = id => dispatch => {
   dispatch(deleteReview(id))
-  axios.delete(`/api/reviews/:id`)
+  axios.delete(`/api/reviews/:id`) // OB/LP: similar bug
     .catch(err => console.error(`Removing review:  unsuccesful`, err))
 }

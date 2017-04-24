@@ -105,7 +105,7 @@ export const fetchProducts = () => dispatch => {
 
 export const removeProduct = id => dispatch => {
   dispatch(deleteProduct(id))
-  axios.delete(`/api/products/:id`)
+  axios.delete(`/api/products/:id`) // OB/LP: bug
     .catch(err => console.error(`Removing product:  unsuccesful`, err))
 }
 

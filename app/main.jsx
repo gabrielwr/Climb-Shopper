@@ -38,6 +38,7 @@ import NotFound from './components/NotFound'
 import WhoAmI from './components/WhoAmI'
 import { whoami } from './reducers/auth'
 
+// OB/LP: rename to Placeholder?
 const EmptyApp = connect(
   ({}) => ({})
 )(
@@ -64,6 +65,7 @@ const fetchInitialData = (nextRouterState) => {
 }
 
 
+// OB/LP: dead code, make sure it doesn't hit master
 // const onAppEnter = () => {
   // Promise.all([
   //   axios.get('/api/products'),

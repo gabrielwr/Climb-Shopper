@@ -46,7 +46,7 @@ const Home = (props) => (
 )
 
 
-
+// OB/LP: dead code
 // <div id="carouselExampleSlidesOnly" classNameName="carousel slide" data-ride="carousel">
 //       <div classNameName="carousel-inner" role="listbox">
 //         <div className="carousel-item active">

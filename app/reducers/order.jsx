@@ -33,6 +33,7 @@ export const deleteItemFromOrder = (itemId) => ({
   itemId
 })
 
+// OB/LP: recommend looking into immutable.js
 /* ------------       REDUCERS     ------------------ */
 export default function(state = initialState, action) {
   const newState = Object.assign({}, state)
@@ -64,9 +65,9 @@ export const fetchPastOrders = () => dispatch => {
 }
 
 export const fetchSessionOrder = () => dispatch => {
-  return axios.get('/api/orders/new')
+  return axios.get('/api/orders/new') // OB/LP: feels like this should be a post? get could be find for "find or create" logic
     .then(res => dispatch(setCurrentOrder(res.data)))
-    .catch(err => console.error(`Fetching new order unsuccesful`, err))
+    .catch(err => console.error(`Fetching new order unsuccesful`, err)) // OB/LP: low hanging fruit for better error reporting https://tomchentw.github.io/react-toastr/
 }
 
 export const updateCurrentOrder = (id, order) => dispatch => {
@@ -92,6 +93,7 @@ export const deleteItemFromDatabase = (itemId) => dispatch => {
  *  1) Include everything from primary
  *  2) Add all items from secondary to primary
  */
+// OB/LP: maybe default database order is `{items: []}`?
 export const _naiveMergeOrders = (databaseOrder = [], sessionOrder) => {
   if (!sessionOrder.items) {
     return databaseOrder

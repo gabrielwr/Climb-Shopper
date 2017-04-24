@@ -5,6 +5,7 @@ import store from 'App/app/store'
 
 // *------------------- COMPONENT -----------------*//
 
+// OB/LP: maybe separate into multiple components, perhaps one that is stateless
 class SingleProduct extends React.Component {
 
   constructor(props) {
@@ -31,9 +32,15 @@ class SingleProduct extends React.Component {
   setQuantity(val){
     this.setState({ quantity: val})
   }
+  // // OB/LP: neat thing (might not work)
+  // handleChange (event) {
+  //   this.setState({
+  //     [event.target.name]: event.target.value
+  //   });
+  // }
 
   render() {
-    console.log("this.props: ", this.props)
+    console.log("this.props: ", this.props) // OB/LP: dead code
     const product = this.props.singleProduct
     const reviews = this.props.reviews
     console.log("product.color: ", product.color)

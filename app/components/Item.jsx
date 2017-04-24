@@ -1,5 +1,6 @@
 import React from 'react'
 
+// OB/LP: make it more explicit that this is a row, maybe name it ItemRow
 export default (props) => (
   <tr>
     <td>
