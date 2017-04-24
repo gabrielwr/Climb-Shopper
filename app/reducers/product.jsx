@@ -108,3 +108,9 @@ export const removeProduct = id => dispatch => {
   axios.delete(`/api/products/:id`)
     .catch(err => console.error(`Removing product:  unsuccesful`, err))
 }
+
+export const fetchSingleProduct = id => dispatch => {
+  axios.get(`/api/products/:id`)
+    .then(res => dispatch(setProduct(res.data)))
+    .catch(err => console.error(`Fetching product failed..`, err))
+}

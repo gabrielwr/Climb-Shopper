@@ -1,6 +1,7 @@
 import React from 'react'
 import { login } from 'APP/app/reducers/auth'
 import { connect } from 'react-redux'
+import store from 'App/app/store'
 
 // *------------------- COMPONENT -----------------*//
 
@@ -31,8 +32,10 @@ class SingleProduct extends React.Component {
   }
 
   render() {
-    const product = this.props.selectedProduct
-    const reviews = this.props.reviews
+    // const selectedProduct
+    console.log(store.state)
+    const product = store.state.selectedProduct
+    const reviews = store.state.reviews
 
     return (
       <div>
@@ -49,7 +52,7 @@ class SingleProduct extends React.Component {
         </div>
 
         <div className="col-md-6">
-          <form onSubmit = { this.props.onSubmitHandle }>
+          <form>
             <div className="container">
               <h2 className="panel-title large-font">{ product.name }</h2>
 
@@ -113,5 +116,5 @@ export default connect(
 *  be triggered.
 *
 */
-  dispatch => ({ onSubmitHandle: this.props.onSubmitHandle })
+  // dispatch => ({ onSubmitHandle: this.props.onSubmitHandle })
 )(SingleProduct)

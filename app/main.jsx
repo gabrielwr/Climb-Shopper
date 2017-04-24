@@ -26,7 +26,8 @@ import AllReviews, { setReviews } from './components/AllReviews'
 
 // Cart Imports
 import Cart from './components/Cart'
-import { fetchPastOrders, fetchCurrentOrder } from './reducers/order'
+import { fetchPastOrders, fetchCurrentOrder, updateCurrentOrder } from './reducers/order'
+import { fetchSingleProduct } from './reducers/product'
 
 // Authentication Imports
 import Authenticate from './components/Authenticate'
@@ -39,9 +40,9 @@ const EmptyApp = connect(
   ({}) => ({})
 )(
   ({}) =>
-  <div>
-    I am the EmptyApp
-  </div>
+    <div>
+      I am the EmptyApp
+    </div>
 )
 
 const fetchInitialData = (nextRouterState) => {
@@ -64,6 +65,14 @@ const onAppEnter = () => {
   // })
   // .catch(console.error)
 }
+const onProductEnter = (nextRouterState) => {
+  const productId = nextRouterState.params.id
+  store.dispatch(fetchSingleProduct(productId))
+}
+
+const onSubmitHandle = (selectedProductId) => {
+  store.dispatch(updateCurrentOrder(selectedProductId))
+}
 
 render(
   <Provider store={ store }>
@@ -72,7 +81,7 @@ render(
         <Route path="/products" component={ AllProducts } />
         {/*products/add is an admin only view*/}
         <Route path="/products/add" component={ EmptyApp } />
-        <Route path="/products/:id" component={ SingleProduct } />
+        <Route path="/products/:id" component={ SingleProduct } onEnter = { onProductEnter }/>
         <Route path="/users" component={ AllUsers } />
         <Route path="/users/:id" component={ EmptyApp } />
         <Route path="/users" component={ EmptyApp } />
