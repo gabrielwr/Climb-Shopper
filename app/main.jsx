@@ -24,7 +24,7 @@ import SingleUser from './components/SingleUser'
 
 // Cart Imports
 import Cart from './components/Cart'
-import { setCurrentOrder, fetchSessionOrder } from './reducers/order'
+import { setCurrentOrder, fetchSessionOrder, mergeCurrentOrder } from './reducers/order'
 
 // Authentication Imports
 import Authenticate from './components/Authenticate'
@@ -49,7 +49,8 @@ const fetchInitialData = (nextRouterState) => {
       // load the correct data based on the state's auth property
       const authenticatedUser = store.getState().auth
       if (authenticatedUser.id) {
-        store.dispatch(setCurrentOrder(authenticatedUser.orders[0]))
+        const sessionOrder = store.getState().order.currentOrder
+        store.dispatch(mergeCurrentOrder(authenticatedUser.orders[0], sessionOrder))
       } else {
         store.dispatch(fetchProducts())
         store.dispatch(fetchSessionOrder())
