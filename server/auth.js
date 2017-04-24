@@ -2,7 +2,7 @@ const app = require('APP'), {env} = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
 
-const {User, OAuth} = require('APP/db')
+const {User, OAuth, Order} = require('APP/db')
 const auth = require('express').Router()
 
 /*************************
@@ -80,7 +80,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(
   (id, done) => {
     debug('will deserialize user.id=%d', id)
-    User.findById(id)
+    User.scope('currentOrder').findById(id)
       .then(user => {
         if (!user) debug('deserialize retrieved null user for id=%d', id)
         else debug('deserialize did ok user.id=%d', id)
@@ -97,9 +97,9 @@ passport.deserializeUser(
 passport.use(new (require('passport-local').Strategy)(
   (email, password, done) => {
     debug('will authenticate user(email: "%s")', email)
-    User.findOne({
+    User.scope('currentOrder').findOne({
       where: {email},
-      attributes: {include: ['password_digest']}
+      attributes: {include: ['password_digest']},
     })
       .then(user => {
         if (!user) {

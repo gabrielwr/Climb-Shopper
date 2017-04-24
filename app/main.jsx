@@ -16,18 +16,20 @@ import Root from './components/Root'
 // Product Imports
 import AllProducts, { setProducts } from './components/AllProducts'
 import SingleProduct from './components/SingleProduct'
+import { fetchProducts } from './reducers/product'
 
 // User Imports
 import AllUsers from './components/AllUsers'
 import SingleUser from './components/SingleUser'
 
-// Review Imports
-import AllReviews, { setReviews } from './components/AllReviews'
-
 // Cart Imports
 import Cart from './components/Cart'
+<<<<<<< HEAD
 import { fetchPastOrders, fetchCurrentOrder, updateCurrentOrder } from './reducers/order'
 import { fetchSingleProduct } from './reducers/product'
+=======
+import { setCurrentOrder, fetchSessionOrder } from './reducers/order'
+>>>>>>> master
 
 // Authentication Imports
 import Authenticate from './components/Authenticate'
@@ -46,13 +48,21 @@ const EmptyApp = connect(
 )
 
 const fetchInitialData = (nextRouterState) => {
-  // Set the auth info at start
+  // Dispatching whoami first ensures user is authenticated.
   store.dispatch(whoami())
-    .then(() => console.log('beer'))
-  store.dispatch(fetchPastOrders())
-  store.dispatch(fetchCurrentOrder(nextRouterState.params.id))
+    .then(() => {
+      // load the correct data based on the state's auth property
+      const authenticatedUser = store.getState().auth
+      if (authenticatedUser.id) {
+        store.dispatch(setCurrentOrder(authenticatedUser.orders[0]))
+      } else {
+        store.dispatch(fetchProducts())
+        store.dispatch(fetchSessionOrder())
+      }
+    })
 }
 
+<<<<<<< HEAD
 const onAppEnter = () => {
   // Promise.all([
   //   axios.get('/api/products'),
@@ -73,11 +83,26 @@ const onProductEnter = (nextRouterState) => {
 const onSubmitHandle = (selectedProductId) => {
   store.dispatch(updateCurrentOrder(selectedProductId))
 }
+=======
+// const onAppEnter = () => {
+//   Promise.all([
+//     axios.get('/api/products'),
+//     axios.get('/api/reviews'),
+//   ])
+//   .then(responses => responses.map(r => r.data))
+//   .then(([products, reviews]) => {
+//     store.dispatch(setProducts(products))
+//     store.dispatch(setReviews(reviews))
+//   })
+//   .catch(console.error)
+// }
+
+>>>>>>> master
 
 render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
-      <Route path="/" component={ Root } onEnter={ onAppEnter }>
+      <Route path="/" component={ Root } onEnter={ fetchInitialData }>
         <Route path="/products" component={ AllProducts } />
         {/*products/add is an admin only view*/}
         <Route path="/products/add" component={ EmptyApp } />
@@ -90,7 +115,6 @@ render(
         <Route path="/cart" component={ Cart } />
         <Route path="/orders" component={ EmptyApp } />
         <Route path="/orders/:id" component={ EmptyApp } />
-        <Route path="/review" component={ AllReviews } />
         <Route path="/authenticate" component={ Authenticate } />
       </Route>
       <Route path='*' component={ NotFound } />

@@ -39,26 +39,4 @@ describe('The `Order` model', () => {
         })
     })
   })
-
-  describe('Validations', () => {
-    it('requires `status`', () => {
-      order.status = null
-      return order.validate()
-        .then(function(result) {
-          expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('content cannot be null')
-        })
-    })
-
-    it('errors when status is not Pending or Completed', () => {
-      // Use in a feasible alternative status
-      order.status = 'Shipping'
-      return order.validate()
-        .then(function(result) {
-          expect(result).to.be.an.instanceOf(Error)
-          // Please review the Sequelize Error and uncomment/correct below
-          // expect(result.message).to.contain('content cannot be null')
-        })
-    })
-  })
 })

@@ -19,7 +19,7 @@ describe('The `Review` model', () => {
     review = Review.build({
       title: "Funny Bike!",
       content: "It makes weird noise every time I ride it. haha funny",
-      num_stars: 4.5
+      num_stars: 5
     })
   })
 
@@ -35,11 +35,11 @@ describe('The `Review` model', () => {
   describe('attributes definition', () => {
 
     it('included `title`, `content`, `num_stars` fields', () => {
-      return Review.save()
+      return review.save()
         .then(savedReview => {
           expect(savedReview.title).to.equal("Funny Bike!")
           expect(savedReview.content).to.equal("It makes weird noise every time I ride it. haha funny")
-          expect(savedReview.num_stars).to.equal(4.5)
+          expect(savedReview.num_stars).to.equal(5)
         })
     })
   })
@@ -54,12 +54,12 @@ describe('The `Review` model', () => {
         })
     })
 
-    it('errors if `title` is not a String', () => {
-      review.title = 12345
+    it('errors if `title` is an empty string', () => {
+      review.title = ''
       return review.validate()
         .then(result => {
           expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('title type should be String')
+          expect(result.message).to.contain('Validation error')
         })
     })
 
@@ -108,7 +108,7 @@ describe('The `Review` model', () => {
       return review.validate()
         .then(result => {
           expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('num_stars cannot be less than or equal to 0')
+          expect(result.message).to.contain('Validation error')
         })
     })
 
@@ -119,7 +119,7 @@ describe('The `Review` model', () => {
       return review.validate()
         .then(result => {
           expect(result).to.be.an.instanceOf(Error)
-          expect(result.message).to.contain('num_stars cannot be greater than 5')
+          expect(result.message).to.contain('Validation error')
         })
     })
   })

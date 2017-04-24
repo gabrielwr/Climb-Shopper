@@ -30,7 +30,6 @@ module.exports = require('express').Router()
       .then(user => res.json(user))
       .catch(next))
   .put('/:id',
-   //must be logged in as this User
      mustBeLoggedIn,
      (req, res, next) =>
      User.findById(req.params.id)
@@ -38,7 +37,6 @@ module.exports = require('express').Router()
      .then(updateduser => res.json(updateduser))
      .catch(next))
   .delete('/:id',
-  //must be logged in as this User
      mustBeLoggedIn,
      (req, res, next) =>
      User.findById(req.params.id)

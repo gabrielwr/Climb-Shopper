@@ -111,37 +111,37 @@ const orders = seed(Order,
 const items = seed(Item,
   ({ orders, products }) => ({
     'orderOne has two Medium Mountain Bikes': {
-      price: 2100.51,
+      price: 210051,
       quantity: 2,
       order_id: orders.orderOne.id,
       product_id: products.mountainMedium.id
     },
     'orderTwo has one discounted Medium Mountain Bikes': {
-      price: 1600.51,
+      price: 160051,
       quantity: 1,
       order_id: orders.orderTwo.id,
       product_id: products.mountainMedium.id
     },
     'orderThree has one Road Bike': {
-      price: 2100.52,
+      price: 210052,
       quantity: 1,
       order_id: orders.orderThree.id,
       product_id: products.road.id
     },
     'orderThree has one Large Mountain Bike ': {
-      price: 2100.53,
+      price: 210053,
       quantity: 1,
       order_id: orders.orderThree.id,
       product_id: products.mountainLarge.id
     },
     'orderFour has three discounted Large Mountain Bike ': {
-      price: 1500.04,
+      price: 150004,
       quantity: 3,
       order_id: orders.orderFour.id,
       product_id: products.mountainLarge.id
     },
     'orderFour has two Medium Mountain Bike ': {
-      price: 2100.58,
+      price: 210058,
       quantity: 2,
       order_id: orders.orderFour.id,
       product_id: products.mountainMedium.id
