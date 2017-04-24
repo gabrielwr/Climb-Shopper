@@ -27,7 +27,7 @@ class AllProducts extends React.Component {
                 </Link>
               </td>
               <td>
-                <div className="text-center" >${ props.item.price/100 }</div>
+                <div className="text-center" >${ product.price/100 }</div>
               </td>
               <td>
                 <div className="text-center">{ product.reviewStars }</div>
