@@ -18,7 +18,7 @@ class AllProducts extends React.Component {
             <tr>
               <td>
                 <Link to = {`/products/${product.id}`}>
-                  <img src={ product.images[0] } style={{height:'35px'}}/>
+                  <img src={ product.images[0] } style={{height:'150px'}}/>
                 </Link>
               </td>
               <td>
