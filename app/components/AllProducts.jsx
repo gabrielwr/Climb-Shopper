@@ -10,15 +10,33 @@ class AllProducts extends React.Component {
     super(props)
   }
   render() {
-     return (
-        <div>
-          {
-            this.props.products.map(product => (
-            <Link to = {`/products/${product.id}`}>{product.name}</Link>
-            ))
-          }
-        </div>
-        )
+    return (
+      <div>
+        {
+          this.props.products.map(product => (
+
+            <tr>
+              <td>
+                <Link to = {`/products/${product.id}`}>
+                  <img src={ product.images[0] } style={{height:'35px'}}/>
+                </Link>
+              </td>
+              <td>
+                <Link to = {`/products/${product.id}`}>
+                  <div className="text-center">{ product.name }</div>
+                </Link>
+              </td>
+              <td>
+                <div className="text-center" >${ props.item.price/100 }</div>
+              </td>
+              <td>
+                <div className="text-center">{ product.reviewStars }</div>
+              </td>
+            </tr>
+          ))
+        }
+      </div>
+    )
   }
 }
 export default connect(
