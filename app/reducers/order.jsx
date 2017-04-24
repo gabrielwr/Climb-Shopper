@@ -47,7 +47,7 @@ export default function(state = initialState, action) {
       newState.currentOrder = action.order
       break
     case DELETE_ITEM_FROM_ORDER:
-      newState.currentOrder = _removeItemFromOrder(action.itemId, state.order)
+      newState.currentOrder = _removeItemFromOrder(action.itemId, state.currentOrder)
       break
     default:
       return state
@@ -81,7 +81,9 @@ export const mergeCurrentOrder = (databaseOrder, sessionOrder) => dispatch => {
 
 export const deleteItemFromDatabase = (itemId) => dispatch => {
   return axios.delete(`/api/items/${itemId}`)
-    .then(res => dispatch(deleteItemFromOrder(itemId)))
+    .then(res => {
+      dispatch(deleteItemFromOrder(itemId))
+    })
     .catch(err => console.error(`deleting item id #${itemId} unsuccessful`, err))
 }
   /* ------------       HELPER FUNCTIONS     ------------------ */
@@ -99,7 +101,6 @@ export const _naiveMergeOrders = (databaseOrder = [], sessionOrder) => {
 }
 
 const _removeItemFromOrder = (itemId, order) => {
-  console.log('in remove', order)
   const filteredItems = order.items.filter(item => {
     return item.id !== itemId
   })

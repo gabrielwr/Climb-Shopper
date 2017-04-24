@@ -4,7 +4,7 @@ import { Link, browserHistory } from 'react-router'
 import Login from './Login'
 import WhoAmI from './WhoAmI'
 import Item from './Item'
-import { deleteItemFromOrder } from '../reducers/order'
+import { deleteItemFromDatabase } from '../reducers/order'
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -70,7 +70,7 @@ class Cart extends React.Component {
 const mapProps = ({ auth, order }) => ({ user: auth, currentOrder: order.currentOrder })
 
 const mapDispatch = (dispatch) => ({ handleRemove: (itemId) => {
-  dispatch(deleteItemFromOrder(itemId))
+  dispatch(deleteItemFromDatabase(itemId))
 }})
 
 export default connect(mapProps, mapDispatch)(Cart)
