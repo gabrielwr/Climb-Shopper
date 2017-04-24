@@ -5,13 +5,16 @@ import axios from 'axios'
 
 // React Imports
 import React from 'react'
-import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { render } from 'react-dom'
 import { connect, Provider } from 'react-redux'
 import store from './store'
 
 // Root Imports
 import Root from './components/Root'
+
+// Home Imports
+import Home from './components/Home'
 
 // Product Imports
 import AllProducts, { setProducts } from './components/AllProducts'
@@ -73,6 +76,7 @@ const onAppEnter = () => {
   // })
   // .catch(console.error)
 }
+
 const onProductEnter = (nextRouterState) => {
   const productId = nextRouterState.params.id
   store.dispatch(fetchSingleProduct(productId))
@@ -81,6 +85,7 @@ const onProductEnter = (nextRouterState) => {
 const onSubmitHandle = (selectedProductId) => {
   store.dispatch(updateCurrentOrder(selectedProductId))
 }
+
 // const onAppEnter = () => {
 //   Promise.all([
 //     axios.get('/api/products'),
@@ -100,7 +105,6 @@ render(
     <Router history={ browserHistory }>
       <Route path="/" component={ Root } onEnter={ fetchInitialData }>
         <Route path="/products" component={ AllProducts } />
-        {/*products/add is an admin only view*/}
         <Route path="/products/add" component={ EmptyApp } />
         <Route path="/products/:id" component={ SingleProduct } onEnter = { onProductEnter }/>
         <Route path="/users" component={ AllUsers } />
@@ -112,6 +116,7 @@ render(
         <Route path="/orders" component={ EmptyApp } />
         <Route path="/orders/:id" component={ EmptyApp } />
         <Route path="/authenticate" component={ Authenticate } />
+        <IndexRoute component={ Home } />
       </Route>
       <Route path='*' component={ NotFound } />
     </Router>
