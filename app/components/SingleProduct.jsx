@@ -9,6 +9,7 @@ class SingleProduct extends React.Component {
 
   constructor(props) {
     super(props)
+
     this.state = {
       color: '',
       size: '',
@@ -32,10 +33,10 @@ class SingleProduct extends React.Component {
   }
 
   render() {
-    // const selectedProduct
-    console.log(store.state)
-    const product = store.state.selectedProduct
-    const reviews = store.state.reviews
+    console.log("this.props: ", this.props)
+    const product = this.props.singleProduct
+    const reviews = this.props.reviews
+    console.log("product.color: ", product.color)
 
     return (
       <div>
@@ -43,7 +44,7 @@ class SingleProduct extends React.Component {
           <div className="carousel carousel-slider">
             <a className="carousel-item" href="#one!">
               {
-                product && product.images.map(image => (
+                product.images && product.images.map(image => (
                   <img src={ image } />
                 ))
               }
@@ -88,12 +89,12 @@ class SingleProduct extends React.Component {
         <ul className= "list-group">
           {
             reviews && reviews.map(review => (
-                <tr key = { review.id }>
-                  <td> { review.title }</td>
-                  <td> { review.num_stars }</td>
-                  <td> { review.content }</td>
-                </tr>
-              ))
+              <tr key = { review.id }>
+                <td> { review.title }</td>
+                <td> { review.num_stars }</td>
+                <td> { review.content }</td>
+              </tr>
+            ))
           }
         </ul>
       </div>
@@ -106,15 +107,15 @@ class SingleProduct extends React.Component {
 
 
 export default connect(
-  state => ({singleProduct: state.selectedProduct}),
+  state => ({singleProduct: state.product.selectedProduct}),
 
-/**
-*   function onSubmitHandle is passed from main.jsx
-*  which is dispatching 'createOrder' reducer .
-*
-*   When user hits 'add to cart' button, onSubmitHandle will
-*  be triggered.
-*
-*/
+  /**
+   *   function onSubmitHandle is passed from main.jsx
+   *  which is dispatching 'createOrder' reducer .
+   *
+   *   When user hits 'add to cart' button, onSubmitHandle will
+   *  be triggered.
+   *
+   */
   // dispatch => ({ onSubmitHandle: this.props.onSubmitHandle })
 )(SingleProduct)
