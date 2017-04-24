@@ -1,6 +1,6 @@
 'use strict'
 const db = require('APP/db')
-const Item = db.model('Items')
+const Item = db.model('items')
 const { mustBeLoggedIn, forbidden } = require('./auth.filters')
 
 module.exports = require('express').Router()
@@ -36,7 +36,7 @@ module.exports = require('express').Router()
         .then(item => item.destroy())
         .then(wasDestroyedBool => {
           if (wasDestroyedBool) {
-            res.sendStatus(204)
+            res.sendStatus(202)
           } else {
             const err = Error('Item not destroyed')
             err.status = 400

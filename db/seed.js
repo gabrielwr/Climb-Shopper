@@ -90,7 +90,7 @@ const products = seed(Product, {
 const orders = seed(Order,
   ({ users }) => ({
     orderOne: {
-      status: 'Complete',
+      status: 'Pending',
       user_id: users.adam.id
     },
     orderTwo: {
@@ -98,11 +98,11 @@ const orders = seed(Order,
       user_id: users.kathy.id
     },
     orderThree: {
-      status: 'Complete',
+      status: 'Pending',
       user_id: users.deborah.id
     },
     orderFour: {
-      status: 'Pending',
+      status: 'Complete',
       user_id: users.kathy.id
     },
   })
