@@ -24,12 +24,10 @@ import SingleUser from './components/SingleUser'
 
 // Cart Imports
 import Cart from './components/Cart'
-<<<<<<< HEAD
 import { fetchPastOrders, fetchCurrentOrder, updateCurrentOrder } from './reducers/order'
 import { fetchSingleProduct } from './reducers/product'
-=======
 import { setCurrentOrder, fetchSessionOrder } from './reducers/order'
->>>>>>> master
+
 
 // Authentication Imports
 import Authenticate from './components/Authenticate'
@@ -62,7 +60,7 @@ const fetchInitialData = (nextRouterState) => {
     })
 }
 
-<<<<<<< HEAD
+
 const onAppEnter = () => {
   // Promise.all([
   //   axios.get('/api/products'),
@@ -83,7 +81,6 @@ const onProductEnter = (nextRouterState) => {
 const onSubmitHandle = (selectedProductId) => {
   store.dispatch(updateCurrentOrder(selectedProductId))
 }
-=======
 // const onAppEnter = () => {
 //   Promise.all([
 //     axios.get('/api/products'),
@@ -97,7 +94,6 @@ const onSubmitHandle = (selectedProductId) => {
 //   .catch(console.error)
 // }
 
->>>>>>> master
 
 render(
   <Provider store={ store }>
