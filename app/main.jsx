@@ -28,6 +28,8 @@ import SingleUser from './components/SingleUser'
 // Cart Imports
 import Cart from './components/Cart'
 import { setCurrentOrder, fetchSessionOrder, mergeCurrentOrder } from './reducers/order'
+import { fetchSingleProduct } from './reducers/product'
+
 
 // Authentication Imports
 import Authenticate from './components/Authenticate'
@@ -40,9 +42,9 @@ const EmptyApp = connect(
   ({}) => ({})
 )(
   ({}) =>
-  <div>
-    I am the EmptyApp
-  </div>
+    <div>
+      I am the EmptyApp
+    </div>
 )
 
 const fetchInitialData = (nextRouterState) => {
@@ -61,6 +63,7 @@ const fetchInitialData = (nextRouterState) => {
     })
 }
 
+
 const onAppEnter = () => {
   // Promise.all([
   //   axios.get('/api/products'),
@@ -72,6 +75,15 @@ const onAppEnter = () => {
   //   store.dispatch(setReviews(reviews))
   // })
   // .catch(console.error)
+}
+
+const onProductEnter = (nextRouterState) => {
+  const productId = nextRouterState.params.id
+  store.dispatch(fetchSingleProduct(productId))
+}
+
+const onSubmitHandle = (selectedProductId) => {
+  store.dispatch(updateCurrentOrder(selectedProductId))
 }
 
 // const onAppEnter = () => {
@@ -94,7 +106,7 @@ render(
       <Route path="/" component={ Root } onEnter={ fetchInitialData }>
         <Route path="/products" component={ AllProducts } />
         <Route path="/products/add" component={ EmptyApp } />
-        <Route path="/products/:id" component={ SingleProduct } />
+        <Route path="/products/:id" component={ SingleProduct } onEnter = { onProductEnter }/>
         <Route path="/users" component={ AllUsers } />
         <Route path="/users/:id" component={ EmptyApp } />
         <Route path="/users" component={ EmptyApp } />
