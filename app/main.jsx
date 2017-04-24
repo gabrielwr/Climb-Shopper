@@ -70,12 +70,15 @@ const fetchInitialData = (nextRouterState) => {
 //   .catch(console.error)
 // }
 
+const fetchAllProducts = () => {
+  store.dispatch(fetchProducts())
+}
 
 render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
       <Route path="/" component={ Root } onEnter={ fetchInitialData }>
-        <Route path="/products" component={ AllProducts } />
+        <Route path="/products" component={ AllProducts } onEnter={fetchAllProducts} />
         {/*products/add is an admin only view*/}
         <Route path="/products/add" component={ EmptyApp } />
         <Route path="/products/:id" component={ SingleProduct } />
