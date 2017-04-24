@@ -45,7 +45,7 @@ class SingleProduct extends React.Component {
             <a className="carousel-item" href="#one!">
               {
                 product.images && product.images.map(image => (
-                  <img src={ image } />
+                  <img src={ image }  />
                 ))
               }
             </a>
@@ -71,7 +71,7 @@ class SingleProduct extends React.Component {
               <a className='dropdown-button btn' href='#' data-activates='dropdown1'>Size</a>
               <ul id='dropdown1' className='dropdown-content'>
                 {
-                  product.size  && product.size.map(size => (
+                  product.size && product.size.map(size => (
                     <li><a onChange = {(e) => this.setSize(e.target.value) } >{ size }</a></li>
                   ))
                 }
@@ -85,25 +85,25 @@ class SingleProduct extends React.Component {
           </form>
         </div>
 
-
-        <ul className= "list-group">
-          {
-            reviews && reviews.map(review => (
-              <tr key = { review.id }>
-                <td> { review.title }</td>
-                <td> { review.num_stars }</td>
-                <td> { review.content }</td>
-              </tr>
-            ))
-          }
-        </ul>
+        <div className="col-md-6">
+          <ul className= "list-group">
+            {
+              reviews && reviews.map(review => (
+                <tr key = { review.id }>
+                  <td> { review.title }</td>
+                  <td> { review.num_stars }</td>
+                  <td> { review.content }</td>
+                </tr>
+              ))
+            }
+          </ul>
+        </div>
       </div>
     )
-
   }
 }
 
-/*------------------- CONTAINER -----------------*/
+/* ------------------- CONTAINER ----------------- */
 
 
 export default connect(
