@@ -64,7 +64,7 @@ const fetchInitialData = (nextRouterState) => {
 }
 
 
-const onAppEnter = () => {
+// const onAppEnter = () => {
   // Promise.all([
   //   axios.get('/api/products'),
   //   axios.get('/api/reviews'),
@@ -75,7 +75,7 @@ const onAppEnter = () => {
   //   store.dispatch(setReviews(reviews))
   // })
   // .catch(console.error)
-}
+// }
 
 const onProductEnter = (nextRouterState) => {
   const productId = nextRouterState.params.id
@@ -86,24 +86,17 @@ const onSubmitHandle = (selectedProductId) => {
   store.dispatch(updateCurrentOrder(selectedProductId))
 }
 
-// const onAppEnter = () => {
-//   Promise.all([
-//     axios.get('/api/products'),
-//     axios.get('/api/reviews'),
-//   ])
-//   .then(responses => responses.map(r => r.data))
-//   .then(([products, reviews]) => {
-//     store.dispatch(setProducts(products))
-//     store.dispatch(setReviews(reviews))
-//   })
-//   .catch(console.error)
-// }
 
+const fetchAllProducts = () => {
+  store.dispatch(fetchProducts())
+}
 
 render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
       <Route path="/" component={ Root } onEnter={ fetchInitialData }>
+        <Route path="/products" component={ AllProducts } onEnter={fetchAllProducts} />
+        {/*products/add is an admin only view*/}
         <Route path="/products" component={ AllProducts } />
         <Route path="/products/add" component={ EmptyApp } />
         <Route path="/products/:id" component={ SingleProduct } onEnter = { onProductEnter }/>
