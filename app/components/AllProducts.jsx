@@ -12,30 +12,26 @@ class AllProducts extends React.Component {
   render() {
     return (
       <div>
-        {
-          this.props.products.map(product => (
-
-            <tr>
-              <td>
-                <Link to = {`/products/${product.id}`}>
-                  <img src={ product.images[0] } style={{height:'150px'}}/>
+        <div className="row">
+          {
+            this.props.products && this.props.products.map(product => (
+              <div className="col-xs-4" key={ product.id }>
+                <Link className="thumbnail" to={`/products/${product.id}`}>
+                  <img src={ product.images[0] }/>
+                  <div className="caption">
+                    <h5>
+                      <span>{ product.name }</span>
+                    </h5>
+                    <h5>
+                      <span>Price: ${ product.price/100 }</span>
+                    </h5>
+                  </div>
                 </Link>
-              </td>
-              <td>
-                <Link to = {`/products/${product.id}`}>
-                  <div className="text-center">{ product.name }</div>
-                </Link>
-              </td>
-              <td>
-                <div className="text-center" >${ product.price/100 }</div>
-              </td>
-              <td>
-                <div className="text-center">{ product.reviewStars }</div>
-              </td>
-            </tr>
-          ))
-        }
-      </div>
+              </div>
+            ))
+          }
+        </div>
+    </div>
     )
   }
 }
