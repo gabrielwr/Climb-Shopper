@@ -9,6 +9,7 @@ const initialState = {
 const SET_CURRENT_ORDER = 'SET_CURRENT_ORDER'
 const SET_PAST_ORDERS = 'SET_PAST_ORDERS'
 const UPDATE_ORDER = 'UPDATE_ORDER'
+const DELETE_ITEM_FROM_ORDER = 'DELETE_ITEM_FROM_ORDER'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -27,6 +28,11 @@ export const updateOrder = (order) => ({
   order: order
 })
 
+export const deleteItemFromOrder = (itemId) => ({
+  type: DELETE_ITEM_FROM_ORDER,
+  itemId
+})
+
 /* ------------       REDUCERS     ------------------ */
 export default function(state = initialState, action) {
   const newState = Object.assign({}, state)
@@ -39,6 +45,9 @@ export default function(state = initialState, action) {
       break
     case UPDATE_ORDER:
       newState.currentOrder = action.order
+      break
+    case DELETE_ITEM_FROM_ORDER:
+      newState.currentOrder = _removeItemFromOrder(action.itemId, state.order)
       break
     default:
       return state
@@ -70,11 +79,11 @@ export const mergeCurrentOrder = (databaseOrder, sessionOrder) => dispatch => {
   dispatch(setCurrentOrder(_naiveMergeOrders(databaseOrder, sessionOrder)))
 }
 
-export const addItemToOrder = (item, orderId) => dispatch => {
-    return axios.post(`/api/items/`, item)
-      .then(res => dispatch(updateOrder(res.data)))
-      .catch(err => console.error(`Updating order #${id} unsuccessful`, err))
-  }
+export const deleteItemFromDatabase = (itemId) => dispatch => {
+  return axios.delete(`/api/items/${itemId}`)
+    .then(res => dispatch(deleteItemFromOrder(itemId)))
+    .catch(err => console.error(`deleting item id #${itemId} unsuccessful`, err))
+}
   /* ------------       HELPER FUNCTIONS     ------------------ */
 
 /* Naively merge orders with the follow strategy:
@@ -87,4 +96,13 @@ export const _naiveMergeOrders = (databaseOrder = [], sessionOrder) => {
   }
   const mergedItems = databaseOrder.items.concat(sessionOrder.items)
   return Object.assign({}, databaseOrder, { items: mergedItems })
+}
+
+const _removeItemFromOrder = (itemId, order) => {
+  console.log('in remove', order)
+  const filteredItems = order.items.filter(item => {
+    return item.id !== itemId
+  })
+
+  return Object.assign({}, order, {items: filteredItems})
 }

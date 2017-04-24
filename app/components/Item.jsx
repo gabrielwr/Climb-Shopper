@@ -16,8 +16,9 @@ export default (props) => (
     </td>
     <td>
       <div className='text-center'>
-      <i className='glyphicon glyphicon-remove' style={{color:'red'}}>
-      </i>
+        <button className="btn btn-warning btn-xs" onClick={() => props.handleRemove(props.item.id)}>
+          <i className='glyphicon glyphicon-remove' style={{color: 'red'}}></i>
+        </button>
       </div>
     </td>
   </tr>
