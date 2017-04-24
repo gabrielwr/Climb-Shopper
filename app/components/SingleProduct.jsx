@@ -20,12 +20,13 @@ class SingleProduct extends React.Component {
     this.setQuantity = this.setQuantity.bind(this)
   }
 
-  setColor(val){
-    this.setState({ color: val })
+  setColor(event){
+    this.setState({ color: event.target.value })
   }
 
-  setSize(val){
-    this.setState({ size: val })
+  setSize(event){
+
+    this.setState({ size: event.target.value })
   }
 
   setQuantity(val){
@@ -33,55 +34,61 @@ class SingleProduct extends React.Component {
   }
 
   render() {
-    console.log("this.props: ", this.props)
     const product = this.props.singleProduct
     const reviews = this.props.reviews
-    console.log("product.color: ", product.color)
 
+          // /* move the input form /select form
+          // *  render the images correctly
+    //*         make add to cart work properly
+          // * /
     return (
       <div>
         <div className = "col-md-6">
-          <div className="carousel carousel-slider">
-            <a className="carousel-item" href="#one!">
-              {
-                product.images && product.images.map(image => (
-                  <img src={ image }  />
-                ))
-              }
-            </a>
-          </div>
+          {/*<div className="carousel carousel-slider">*/}
+          {/*<a className="carousel-item">*/}
+          {/*{*/}
+          {/*product.images && product.images.map(image => (*/}
+          {/*<img src={ image }  />*/}
+          {/*))*/}
+          {/*}*/}
+          {/*</a>*/}
+          {/*</div>*/}
         </div>
 
-        <div className="col-md-6">
+        <div className="col-lg-6">
           <form>
-            <div className="container">
-              <h2 className="panel-title large-font">{ product.name }</h2>
+            <h2 className="panel-title large-font">{ product.name }</h2>
+            <p>Price: ${ product.price/100 }</p>
+            <div className = "tb">{ product.description }</div>
+            <a>Color</a>
+            <select onChange = { this.setColor } >
+              {
+                product.color && product.color.map(color => (
+                  <option  ><a >{ color }</a></option>
+                ))
+              }
+            </select>
 
-              <p>Price: { product.price }</p>
-              <div className = "tb">{ product.description }</div>
-              <a className='dropdown-button btn' href='#' data-activates='dropdown1'>Color</a>
-              <ul id='dropdown1' className='dropdown-content' >
-                {
-                  product.color && product.color.map(color => (
-                    <li><a onChange = {(e) => this.setColor(e.target.value) } >{ color }</a></li>
-                  ))
-                }
-              </ul>
+            <a className='dropdown-button btn' data-activates='dropdown1'>Size</a>
+            <select onChange = { this.setSize }>
+              {
+                product.size && product.size.map(size => (
+                  <option><a  >{ size }</a></option>
+                ))
+              }
+            </select>
 
-              <a className='dropdown-button btn' href='#' data-activates='dropdown1'>Size</a>
-              <ul id='dropdown1' className='dropdown-content'>
-                {
-                  product.size && product.size.map(size => (
-                    <li><a onChange = {(e) => this.setSize(e.target.value) } >{ size }</a></li>
-                  ))
-                }
-              </ul>
+            <input onChange = {(e)=> this.setQuantity(e.target.value)}/>
 
-              <a className = "waves-effect waves-light btn-large"
-                 type="submit"
-                 disabled={ this.state.color === '' || this.state.size === '' || this.state.quantity === 0 } >
-                ADD TO CART </a>
-            </div>
+            {/*<select>*/}
+              {/*product.quantity && product.quantity(quantity => (*/}
+                {/*<option><a onChange = {(e) => this.setQuantity(e.target.value)}>{quantity}</a></option>*/}
+              {/*)*/}
+            {/*</select>*/}
+            <hr/>
+            <button className = "btn btn-success"
+                    disabled={ this.state.color === '' || this.state.size === '' || this.state.quantity === 0 } >
+              ADD TO CART </button>
           </form>
         </div>
 
