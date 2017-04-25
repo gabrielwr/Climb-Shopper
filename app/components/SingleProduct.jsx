@@ -15,22 +15,16 @@ class SingleProduct extends React.Component {
       size: '',
       quantity: 0
     }
-    this.setColor = this.setColor.bind(this)
-    this.setSize = this.setSize.bind(this)
-    this.setQuantity = this.setQuantity.bind(this)
+    this.handleInputChange = this.handleInputChange.bind(this)
+
   }
 
-  setColor(event){
-    this.setState({ color: event.target.value })
-  }
-
-  setSize(event){
-
-    this.setState({ size: event.target.value })
-  }
-
-  setQuantity(val){
-    this.setState({ quantity: val})
+  handleInputChange(event) {
+    console.log(event.target)
+    const target = event.target
+    this.setState({
+      [target.name]: target.value
+    })
   }
 
   render() {
@@ -58,10 +52,10 @@ class SingleProduct extends React.Component {
         <div className="col-lg-6">
           <form>
             <h2 className="panel-title large-font">{ product.name }</h2>
-            <p>Price: ${ product.price/100 }</p>
+            <p>Price: $ { product.price/100 }</p>
             <div className = "tb">{ product.description }</div>
             <a>Color</a>
-            <select onChange = { this.setColor } >
+            <select onChange = { this.handleInputChange } >
               {
                 product.color && product.color.map(color => (
                   <option  ><a >{ color }</a></option>
@@ -70,7 +64,7 @@ class SingleProduct extends React.Component {
             </select>
 
             <a className='dropdown-button btn' data-activates='dropdown1'>Size</a>
-            <select onChange = { this.setSize }>
+            <select onChange = { this.handleInputChange }>
               {
                 product.size && product.size.map(size => (
                   <option><a  >{ size }</a></option>
@@ -78,7 +72,7 @@ class SingleProduct extends React.Component {
               }
             </select>
 
-            <input onChange = {(e)=> this.setQuantity(e.target.value)}/>
+            <input onChange = { this.handleInputChange }/>
 
             {/*<select>*/}
               {/*product.quantity && product.quantity(quantity => (*/}

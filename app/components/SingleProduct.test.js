@@ -27,33 +27,90 @@ const product = {
 describe('Single product react test', () => {
 
   let singleProduct
-  beforeEach('Create component and onChange spy', () => {
-    singleProduct = shallow(<SingleProduct singleProduct={ product } />)
+  beforeEach('Create component', () => {
+    singleProduct = shallow(<SingleProduct singleProduct={ product }/>)
   })
 
-  it ('has an initial local state with a singleProduct', () => {
-    expect(singleProduct.state()).to.be.deep.equal({ product })
+  // describe('visual content', () => {
+  //   it('includes "name" line as an h2', () => {
+  //     expect(singleProduct.find('h2').to.have.html('<h2 className="panel-title large-font">{ product.name }</h2>'))
+  //   })
+  //
+  //   it('includes "price" line as an p', () => {
+  //     expect(singleProduct.find('p').to.have.html('<p>Price: $ { product.price/100 }</p>'))
+  //   })
+})
+
+describe('update state according to user input', () => {
+  let singleProduct
+  beforeEach('Create component', () => {
+    singleProduct = shallow(<SingleProduct singleProduct={ product }/>)
   })
 
+  it('has an initial local state with a singleProduct', () => {
+    expect(singleProduct.state()).to.be.deep.equal({product})
+  })
 
-  it ('update state when user chooses product color, size, quantity', () => {
+  it('has a function that handles user input', () => {
+    expect(singleProduct.instance().handleInputChange).to.be.function
+  })
 
-    it ('"setColor" function updates color state when user clicks color selector', () => {
-      expect(singleProduct.instance().setColor).to.be.function
-      singleProduct.instance().setColor('blue')
-      expect(singleProduct.state.color).to.be.deep.equal('blue')
+  it('sets local state when inputs change', () => {
+
+    expect(singleProduct.state()).to.be.deep.equal({
+      color: '',
+      size: '',
+      quantity: 0
     })
 
-    it ('"setColor" function updates size state when user clicks size selector', () => {
-      expect(singleProduct.instance().setSize).to.be.function
-      singleProduct.instance().setSize('medium')
-      expect(singleProduct.state.size).to.be.deep.equal('medium')
+    const colorInput = singleProduct.find('#')
+    colorInput.simulate('change', {target: {value: 'red', name: 'color'}})
+    expect(singleProduct.state().color).to.be.equal('red');
+
+    const sizeInput = singleProduct.find('#subject-field')
+    sizeInput.simulate('change', {target: {value: 'medium', name: 'size'}})
+    expect(singleProduct.state().size).to.be.equal('medium?')
+
+    const quantityInput = singleProduct.find('#quantity-field')
+    quantityInput.simulate('change', {target: {value: 1, name: 'quantity'}})
+    expect(singleProduct.state().quantity).to.be.equal(1)
+
+  })
+})
+
+describe('Redux architecture', () => {
+
+  describe('action creators', () => {
+
+    it('returns expected action description', () => {
+
+      const actionDescriptor = setProduct(product)
+
+      expect(actionDescriptor).to.be.deep.equal({
+        type: SET_SELECTED_PRODUCT,
+        product: product
+      })
     })
 
-    it ('"setColor" function updates color state when user clicks color selector', () => {
-      expect(singleProduct.instance().setQuantity).to.be.function
-      singleProduct.instance().setQuantity(1)
-      expect(singleProduct.state.Quantity).to.be.deep.equal(1)
+    it('returns expected action description', () => {
+      const actionDescriptor = addProductToOrder(product)
+
+      expect(actionDescriptor).to.be.deep.equal({
+        type: ADD_PRODUCT_TO_ORDER,
+        product: product
+      })
     })
+  })
+})
+
+describe('store/reducer', () => {
+  let testingStore
+  beforeEach('Create testing store from reducer', () => {
+    testingStore = createStore(rootReducer)
+  })
+
+  it('has an initial state as described', () => {
+    const currentStoreState = testingStore.getState()
+    expect(currentStoreState.selectedProduct).to.be.deep.equal({})
   })
 })
