@@ -5,7 +5,7 @@ import store from 'App/app/store'
 
 // *------------------- COMPONENT -----------------*//
 
-class SingleProduct extends React.Component {
+export class SingleProduct extends React.Component {
 
   constructor(props) {
     super(props)
@@ -51,7 +51,7 @@ class SingleProduct extends React.Component {
 
         <div className="col-lg-6">
           <form>
-            <h2 className="panel-title large-font">{ product.name }</h2>
+            <h2>{ product.name }</h2>
             <p>Price: $ { product.price/100 }</p>
             <div className = "tb">{ product.description }</div>
             <a>Color</a>
