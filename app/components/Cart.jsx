@@ -8,7 +8,7 @@ import { deleteItemFromDatabase } from '../reducers/order'
 
 /* -----------------    COMPONENT     ------------------ */
 
-class Cart extends React.Component {
+export class Cart extends React.Component {
 
   constructor(props) {
     super(props)
