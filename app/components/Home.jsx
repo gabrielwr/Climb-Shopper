@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 const carouselStyle = {
   display: 'block',
-  height: 'auto',
+  height: '100%',
   maxWidth: '100%',
   lineHeight: '1',
   width: '100%',
@@ -25,19 +25,16 @@ const Home = (props) => (
       <div className="item active d-block img-fluid" >
         <img src="http://www.lockedcog.com/uploads/2015/03/dylan-mash.jpg" alt="..." style={carouselStyle}/>
         <div className="carousel-caption">
-          <h3>Caption Text</h3>
         </div>
       </div>
       <div className="item d-block img-fluid">
         <img src="http://www.mashsf.com/wp-content/uploads/2013/06/2T1A1500.jpg" alt="..." style={carouselStyle} />
         <div className="carousel-caption">
-          <h3>Caption Text</h3>
         </div>
       </div>
       <div className="item d-block img-fluid">
-        <img src="http://www.mashsf.com/wp-content/uploads/2013/06/2T1A1500.jpg" alt="..." style={carouselStyle}/>
+        <img src="https://www.giant-bicycles.com/_generated/news/2013/Product/620/vos_kit.jpg" alt="..." style={carouselStyle}/>
         <div className="carousel-caption">
-          <h3>Caption Text</h3>
         </div>
       </div>
     </div>
