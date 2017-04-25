@@ -46,7 +46,7 @@ class SingleProduct extends React.Component {
         <div className = "col-md-6">
           {/*<div className="carousel carousel-slider">*/}
           {/*<a className="carousel-item">*/}
-          {/*{*/}
+          {/*{*/}j
           {/*product.images && product.images.map(image => (*/}
           {/*<img src={ image }  />*/}
           {/*))*/}
