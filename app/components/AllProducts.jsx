@@ -4,7 +4,7 @@ import { login } from 'APP/app/reducers/auth'
 import { connect } from 'react-redux'
 import Review from './Review'
 
-class AllProducts extends React.Component {
+export class AllProducts extends React.Component {
 
   constructor(props) {
     super(props)
@@ -35,6 +35,7 @@ class AllProducts extends React.Component {
     )
   }
 }
+
 export default connect(
   state => ({ products: state.product.products }),
   {}
