@@ -36,7 +36,7 @@ module.exports = require('express').Router()
         .then(item => item.destroy())
         .then(wasDestroyedBool => {
           if (wasDestroyedBool) {
-            res.sendStatus(204)
+            res.sendStatus(202)
           } else {
             const err = Error('Item not destroyed')
             err.status = 400
