@@ -1,11 +1,11 @@
 import React from 'react'
-import chai, {expect} from 'chai'
+import chai, { expect } from 'chai'
 chai.use(require('chai-enzyme')())
-import {shallow} from 'enzyme'
-import {spy} from 'sinon'
+import { shallow } from 'enzyme'
+import { spy } from 'sinon'
 chai.use(require('sinon-chai'))
 
-import {Login} from './Login'
+import { Login } from './Login'
 
 /* global describe it beforeEach */
 describe('<Login />', () => {

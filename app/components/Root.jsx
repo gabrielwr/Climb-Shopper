@@ -1,6 +1,7 @@
 import React from 'react'
-import Navbar from './Navbar'
+import Navbar from './Navigation/Navbar'
 
+/*------------------- COMPONENT -----------------*/
 const Root = ({ children }) => (
   <div id="main">
     <Navbar />

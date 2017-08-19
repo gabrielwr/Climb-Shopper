@@ -1,6 +1,7 @@
 import React from 'react'
 
-export default props => (
+/* -----------------    COMPONENT     ------------------ */
+const Item = props => (
   <tr>
     <td>
       <img src={props.item.product.images[0]} style={{height:'35px'}}/>
@@ -23,3 +24,5 @@ export default props => (
     </td>
   </tr>
 )
+
+export default Item

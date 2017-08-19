@@ -1,6 +1,7 @@
 import React from 'react'
-import { login } from 'APP/app/reducers/auth'
 import { connect } from 'react-redux'
+
+import { login } from 'APP/app/reducers/auth'
 
 /* -----------------    COMPONENT     ------------------ */
 export const Login = ({ login }) => (
@@ -15,7 +16,7 @@ export const Login = ({ login }) => (
 )
 
 /* -----------------    CONTAINER     ------------------ */
-export default connect(
-  state => ({}),
-  { login },
-)( Login )
+const mapState = state => ({})
+const mapDispatch = { login }
+
+export default connect( mapState, mapDispatch )( Login )

@@ -1,10 +1,10 @@
 import React from 'react'
-import { login } from 'APP/app/reducers/auth'
 import { connect } from 'react-redux'
+
+import { login } from 'APP/app/reducers/auth'
 import store from 'App/app/store'
 
-// *------------------- COMPONENT -----------------*//
-
+/*------------------- COMPONENT -----------------*/
 export class SingleProduct extends React.Component {
 
   constructor( props ) {
@@ -30,10 +30,6 @@ export class SingleProduct extends React.Component {
     const product = this.props.singleProduct
     const reviews = this.props.reviews
 
-    // /* move the input form /select form
-    // *  render the images correctly
-    //*         make add to cart work properly
-    // * /
     return (
       <div>
         <div className = "col-md-6">
@@ -88,18 +84,7 @@ export class SingleProduct extends React.Component {
 }
 
 /* ------------------- CONTAINER ----------------- */
+const mapState = state => ({singleProduct: state.product.selectedProduct})
+const mapDispatch = null
 
-
-export default connect(
-  state => ({singleProduct: state.product.selectedProduct}),
-
-  /**
-   *   function onSubmitHandle is passed from main.jsx
-   *  which is dispatching 'createOrder' reducer .
-   *
-   *   When user hits 'add to cart' button, onSubmitHandle will
-   *  be triggered.
-   *
-   */
-  // dispatch => ({ onSubmitHandle: this.props.onSubmitHandle })
-)(SingleProduct)
+export default connect( mapState, mapDispatch )( SingleProduct )
