@@ -38,15 +38,6 @@ import NotFound from './components/NotFound'
 import WhoAmI from './components/WhoAmI'
 import { whoami } from './reducers/auth'
 
-const EmptyApp = connect(
-  ({}) => ({})
-)(
-  ({}) =>
-    <div>
-      I am the EmptyApp
-    </div>
-)
-
 const fetchInitialData = (nextRouterState) => {
   // Dispatching whoami first ensures user is authenticated.
   store.dispatch(whoami())
@@ -62,7 +53,6 @@ const fetchInitialData = (nextRouterState) => {
       }
     })
 }
-
 
 // const onAppEnter = () => {
   // Promise.all([
@@ -96,18 +86,11 @@ render(
     <Router history={ browserHistory }>
       <Route path="/" component={ Root } onEnter={ fetchInitialData }>
         <Route path="/products" component={ AllProducts } onEnter={fetchAllProducts} />
-        {/*products/add is an admin only view*/}
         <Route path="/products" component={ AllProducts } />
-        <Route path="/products/add" component={ EmptyApp } />
         <Route path="/products/:id" component={ SingleProduct } onEnter = { onProductEnter }/>
         <Route path="/users" component={ AllUsers } />
-        <Route path="/users/:id" component={ EmptyApp } />
-        <Route path="/users" component={ EmptyApp } />
         <Route path="/users/:id" component={ SingleUser } />
-        <Route path="/account" component={ EmptyApp } />
         <Route path="/cart" component={ Cart } />
-        <Route path="/orders" component={ EmptyApp } />
-        <Route path="/orders/:id" component={ EmptyApp } />
         <Route path="/authenticate" component={ Authenticate } />
         <IndexRoute component={ Home } />
       </Route>
