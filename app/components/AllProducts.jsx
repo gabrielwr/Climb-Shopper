@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router'
 import { login } from 'APP/app/reducers/auth'
 import { connect } from 'react-redux'
-import Review from './Review'
 
 export class AllProducts extends React.Component {
 

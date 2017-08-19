@@ -7,20 +7,19 @@ import store from 'App/app/store'
 
 export class SingleProduct extends React.Component {
 
-  constructor(props) {
-    super(props)
+  constructor( props ) {
+    super( props )
 
     this.state = {
       color: '',
       size: '',
       quantity: 0
     }
-    this.handleInputChange = this.handleInputChange.bind(this)
 
+    this.handleInputChange = this.handleInputChange.bind( this )
   }
 
-  handleInputChange(event) {
-    console.log(event.target)
+  handleInputChange( event ) {
     const target = event.target
     this.setState({
       [target.name]: target.value
@@ -38,17 +37,7 @@ export class SingleProduct extends React.Component {
     return (
       <div>
         <div className = "col-md-6">
-          {/*<div className="carousel carousel-slider">*/}
-          {/*<a className="carousel-item">*/}
-          {/*{*/}j
-          {/*product.images && product.images.map(image => (*/}
-          {/*<img src={ image }  />*/}
-          {/*))*/}
-          {/*}*/}
-          {/*</a>*/}
-          {/*</div>*/}
         </div>
-
         <div className="col-lg-6">
           <form>
             <h2>{ product.name }</h2>
@@ -73,12 +62,6 @@ export class SingleProduct extends React.Component {
             </select>
 
             <input onChange = { this.handleInputChange }/>
-
-            {/*<select>*/}
-            {/*product.quantity && product.quantity(quantity => (*/}
-            {/*<option><a onChange = {(e) => this.setQuantity(e.target.value)}>{quantity}</a></option>*/}
-            {/*)*/}
-            {/*</select>*/}
             <hr/>
             <button className = "btn btn-success"
                     disabled={ this.state.color === '' || this.state.size === '' || this.state.quantity === 0 } >

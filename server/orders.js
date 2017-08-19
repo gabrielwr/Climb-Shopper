@@ -33,7 +33,6 @@ module.exports = require('express').Router()
         .catch(next)
     })
   .get('/:id',
-    // TO DO: make sure that this order belongs to this user or user is Admin
     mustBeLoggedIn,
     (req, res, next) => {
       Order.findOrCreate({ where: { id: req.params.id } })
@@ -41,7 +40,6 @@ module.exports = require('express').Router()
         .catch(next)
     })
   .put('/:id',
-    // TO DO: make sure that this order belongs to this user or user is Admin
     mustBeLoggedIn,
     (req, res, next) =>
     Order.findById(req.params.id)
@@ -49,7 +47,6 @@ module.exports = require('express').Router()
     .then(updatedOrder => res.json(updatedOrder))
     .catch(next))
   .delete('/:id',
-    // TO DO: make sure that this user is Admin
     mustBeLoggedIn,
     (req, res, next) =>
     Order.findById(req.params.id)

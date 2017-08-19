@@ -28,7 +28,6 @@ module.exports = require('express').Router()
         .then(updatedProduct => res.json(updatedProduct))
         .catch(next))
   .delete('/:id',
-    // TO DO: make sure that this user is Admin
     mustBeAdmin,
     (req, res, next) =>
       Product.findById(req.params.id)
