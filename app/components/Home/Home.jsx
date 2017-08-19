@@ -1,8 +1,9 @@
 import React from 'react'
-
-import { login } from 'APP/app/reducers/auth'
 import { connect } from 'react-redux'
 
+import { login } from 'APP/app/reducers/auth'
+
+/* -----------------    COMPONENT     ------------------ */
 const Home = props => (
   <div>
     Here is home

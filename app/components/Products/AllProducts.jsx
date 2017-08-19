@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { login } from 'APP/app/reducers/auth'
 import { connect } from 'react-redux'
 
+import { login } from 'APP/app/reducers/auth'
+
+/* -----------------    COMPONENT     ------------------ */
 export class AllProducts extends React.Component {
 
   constructor(props) {
@@ -35,7 +37,8 @@ export class AllProducts extends React.Component {
   }
 }
 
-export default connect(
-  state => ({ products: state.product.products }),
-  {}
-)(AllProducts)
+/* -----------------    CONTAINER    ------------------ */
+const mapState = state => ({ products: state.product.products })
+const mapDispatch = null
+
+export default connect( mapState, mapDispatch )( AllProducts )

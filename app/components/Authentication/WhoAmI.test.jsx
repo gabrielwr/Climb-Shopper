@@ -1,12 +1,12 @@
 import React from 'react'
-import chai, {expect} from 'chai'
+import chai, { expect } from 'chai'
 chai.use(require('chai-enzyme')())
-import {shallow} from 'enzyme'
-import {spy} from 'sinon'
+import { shallow } from 'enzyme'
+import { spy } from 'sinon'
 chai.use(require('sinon-chai'))
-import {createStore} from 'redux'
+import { createStore } from 'redux'
 
-import WhoAmIContainer, {WhoAmI} from './WhoAmI'
+import WhoAmIContainer, { WhoAmI } from './WhoAmI'
 
 /* global describe it beforeEach */
 describe('<WhoAmI/>', () => {
