@@ -20,7 +20,6 @@ export class SingleProduct extends React.Component {
   }
 
   handleInputChange(event) {
-    console.log(event.target)
     const target = event.target
     this.setState({
       [target.name]: target.value
@@ -38,15 +37,6 @@ export class SingleProduct extends React.Component {
     return (
       <div>
         <div className = "col-md-6">
-          {/*<div className="carousel carousel-slider">*/}
-          {/*<a className="carousel-item">*/}
-          {/*{*/}j
-          {/*product.images && product.images.map(image => (*/}
-          {/*<img src={ image }  />*/}
-          {/*))*/}
-          {/*}*/}
-          {/*</a>*/}
-          {/*</div>*/}
         </div>
 
         <div className="col-lg-6">
@@ -73,12 +63,6 @@ export class SingleProduct extends React.Component {
             </select>
 
             <input onChange = { this.handleInputChange }/>
-
-            {/*<select>*/}
-            {/*product.quantity && product.quantity(quantity => (*/}
-            {/*<option><a onChange = {(e) => this.setQuantity(e.target.value)}>{quantity}</a></option>*/}
-            {/*)*/}
-            {/*</select>*/}
             <hr/>
             <button className = "btn btn-success"
                     disabled={ this.state.color === '' || this.state.size === '' || this.state.quantity === 0 } >

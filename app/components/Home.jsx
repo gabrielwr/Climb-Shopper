@@ -46,29 +46,7 @@ const Home = (props) => (
       <span className="glyphicon glyphicon-chevron-right"></span>
     </a>
   </div>
-
 )
 
-
-
-// <div id="carouselExampleSlidesOnly" classNameName="carousel slide" data-ride="carousel">
-//       <div classNameName="carousel-inner" role="listbox">
-//         <div className="carousel-item active">
-//           <img className="d-block img-fluid" src="http://www.lockedcog.com/uploads/2015/03/dylan-mash.jpg" alt="First slide" />
-//         </div>
-//         <div className="carousel-item">
-//           <img className="d-block img-fluid" src="http://www.lockedcog.com/uploads/2015/03/dylan-mash.jpg" alt="Second slide" />
-//         </div>
-//         <div className="carousel-item">
-//           <img className="d-block img-fluid" src="http://www.mashsf.com/wp-content/uploads/2013/06/2T1A1500.jpg" alt="Third slide" />
-//         </div>
-//       </div>
-//     </div>
-
-
-//  <!-- Carousel -->
 export default Home
-// export default connect(
-//   state => (),
-//   {}
-// )()
+
