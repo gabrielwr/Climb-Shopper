@@ -50,6 +50,7 @@ module.exports = app
 
   // Serve static files from ../public
   .use(express.static(resolve(__dirname, '..', 'public')))
+  .use('/font-awesome', express.static(resolve(__dirname, '..', 'node_modules', 'font-awesome')))
 
   // Serve our api - ./api also requires in ../db, which syncs with our database
   .use('/api', require('./api'))
