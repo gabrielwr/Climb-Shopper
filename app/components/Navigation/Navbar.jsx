@@ -10,11 +10,12 @@ import SiteName from './SiteName'
 import NavLink from './NavLink'
 
 
-/* -----------------    STYLED COMPONENT     ------------------ */
+/* -----------------    NAV STYLED COMPONENT     ------------------ */
 const Nav = styled.nav`
   display: flex;
   flex-wrap: nowrap;
-
+  background-color: lightgrey;
+  justify-content: space-between;
   color: ${ props => props.theme.text ? props.theme.text : 'white' };
   min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
 
@@ -27,6 +28,18 @@ const Nav = styled.nav`
   }
 `
 
+/* -----------------    DIV STYLED COMPONENT     ------------------ */
+const Div = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: lightblue;
+  color: ${ props => props.theme.text ? props.theme.text : 'white' };
+  min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
+
+`
+
 /* -----------------    COMPONENT     ------------------ */
 class Navbar extends React.Component {
   constructor( props ) {
@@ -37,7 +50,7 @@ class Navbar extends React.Component {
     return (
       <Nav >
         <SiteName />
-          <div>
+          <Div>
             <NavLink
               to='/products'
               name='Climbing Areas'
@@ -53,10 +66,10 @@ class Navbar extends React.Component {
               name='Sign Up'
               logo=''
             />
-          </div>
-        <a>
-          { this.props.user ? <WhoAmI/> : <Login/> }
-        </a>
+            <a>
+              { this.props.user ? <WhoAmI/> : <Login/> }
+            </a>
+          </Div>
       </Nav>
     )
   }
