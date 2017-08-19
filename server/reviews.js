@@ -27,8 +27,7 @@ module.exports = require('express').Router()
   // TO DO: make sure that this review belongs to user and review
     (req, res, next) =>
       Review.findById(req.params.id)
-      .then(review => {
-        res.json(review)})
+      .then(review => { res.json(review) })
       .catch(next))
   .put('/:id',
   // TO DO: make sure that this review belongs to user and review

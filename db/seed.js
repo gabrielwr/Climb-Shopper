@@ -2,7 +2,7 @@
 
 /*
 * To Seed Your Local Database
-* Check Postico... do you have a lisas-bikes database?
+* Check Postico... do you have a climbshopper database?
 * NO: npm run dev will create the database
 * YES: npm run seed
 */
@@ -245,4 +245,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, { users, orders, items,products,reviews })
+module.exports = Object.assign(seed, { users, orders, items, products, reviews })

@@ -13,22 +13,22 @@ const DELETE_ITEM_FROM_ORDER = 'DELETE_ITEM_FROM_ORDER'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-export const setCurrentOrder = (order) => ({
+export const setCurrentOrder = order => ({
   type: SET_CURRENT_ORDER,
-  order: order
+  order
 })
 
-export const setPastOrders = (orders) => ({
+export const setPastOrders = orders => ({
   type: SET_PAST_ORDERS,
   pastOrders: orders
 })
 
-export const updateOrder = (order) => ({
+export const updateOrder = order => ({
   type: UPDATE_ORDER,
-  order: order
+  order
 })
 
-export const deleteItemFromOrder = (itemId) => ({
+export const deleteItemFromOrder = itemId => ({
   type: DELETE_ITEM_FROM_ORDER,
   itemId
 })
@@ -59,30 +59,30 @@ export default function(state = initialState, action) {
 
 export const fetchPastOrders = () => dispatch => {
   return axios.get('/api/orders')
-    .then(res => dispatch(setPastOrders(res.data)))
+    .then(res => dispatch(setPastOrders( res.data )))
     .catch(err => console.error(`Fetching past orders unsuccesful`, err))
 }
 
 export const fetchSessionOrder = () => dispatch => {
   return axios.get('/api/orders/new')
-    .then(res => dispatch(setCurrentOrder(res.data)))
+    .then(res => dispatch(setCurrentOrder( res.data )))
     .catch(err => console.error(`Fetching new order unsuccesful`, err))
 }
 
 export const updateCurrentOrder = (id, order) => dispatch => {
   return axios.put(`/api/orders/${id}`, order)
-    .then(res => dispatch(updateOrder(res.data)))
+    .then(res => dispatch(updateOrder( res.data )))
     .catch(err => console.error(`Updating order #${id} unsuccessful`, err))
 }
 
-export const mergeCurrentOrder = (databaseOrder, sessionOrder) => dispatch => {
+export const mergeCurrentOrder = ( databaseOrder, sessionOrder ) => dispatch => {
   dispatch(setCurrentOrder(_naiveMergeOrders(databaseOrder, sessionOrder)))
 }
 
-export const deleteItemFromDatabase = (itemId) => dispatch => {
+export const deleteItemFromDatabase = itemId => dispatch => {
   return axios.delete(`/api/items/${itemId}`)
     .then(res => {
-      dispatch(deleteItemFromOrder(itemId))
+      dispatch(deleteItemFromOrder( itemId ))
     })
     .catch(err => console.error(`deleting item id #${itemId} unsuccessful`, err))
 }

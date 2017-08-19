@@ -25,7 +25,6 @@ import { fetchProducts, fetchSingleProduct } from './reducers/product'
 import Cart from './components/Cart'
 import { setCurrentOrder, fetchSessionOrder, mergeCurrentOrder } from './reducers/order'
 
-
 // Authentication Imports
 import Authenticate from './components/Authenticate'
 import Login from './components/Login'
@@ -49,9 +48,9 @@ const fetchInitialData = (nextRouterState) => {
     })
 }
 
-const onProductEnter = (nextRouterState) => {
+const onProductEnter = nextRouterState => {
   const productId = nextRouterState.params.id
-  store.dispatch(fetchSingleProduct(productId))
+  store.dispatch(fetchSingleProduct( productId ))
 }
 
 const fetchAllProducts = () => {
@@ -65,8 +64,6 @@ render(
         <Route path="/products" component={ AllProducts } onEnter={fetchAllProducts} />
         <Route path="/products" component={ AllProducts } />
         <Route path="/products/:id" component={ SingleProduct } onEnter = { onProductEnter }/>
-        <Route path="/users" component={ AllUsers } />
-        <Route path="/users/:id" component={ SingleUser } />
         <Route path="/cart" component={ Cart } />
         <Route path="/authenticate" component={ Authenticate } />
         <IndexRoute component={ Home } />

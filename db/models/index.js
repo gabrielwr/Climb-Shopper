@@ -14,8 +14,6 @@ const app = require('APP')
     // about.
     , metaModels = {
       OAuth: require('./oauth'),
-      Thing: require('./thing'),
-      Favorite: require('./favorite'),
       // ---------- Add new models here ----------
       Product: require('./product'),
       Review: require('./review'),

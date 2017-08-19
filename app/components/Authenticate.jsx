@@ -1,5 +1,9 @@
 import React from 'react'
 
+import Login from './Login'
+import { login, logout } from 'APP/app/reducers/auth'
+import { connect } from 'react-redux'
+
 export const Authenticate = ({ login, logout }) => (
   <div>
   <Login />
@@ -22,9 +26,7 @@ export const Authenticate = ({ login, logout }) => (
   </div>
 )
 
-import Login from './Login'
-import { login, logout } from 'APP/app/reducers/auth'
-import { connect } from 'react-redux'
+
 
 export default connect(
   state => ({}), { login, logout },

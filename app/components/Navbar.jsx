@@ -7,8 +7,8 @@ import WhoAmI from './WhoAmI'
 /* -----------------    COMPONENT     ------------------ */
 
 class Navbar extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor( props ) {
+    super( props )
   }
 
   render() {
@@ -25,13 +25,10 @@ class Navbar extends React.Component {
             <Link to="/cart">Cart</Link>
           </li>
           <li>
-            <Link to="/users">Admin Only: All Users</Link>
-          </li>
-          <li>
             <Link to="/authenticate" >Sign Up</Link>
           </li>
           <li>
-            {this.props.user ? <WhoAmI/> : <Login/>}
+            { this.props.user ? <WhoAmI/> : <Login/> }
           </li>
         </ul>
       </nav>
@@ -40,9 +37,8 @@ class Navbar extends React.Component {
 }
 
 /* -----------------    CONTAINER     ------------------ */
-
 const mapProps = ({ auth }) => ({ user: auth })
 
 const mapDispatch = null
 
-export default connect(mapProps, mapDispatch)(Navbar)
+export default connect( mapProps, mapDispatch )( Navbar )

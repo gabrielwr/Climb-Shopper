@@ -7,19 +7,19 @@ import store from 'App/app/store'
 
 export class SingleProduct extends React.Component {
 
-  constructor(props) {
-    super(props)
+  constructor( props ) {
+    super( props )
 
     this.state = {
       color: '',
       size: '',
       quantity: 0
     }
-    this.handleInputChange = this.handleInputChange.bind(this)
 
+    this.handleInputChange = this.handleInputChange.bind( this )
   }
 
-  handleInputChange(event) {
+  handleInputChange( event ) {
     const target = event.target
     this.setState({
       [target.name]: target.value
@@ -38,7 +38,6 @@ export class SingleProduct extends React.Component {
       <div>
         <div className = "col-md-6">
         </div>
-
         <div className="col-lg-6">
           <form>
             <h2>{ product.name }</h2>

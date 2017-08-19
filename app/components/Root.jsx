@@ -6,7 +6,6 @@ const Root = ({ children }) => (
     <Navbar />
     { children }
   </div>
-
 )
 
 export default Root

@@ -16,7 +16,9 @@ export class Cart extends React.Component {
 
   calculateTotal() {
     return this.props.currentOrder.items &&
-      this.props.currentOrder.items.reduce((total, item) => (total + item.price * item.quantity), 0) / 100
+      this.props.currentOrder.items.reduce(
+        (total, item) => (total + item.price * item.quantity), 0)
+        / 100
   }
 
   render() {
@@ -69,7 +71,7 @@ export class Cart extends React.Component {
 
 const mapProps = ({ auth, order }) => ({ user: auth, currentOrder: order.currentOrder })
 
-const mapDispatch = (dispatch) => ({ handleRemove: (itemId) => {
+const mapDispatch = dispatch => ({ handleRemove: itemId => {
   dispatch(deleteItemFromDatabase(itemId))
 }})
 
