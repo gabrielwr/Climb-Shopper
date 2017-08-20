@@ -26,7 +26,7 @@ class Navbar extends React.Component {
             <NavLink
               to='/products'
               name='Climbing Areas'
-              logo=''
+              logo='star-o'
             />
             <NavLink
               to='/cart'
@@ -36,7 +36,7 @@ class Navbar extends React.Component {
             <NavLink
               to='/authenticate'
               name='Sign Up/Login'
-              logo=''
+              logo='sign-in'
             />
             { this.props.user ? <UserIcon /> : null }
           </Div>
