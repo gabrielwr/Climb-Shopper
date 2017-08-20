@@ -34,7 +34,7 @@ const SiteName = () => (
     <div>
       <small>
         &nbsp;styled with
-        <Anchor href='https://www.styled-components.com/'>Styled-Components</Anchor>
+        <Anchor href='https://www.styled-components.com/'> Styled-Components</Anchor>
       </small>
     </div>
   </Div>
