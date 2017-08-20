@@ -13,6 +13,7 @@ export class AllProducts extends React.Component {
   render() {
     return (
       <div>
+        <h5> here is all products </h5>
         <div className="row">
           {
             this.props.products && this.props.products.map(product => (

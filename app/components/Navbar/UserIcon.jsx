@@ -12,17 +12,10 @@ const Div = styled.div`
 
 `
 /* -----------------    COMPONENT     ------------------ */
-const SiteName = () => (
+const UserIcon = () => (
   <Div>
-    <Link to="/">
-      Climb Shopper
-    </Link>
-    <div>
-      <small>
-        &nbsp;styled with <a href='https://www.styled-components.com/'>Styled-Components</a>
-      </small>
-    </div>
+    {/* user icon */}
   </Div>
 )
 
-export default SiteName;
+export default UserIcon;

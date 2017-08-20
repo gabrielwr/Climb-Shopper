@@ -8,37 +8,9 @@ import WhoAmI from '../Authentication/WhoAmI'
 
 import SiteName from './SiteName'
 import NavLink from './NavLink'
-
-
-/* -----------------    NAV STYLED COMPONENT     ------------------ */
-const Nav = styled.nav`
-  display: flex;
-  flex-wrap: nowrap;
-  background-color: lightgrey;
-  justify-content: space-between;
-  color: ${ props => props.theme.text ? props.theme.text : 'white' };
-  min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
-
-  @media (max-width: 768px) {
-    position: relative;
-    flex-direction: column;
-    align-items: flex-start;
-    min-width: 200px;
-    min-height: 100%;
-  }
-`
-
-/* -----------------    DIV STYLED COMPONENT     ------------------ */
-const Div = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-  align-items: center;
-  background-color: lightblue;
-  color: ${ props => props.theme.text ? props.theme.text : 'white' };
-  min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
-
-`
+import UserIcon from './UserIcon'
+import Nav from './StyledNavigation/StyledNav'
+import Div from './StyledNavigation/StyledDiv'
 
 /* -----------------    COMPONENT     ------------------ */
 class Navbar extends React.Component {
@@ -48,7 +20,7 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <Nav >
+      <Nav>
         <SiteName />
           <Div>
             <NavLink
@@ -63,12 +35,10 @@ class Navbar extends React.Component {
             />
             <NavLink
               to='/authenticate'
-              name='Sign Up'
+              name='Sign Up/Login'
               logo=''
             />
-            <a>
-              { this.props.user ? <WhoAmI/> : <Login/> }
-            </a>
+            { this.props.user ? <UserIcon /> : null }
           </Div>
       </Nav>
     )
