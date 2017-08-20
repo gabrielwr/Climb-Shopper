@@ -29,7 +29,6 @@ export class SingleProduct extends React.Component {
   }
 
   render() {
-    console.log('in single product', this.props)
     const product = this.props.singleProduct
     const reviews = this.props.reviews
 
