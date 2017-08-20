@@ -4,8 +4,8 @@ import { Link } from 'react-router'
 
 import formatPrice from 'APP/app/utils/priceFormatter'
 
-export default ({ productId, name, price, image, description, alt }) => (
-  <Link to={`/products/${productId}`}>
+export default ({ id, name, price, image, description, alt }) => (
+  <Link to={`/products/${id}`}>
     <article>
       <div>
         <img style={{backgroundImage: `url(${image})`}} />

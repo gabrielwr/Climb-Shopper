@@ -20,6 +20,7 @@ export class AllProducts extends React.Component {
             console.log(product)
             return (<Item
               key={ product.id }
+              id={ product.id }
               name={ product.name }
               price={ product.price }
               alt={ product.name }

@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { login } from 'APP/app/reducers/auth'
 import store from 'App/app/store'
 
+import formatPrice from 'APP/app/utils/priceFormatter'
+
 /*------------------- COMPONENT -----------------*/
 export class SingleProduct extends React.Component {
 
@@ -27,56 +29,18 @@ export class SingleProduct extends React.Component {
   }
 
   render() {
+    console.log('in single product', this.props)
     const product = this.props.singleProduct
     const reviews = this.props.reviews
 
     return (
       <div>
-        <div className = "col-md-6">
-        </div>
-        <div className="col-lg-6">
-          <form>
-            <h2>{ product.name }</h2>
-            <p>Price: $ { product.price/100 }</p>
-            <div className = "tb">{ product.description }</div>
-            <a>Color</a>
-            <select onChange = { this.handleInputChange } >
-              {
-                product.color && product.color.map(color => (
-                  <option  ><a >{ color }</a></option>
-                ))
-              }
-            </select>
-
-            <a className='dropdown-button btn' data-activates='dropdown1'>Size</a>
-            <select onChange = { this.handleInputChange }>
-              {
-                product.size && product.size.map(size => (
-                  <option><a  >{ size }</a></option>
-                ))
-              }
-            </select>
-
-            <input onChange = { this.handleInputChange }/>
-            <hr/>
-            <button className = "btn btn-success"
-                    disabled={ this.state.color === '' || this.state.size === '' || this.state.quantity === 0 } >
-              ADD TO CART </button>
-          </form>
-        </div>
-
-        <div className="col-md-6">
-          <ul className= "list-group">
-            {
-              reviews && reviews.map(review => (
-                <tr key = { review.id }>
-                  <td> { review.title }</td>
-                  <td> { review.num_stars }</td>
-                  <td> { review.content }</td>
-                </tr>
-              ))
-            }
-          </ul>
+        <div>
+          <h2>{ product.name }</h2>
+          <p>Price: { formatPrice(product.price) }</p>
+          <div><p>{ product.description }</p></div>
+          <button disabled={ this.state.color === '' || this.state.size === '' || this.state.quantity === 0 } >
+            ADD TO CART </button>
         </div>
       </div>
     )
@@ -84,7 +48,7 @@ export class SingleProduct extends React.Component {
 }
 
 /* ------------------- CONTAINER ----------------- */
-const mapState = state => ({singleProduct: state.product.selectedProduct})
+const mapState = state => ({ singleProduct: state.product.selectedProduct })
 const mapDispatch = null
 
 export default connect( mapState, mapDispatch )( SingleProduct )
