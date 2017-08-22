@@ -8,7 +8,7 @@
 */
 
 const db = require('APP/db'),
-  { User, Product, Review, Order, Item, Promise } = db,
+  { User, Product, Order, Item, Promise } = db,
   { mapValues } = require('lodash')
 
 function seedEverything() {
@@ -19,7 +19,6 @@ function seedEverything() {
 
   seeded.orders = orders(seeded)
   seeded.items = items(seeded)
-  seeded.reviews = reviews(seeded)
 
   return Promise.props(seeded)
 }
@@ -60,7 +59,6 @@ const products = seed(Product, {
     size: ['Large', 'Medium', 'Small'],
     images: ['http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-org-2100.jpg', 'http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-wht-2100.jpg', 'http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-blk-2100.jpg'],
     quantity: 7480,
-    reviewStars: 3.9,
     description: 'SO EXTREME YOUR FACE WILL MELT! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
   },
   mountainLarge: {
@@ -71,7 +69,6 @@ const products = seed(Product, {
     size: ['Large', 'Medium', 'Small'],
     images: ['http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-org-2100.jpg', 'http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-wht-2100.jpg'],
     quantity: 2403,
-    reviewStars: 3.9,
     description: 'SUCH PAIN AHHH! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
   },
   mountainMedium: {
@@ -82,7 +79,6 @@ const products = seed(Product, {
     size: ['Large', 'Medium', 'Small'],
     images: ['http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-blk-2100.jpg'],
     quantity: 2403,
-    reviewStars: 3.2,
     description: 'SUCH PAIN AHHH! MEDIUM IS ON THE SMALL SIDE OF THINGS! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
   }
 })
@@ -145,32 +141,6 @@ const items = seed(Item,
       quantity: 2,
       order_id: orders.orderFour.id,
       product_id: products.mountainMedium.id
-    },
-  })
-)
-
-const reviews = seed(Review,
-  ({ users, products }) => ({
-    'dope bikez': {
-      title: 'Dope Bikez',
-      content: 'This bike is so dope, it is a firecracker under my keister (sp?)',
-      num_stars: 5,
-      user_id: users.adam.id,
-      product_id: products.mountainMedium.id
-    },
-    'this bike is trash': {
-      title: 'Too Expensive!',
-      content: 'I cannot believe how expensive this is. It barely goes 15 mph.  No motor. Bad.',
-      num_stars: 1,
-      user_id: users.deborah.id,
-      product_id: products.road.id
-    },
-    'my kids love it': {
-      title: 'gud starter bik',
-      content: 'my childern lov there chrismat prasnt. thanks',
-      num_stars: 2,
-      user_id: users.kathy.id,
-      product_id: products.road.id
     },
   })
 )
@@ -245,4 +215,4 @@ function seed(Model, rows) {
   }
 }
 
-module.exports = Object.assign(seed, { users, orders, items, products, reviews })
+module.exports = Object.assign(seed, { users, orders, items, products })
