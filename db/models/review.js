@@ -5,8 +5,8 @@ module.exports = db => db.define('reviews', {
   title: {
     type: Sequelize.STRING,
     allowNull: false,
-    validate:{
-      notEmpty:true
+    validate: {
+      notEmpty: true
     }
   },
   content: {
