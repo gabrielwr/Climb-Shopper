@@ -41,7 +41,7 @@ const users = seed(User, {
     is_admin: false
   },
   deborah: {
-    first_name: 'Deborah ',
+    first_name: 'Deborah',
     last_name: 'Walker',
     email: 'dwalker2@ning.com',
     user_name: 'dwalker',
@@ -51,36 +51,78 @@ const users = seed(User, {
 })
 
 const products = seed(Product, {
-  road: {
-    name: 'RoadMaster X-Treme',
-    category: 'Road',
+  red_rock_sport: {
+    name: 'Red Rock Canyon',
+    category: 'Sport',
     price: 135900,
-    color: ['White', 'Red', 'Black'],
-    size: ['Large', 'Medium', 'Small'],
-    images: ['http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-org-2100.jpg', 'http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-wht-2100.jpg', 'http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-blk-2100.jpg'],
-    quantity: 7480,
-    description: 'SO EXTREME YOUR FACE WILL MELT! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
+    images: 'image placeholder',
+    quantity: 5,
+    description: 'What a wonderful place. Just selling the sport climbs!'
   },
-  mountainLarge: {
-    name: 'Mount-Pain X-FIRE',
-    category: 'Mountain',
+  el_chorro: {
+    name: 'El Chorro',
+    category: 'Sport',
+    price: 185900,
+    images: 'image placeholder',
+    quantity: 5,
+    description: 'Come experience the beautiful limestone cliffs of El Chorro in southern Spain'
+  },
+  ceuse: {
+    name: 'Ceuse',
+    category: 'Sport',
+    price: 135900,
+    images: 'image placeholder',
+    quantity: 5,
+    description: 'Come take in the breathtaking views and climbing in the south of France.'
+  },
+  torres_del_paine: {
+    name: 'Torres Del Paine',
+    category: 'Trad',
     price: 210051,
-    color: ['White', 'Red', 'Pink'],
-    size: ['Large', 'Medium', 'Small'],
-    images: ['http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-org-2100.jpg', 'http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-wht-2100.jpg'],
-    quantity: 2403,
-    description: 'SUCH PAIN AHHH! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
+    images: 'image placeholder',
+    quantity: 10,
+    description: 'One of the great beauties of the world'
   },
-  mountainMedium: {
-    name: 'Mount-Pain X-FIRE',
-    category: 'Mountain',
+  yosemite: {
+    name: 'Yosemite National Park',
+    category: 'Trad',
+    price: 20010051,
+    images: 'image placeholder',
+    quantity: 1,
+    description: 'Mecca. Come try your hand on the legendary walls of Yosemite'
+  },
+  red_rock_trad: {
+    name: 'Red Rock Canyon',
+    category: 'Trad',
+    price: 210051,
+    images: 'image placeholder',
+    quantity: 4,
+    description: 'Neighboring some of the best sport climbing in the world is some of the best trad climbing in the world. Treat yourself.'
+  },
+  rocky_mountain: {
+    name: 'Rocky Mountain National Park',
+    category: 'Bouldering',
     price: 210052,
-    color: ['Red', 'Blue'],
-    size: ['Large', 'Medium', 'Small'],
-    images: ['http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-blk-2100.jpg'],
-    quantity: 2403,
-    description: 'SUCH PAIN AHHH! MEDIUM IS ON THE SMALL SIDE OF THINGS! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
-  }
+    images: 'image placeholder',
+    quantity: 4,
+    description: 'High mountains, perfect bouldering'
+  },
+  bishop: {
+    name: 'Bishop',
+    category: 'Bouldering',
+    price: 40052,
+    images: 'image placeholder',
+    quantity: 4,
+    description: 'Bouldering set to the back drop of the Californian high mountains. Spectacular, hard, scary, and most of all -- fun.'
+  },
+  hueco_tanks: {
+    name: 'Hueco Tanks State Park',
+    category: 'Bouldering',
+    price: 400052,
+    images: 'image placeholder',
+    quantity: 3,
+    description: 'The birthplace of hardcore bouldering-- the one and only Hueco Tanks'
+  },
 })
 
 const orders = seed(Order,
@@ -110,37 +152,37 @@ const items = seed(Item,
       price: 210051,
       quantity: 2,
       order_id: orders.orderOne.id,
-      product_id: products.mountainMedium.id
+      product_id: products.torres_del_paine.id
     },
     'orderTwo has one discounted Medium Mountain Bikes': {
       price: 160051,
       quantity: 1,
       order_id: orders.orderTwo.id,
-      product_id: products.mountainMedium.id
+      product_id: products.torres_del_paine.id
     },
     'orderThree has one Road Bike': {
       price: 210052,
       quantity: 1,
       order_id: orders.orderThree.id,
-      product_id: products.road.id
+      product_id: products.red_rock_sport.id
     },
     'orderThree has one Large Mountain Bike ': {
       price: 210053,
       quantity: 1,
       order_id: orders.orderThree.id,
-      product_id: products.mountainLarge.id
+      product_id: products.rocky_mountain.id
     },
     'orderFour has three discounted Large Mountain Bike ': {
       price: 150004,
       quantity: 3,
       order_id: orders.orderFour.id,
-      product_id: products.mountainLarge.id
+      product_id: products.rocky_mountain.id
     },
     'orderFour has two Medium Mountain Bike ': {
       price: 210058,
       quantity: 2,
       order_id: orders.orderFour.id,
-      product_id: products.mountainMedium.id
+      product_id: products.red_rock_sport.id
     },
   })
 )
