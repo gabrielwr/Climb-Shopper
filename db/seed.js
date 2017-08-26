@@ -41,7 +41,7 @@ const users = seed(User, {
     is_admin: false
   },
   deborah: {
-    first_name: 'Deborah ',
+    first_name: 'Deborah',
     last_name: 'Walker',
     email: 'dwalker2@ning.com',
     user_name: 'dwalker',
@@ -51,35 +51,29 @@ const users = seed(User, {
 })
 
 const products = seed(Product, {
-  road: {
-    name: 'RoadMaster X-Treme',
-    category: 'Road',
+  red_rock: {
+    name: 'Red Rock Canyon',
+    category: 'Sport',
     price: 135900,
-    color: ['White', 'Red', 'Black'],
-    size: ['Large', 'Medium', 'Small'],
-    images: ['http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-org-2100.jpg', 'http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-wht-2100.jpg', 'http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-blk-2100.jpg'],
-    quantity: 7480,
-    description: 'SO EXTREME YOUR FACE WILL MELT! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
+    images: ['image placeholder'],
+    quantity: 5,
+    description: 'What a wonderful place. Just selling the sport climbs!'
   },
-  mountainLarge: {
-    name: 'Mount-Pain X-FIRE',
-    category: 'Mountain',
+  torres_del_paine: {
+    name: 'Torres Del Paine',
+    category: 'Trad',
     price: 210051,
-    color: ['White', 'Red', 'Pink'],
-    size: ['Large', 'Medium', 'Small'],
-    images: ['http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-org-2100.jpg', 'http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-wht-2100.jpg'],
-    quantity: 2403,
-    description: 'SUCH PAIN AHHH! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
+    images: ['image placeholder'],
+    quantity: 10,
+    description: 'One of the great beauties of the world'
   },
-  mountainMedium: {
-    name: 'Mount-Pain X-FIRE',
-    category: 'Mountain',
+  rocky_mountain: {
+    name: 'Rocky Mountain National Park',
+    category: 'Bouldering',
     price: 210052,
-    color: ['Red', 'Blue'],
-    size: ['Large', 'Medium', 'Small'],
-    images: ['http://www.bikesdirect.com/products/gravity/images/avenue-a-xiv-blk-2100.jpg'],
-    quantity: 2403,
-    description: 'SUCH PAIN AHHH! MEDIUM IS ON THE SMALL SIDE OF THINGS! us vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in'
+    images: ['Image placeholder'],
+    quantity: 4,
+    description: 'High mountains, perfect bouldering'
   }
 })
 
