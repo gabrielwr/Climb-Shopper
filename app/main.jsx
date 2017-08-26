@@ -18,7 +18,7 @@ import Home from './components/Home/Home'
 
 // Product Imports
 import AllProducts, { setProducts } from './components/Products/AllProducts'
-import SingleProduct from './components/Products/SingleProduct'
+import SingleProduct from './components/SingleProduct/SingleProduct'
 import { fetchProducts, fetchSingleProduct } from './reducers/product'
 
 // Cart Imports
