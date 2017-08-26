@@ -8,39 +8,19 @@ import formatPrice from 'APP/app/utils/priceFormatter'
 
 /*------------------- COMPONENT -----------------*/
 export class SingleProduct extends React.Component {
-
   constructor( props ) {
     super( props )
-
-    this.state = {
-      color: '',
-      size: '',
-      quantity: 0
-    }
-
-    this.handleInputChange = this.handleInputChange.bind( this )
   }
-
-  handleInputChange( event ) {
-    const target = event.target
-    this.setState({
-      [target.name]: target.value
-    })
-  }
-
   render() {
     const product = this.props.singleProduct
     const reviews = this.props.reviews
-
+    console.log('product is:', product)
     return (
       <div>
-        <div>
-          <h2>{ product.name }</h2>
-          <p>Price: { formatPrice(product.price) }</p>
-          <div><p>{ product.description }</p></div>
-          <button disabled={ this.state.color === '' || this.state.size === '' || this.state.quantity === 0 } >
-            ADD TO CART </button>
-        </div>
+        <h2>{ product.name }</h2>
+        <p>Price: { formatPrice(product.price) }</p>
+        <div><p>{ product.description }</p></div>
+        <button>ADD TO CART</button>
       </div>
     )
   }
@@ -48,6 +28,8 @@ export class SingleProduct extends React.Component {
 
 /* ------------------- CONTAINER ----------------- */
 const mapState = state => ({ singleProduct: state.product.selectedProduct })
+
+//update mapDispatch so that it sends to cart
 const mapDispatch = null
 
 export default connect( mapState, mapDispatch )( SingleProduct )
