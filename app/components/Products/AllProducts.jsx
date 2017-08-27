@@ -20,7 +20,11 @@ export class AllProducts extends React.Component {
         {
           this.props.products && this.props.products.map(product => {
             return (
-              <Box key={ product.id } width={ [1, 1/2, 1/3] } p={ 1 }>
+              <Box
+                key={ product.id }
+                width={ [1, 1/2, 1/3] }
+                p={ 1 }
+              >
                 <Item
                   productId={ product.id }
                   name={ product.name }

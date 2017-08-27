@@ -15,10 +15,12 @@ const ProductLink = styled(Link)`
   padding: 1rem;
   min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
   text-decoration: none;
+  &:hover {
+    background-color: lightgrey;
+  }
 `
 
 export default ({ productId, name, price, image, description, alt }) => {
-  console.log('image is:', image)
   return (<ProductLink to={`/products/${productId}`}>
     <article>
       <div>
