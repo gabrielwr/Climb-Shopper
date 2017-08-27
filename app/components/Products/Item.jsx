@@ -20,11 +20,11 @@ const ProductLink = styled(Link)`
   }
 `
 
-export default ({ productId, name, price, image, description, alt }) => {
+export default ({ productId, name, price, image, altText }) => {
   return (<ProductLink to={`/products/${productId}`}>
     <article>
       <div>
-        <img style={{ backgroundImage: `url(${image})` }} />
+        <img alt={ altText } style={{ backgroundImage: `url(${image})` }} />
       </div>
       <div>
         <h3>{ name }</h3>

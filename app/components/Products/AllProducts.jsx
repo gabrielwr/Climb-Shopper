@@ -29,7 +29,7 @@ export class AllProducts extends React.Component {
                   productId={ product.id }
                   name={ product.name }
                   price={ product.price }
-                  alt={ product.name }
+                  altText={ product.name }
                   image={ `/images/${product.images}` }
                 />
               </Box>
