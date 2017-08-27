@@ -17,7 +17,6 @@ export class AllProducts extends React.Component {
       <div>
         {
           this.props.products && this.props.products.map(product => {
-            console.log(product)
             return (<Item
               key={ product.id }
               id={ product.id }

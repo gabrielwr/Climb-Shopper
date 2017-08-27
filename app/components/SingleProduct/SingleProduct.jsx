@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 
 import { login } from 'APP/app/reducers/auth'
 import store from 'App/app/store'
+import { addProductToOrder } from 'APP/app/reducers/product'
+import { deleteItemFromDatabase, addItemToOrder } from 'APP/app/reducers/order'
 
+import CartButton from './CartButton'
 import formatPrice from 'APP/app/utils/priceFormatter'
 
 /*------------------- COMPONENT -----------------*/
@@ -12,28 +15,26 @@ export class SingleProduct extends React.Component {
     super( props )
   }
   render() {
+    console.log('props are:', this.props)
     const product = this.props.singleProduct
     const reviews = this.props.reviews
-    console.log('product is:', product)
     return (
       <article>
         <header>
-          <h1>{product.name}</h1>
-          <h2>{product.description}</h2>
+          <h1>{ product.name }</h1>
+          <h2>{ product.description }</h2>
           <div>
             <price>{formatPrice(product.price)}</price>
-            {/* {(orderItems &&
-              orderItems.filter(i => i.product_id === product.id).length)
-              ?<SingleProductButton
+            <CartButton
               iconName='remove'
-              handleClick={this.deleteItemFromDatabase.bind(this, item.product_id)}
+              handleClick={this.props.deleteItemFromDatabase.bind(this, item.product_id)}
               text='Remove'
-              />
-              :<SingleProductButton
+            />
+            <CartButton
               iconName='shopping-cart'
-              handleClick={this.addItemToOrder.bind(this, item)}
+              handleClick={ null }
               text='Add to Cart'
-              />
+            />
             } */}
 
           </div>
@@ -54,7 +55,9 @@ export class SingleProduct extends React.Component {
 /* ------------------- CONTAINER ----------------- */
 const mapState = state => ({ singleProduct: state.product.selectedProduct })
 
-//update mapDispatch so that it sends to cart
-const mapDispatch = null
+const mapDispatch = {
+  removeProduct,
+  addProductToOrder
+}
 
 export default connect( mapState, mapDispatch )( SingleProduct )

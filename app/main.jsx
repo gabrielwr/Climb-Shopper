@@ -50,7 +50,7 @@ const fetchInitialData = (nextRouterState) => {
 
 const onProductEnter = nextRouterState => {
   const productId = nextRouterState.params.id
-  store.dispatch(fetchSingleProduct( productId ))
+  store.dispatch( fetchSingleProduct( productId ) )
 }
 
 const fetchAllProducts = () => {
@@ -71,5 +71,6 @@ render(
       <Route path='*' component={ NotFound } />
     </Router>
   </Provider>,
-  document.getElementById('main')
+  document.getElementById('main'),
+  null
 )
