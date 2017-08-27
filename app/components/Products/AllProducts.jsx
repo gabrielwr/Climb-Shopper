@@ -19,13 +19,16 @@ export class AllProducts extends React.Component {
       <Flex wrap>
         {
           this.props.products && this.props.products.map(product => {
-            console.log(product)
-            return (<Box key={ product.id } width={1/3}><Item
-              name={ product.name }
-              price={ product.price }
-              alt={ product.name }
-              image={ product.images[0] }
-            /></Box>
+            return (
+              <Box key={ product.id } width={ [1, 1/2, 1/3] } p={ 1 }>
+                <Item
+                  productId={ product.id }
+                  name={ product.name }
+                  price={ product.price }
+                  alt={ product.name }
+                  image={ `/images/${product.images}` }
+                />
+              </Box>
           )})
         }
       </Flex>

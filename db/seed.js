@@ -55,7 +55,7 @@ const products = seed(Product, {
     name: 'Red Rock Canyon',
     category: 'Sport',
     price: 135900,
-    images: 'image placeholder',
+    images: '1.jpg',
     quantity: 5,
     description: 'What a wonderful place. Just selling the sport climbs!'
   },
@@ -95,7 +95,7 @@ const products = seed(Product, {
     name: 'Red Rock Canyon',
     category: 'Trad',
     price: 210051,
-    images: 'image placeholder',
+    images: '1.jpg',
     quantity: 4,
     description: 'Neighboring some of the best sport climbing in the world is some of the best trad climbing in the world. Treat yourself.'
   },
