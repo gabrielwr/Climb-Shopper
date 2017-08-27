@@ -56,7 +56,7 @@ export class SingleProduct extends React.Component {
 const mapState = state => ({ singleProduct: state.product.selectedProduct })
 
 const mapDispatch = {
-  removeProduct,
+  deleteItemFromDatabase,
   addProductToOrder
 }
 
