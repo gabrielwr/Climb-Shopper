@@ -4,10 +4,10 @@ import { connect } from 'react-redux'
 import { login } from 'APP/app/reducers/auth'
 
 /* -----------------    COMPONENT     ------------------ */
-export const Login = ({ login }) => (
+export const Login = ({ loginUser }) => (
   <form onSubmit={evt => {
     evt.preventDefault()
-    login( evt.target.username.value, evt.target.password.value )
+    loginUser( evt.target.username.value, evt.target.password.value )
   }}>
     <input name="username" />
     <input name="password" type="password" />
