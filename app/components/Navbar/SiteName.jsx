@@ -19,11 +19,17 @@ const NavLink = styled(Link)`
   padding: .1rem;
   min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
   text-decoration: none;
+  &:hover {
+    background-color: white;
+  }
 `
 
 const Anchor = styled.a`
   text-decoration: none;
   color: black;
+  &:hover {
+    background-color: white;
+  }
 `
 /* -----------------    COMPONENT     ------------------ */
 const SiteName = () => (
