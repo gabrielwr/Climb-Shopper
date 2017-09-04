@@ -20,6 +20,12 @@ const H3 = styled.h3`
 
 `
 
+const Img = styled.img`
+  display: flex;
+  width: 100%;
+  height: 100%;
+`
+
 
 
 /*------------------- COMPONENT -----------------*/
@@ -30,6 +36,7 @@ export class SingleProduct extends React.Component {
   render() {
     console.log('props are:', this.props)
     const product = this.props.singleProduct
+    console.log('product', product)
     const reviews = this.props.reviews
     return (
       <article>
@@ -49,15 +56,13 @@ export class SingleProduct extends React.Component {
             </header>
           </Box>
           <Box width={ 2/3 }>
-            <h1>test</h1>
-            <div>
-              { product.image &&
-                <img
-                  src={ `/images/Products/${product.image}` }
-                  alt={ product.name }
-                />
-              }
-            </div>
+            {
+              product.images &&
+              <Img
+                src={ `/images/${product.images}` }
+                alt={ product.name }
+              />
+            }
           </Box>
         </Flex>
       </article>
