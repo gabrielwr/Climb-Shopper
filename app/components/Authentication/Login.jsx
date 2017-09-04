@@ -17,6 +17,6 @@ export const Login = ({ login }) => (
 
 /* -----------------    CONTAINER     ------------------ */
 const mapState = state => ({})
-const mapDispatch = { login }
+const mapDispatch = { loginUser: login }
 
 export default connect( mapState, mapDispatch )( Login )

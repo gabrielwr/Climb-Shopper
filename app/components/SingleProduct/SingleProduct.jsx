@@ -34,27 +34,27 @@ export class SingleProduct extends React.Component {
     return (
       <article>
         <Flex>
-          <Box width={1/3} p={[1, 2, 3, 4]}>
+          <Box width={ 1/3 } p={ [1, 2, 3, 4] }>
             <header>
               <H1>{ product.name }</H1>
               <H3>{ product.description }</H3>
               <div>
-                <price>{formatPrice(product.price)}</price>
+                <price>{ formatPrice(product.price) }</price>
                 <CartButton
                   iconName='remove'
-                  handleClick={this.props.deleteItemFromDatabase.bind(this)}
+                  handleClick={ this.props.deleteItemFromDatabase.bind( this ) }
                   text='Remove'
                 />
               </div>
             </header>
           </Box>
-          <Box width={2/3}>
+          <Box width={ 2/3 }>
             <h1>test</h1>
             <div>
               { product.image &&
                 <img
-                  src={`/images/Products/${product.image}`}
-                  alt={product.name}
+                  src={ `/images/Products/${product.image}` }
+                  alt={ product.name }
                 />
               }
             </div>

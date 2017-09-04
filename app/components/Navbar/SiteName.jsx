@@ -15,8 +15,8 @@ const NavLink = styled(Link)`
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  color: black
-  padding: 1rem;
+  color: black;
+  padding: .1rem;
   min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
   text-decoration: none;
 `

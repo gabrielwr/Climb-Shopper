@@ -15,10 +15,10 @@ export const Authenticate = ({ login, logout }) => (
       <input type="submit" value="Login with Facebook" />
     </form>
     <button
-      onClick ={evt => {
-        evt.preventDefault()
-        logout()
-      }
+      onClick ={ evt => {
+          evt.preventDefault()
+          logout()
+        }
       }
       type="button">
       Log Out!

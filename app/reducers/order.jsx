@@ -12,7 +12,6 @@ const UPDATE_ORDER = 'UPDATE_ORDER'
 const DELETE_ITEM_FROM_ORDER = 'DELETE_ITEM_FROM_ORDER'
 
 /* ------------   ACTION CREATORS     ------------------ */
-
 export const setCurrentOrder = order => ({
   type: SET_CURRENT_ORDER,
   order
@@ -33,8 +32,8 @@ export const deleteItemFromOrder = itemId => ({
   itemId
 })
 
-/* ------------       REDUCERS     ------------------ */
-export default function(state = initialState, action) {
+/* ------------       REDUCER     ------------------ */
+export default function( state = initialState, action ) {
   const newState = Object.assign({}, state)
   switch (action.type) {
     case SET_CURRENT_ORDER:
@@ -55,7 +54,6 @@ export default function(state = initialState, action) {
   return newState
 }
 
-/* ------------       DISPATCHERS     ------------------ */
 
 export const fetchPastOrders = () => dispatch => {
   return axios.get('/api/orders')

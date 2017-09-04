@@ -39,9 +39,12 @@ const fetchInitialData = (nextRouterState) => {
       // load the correct data based on the state's auth property
       const authenticatedUser = store.getState().auth
       if (authenticatedUser.id) {
+        //if user is loaded to state, merge session order
+        //with authenticated users order
         const sessionOrder = store.getState().order.currentOrder
         store.dispatch(mergeCurrentOrder(authenticatedUser.orders[0], sessionOrder))
       } else {
+        //otherwise, fetch all products and the session order
         store.dispatch(fetchProducts())
         store.dispatch(fetchSessionOrder())
       }
@@ -61,8 +64,7 @@ render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
       <Route path="/" component={ Root } onEnter={ fetchInitialData }>
-        <Route path="/products" component={ AllProducts } onEnter={fetchAllProducts} />
-        <Route path="/products" component={ AllProducts } />
+        <Route path="/products" component={ AllProducts } onEnter={ fetchAllProducts } />
         <Route path="/products/:id" component={ SingleProduct } onEnter = { onProductEnter }/>
         <Route path="/cart" component={ Cart } />
         <Route path="/authenticate" component={ Authenticate } />
