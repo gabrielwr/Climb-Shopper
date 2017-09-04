@@ -33,10 +33,29 @@ export class SingleProduct extends React.Component {
   constructor( props ) {
     super( props )
   }
+
+  buttonSelector() {
+    if(true) { //change this to be "if(inOrder)"
+      return (
+        <CartButton
+          iconName='remove'
+          handleClick={ this.props.deleteItemFromDatabase.bind( this ) }
+          text='Remove'
+        />
+      )
+    }
+    return (
+      <CartButton
+        iconName='plus'
+        handleClick={ this.props.deleteItemFromDatabase.bind( this ) }
+        text='Add'
+      />
+    )
+  }
+
   render() {
     console.log('props are:', this.props)
     const product = this.props.singleProduct
-    console.log('product', product)
     const reviews = this.props.reviews
     return (
       <article>
@@ -47,11 +66,8 @@ export class SingleProduct extends React.Component {
               <H3>{ product.description }</H3>
               <div>
                 <price>{ formatPrice(product.price) }</price>
-                <CartButton
-                  iconName='remove'
-                  handleClick={ this.props.deleteItemFromDatabase.bind( this ) }
-                  text='Remove'
-                />
+                { this.buttonSelector() }
+
               </div>
             </header>
           </Box>
@@ -71,7 +87,10 @@ export class SingleProduct extends React.Component {
 }
 
 /* ------------------- CONTAINER ----------------- */
-const mapState = state => ({ singleProduct: state.product.selectedProduct })
+const mapState = state => ({
+  singleProduct: state.product.selectedProduct,
+  auth: state.auth.authenticatedUser
+})
 
 const mapDispatch = {
   deleteItemFromDatabase,
