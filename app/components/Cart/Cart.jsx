@@ -15,17 +15,23 @@ import { deleteItemFromDatabase } from 'APP/app/reducers/order'
 const HeaderCell = styled.th`
   padding: 1rem;
   margin: 1rem;
-  border-size: 1em;
   border-style: solid;
   border-color: lightgrey;
 `
 
 const Cell = styled.td`
-padding: 1rem;
-margin: 1rem;
-border-size: 1em;
-border-style: solid;
-border-color: lightgrey;
+  padding: 1rem;
+  margin: 1rem;
+  border-size: 1em;
+  border-style: solid;
+  border-color: lightgrey;
+`
+
+const TFRow = styled.tr`
+  padding-top: 500px;
+  border-size: 1em;
+  border-style: solid;
+  border-top-color: lightgrey;
 `
 
 
@@ -69,11 +75,14 @@ export class Cart extends React.Component {
               this.props.currentOrder.items &&
               this.props.currentOrder.items.map( item =>
                 (
-                  <Item
+                  <Cell
                     key={ item.id }
-                    item={item}
-                    handleRemove={ this.props.handleRemove }
-                  />
+                  >
+                    <Item
+                      item={ item }
+                      handleRemove={ this.props.handleRemove }
+                    />
+                  </Cell>
                 )
               )
             }
@@ -82,17 +91,15 @@ export class Cart extends React.Component {
             <tr>
               <td />
               <td />
-              <td> ${this.calculateTotal()}</td>
-
-                <CheckoutButton
-                  handleClick={ null }
-                  text='Checkout!'
-                  iconName='money'
-                />
-
+              <td>${this.calculateTotal()}</td>
             </tr>
           </tfoot>
         </table>
+        <CheckoutButton
+          handleClick={ null }
+          text='Checkout!'
+          iconName='money'
+        />
       </div>
     )
   }
