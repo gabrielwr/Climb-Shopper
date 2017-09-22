@@ -18,12 +18,14 @@ const NavLink = styled(Link)`
 
   @media (max-width: 768px) {
     padding-top: .5rem;
-    padding-bottom: .5rem;
     padding-left: 0;
     justify-content: center;
     min-height: 100%;
   }
 `
+
+//TODO:
+// Update font-family to look prettier
 
 /* -----------------    COMPONENT     ------------------ */
 const SiteName = () => (

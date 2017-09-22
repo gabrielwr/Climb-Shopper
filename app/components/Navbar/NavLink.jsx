@@ -20,6 +20,13 @@ const NavLink = styled(Link)`
     color: #15317e;
     text-decoration: underline;
   }
+
+  @media (max-width: 768px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    justify-content: center;
+    min-height: 100%;
+  }
 `
 
 /* -----------------    COMPONENT     ------------------ */

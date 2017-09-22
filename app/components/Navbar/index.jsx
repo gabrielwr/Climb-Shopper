@@ -20,7 +20,7 @@ const Div = styled.div`
   min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
 
   @media (max-width: 768px) {
-    align-items: space-between;
+    justify-content: space-around;
   }
 `
 
