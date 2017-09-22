@@ -27,9 +27,9 @@ const users = seed(User, {
   adam: {
     first_name: 'Adam',
     last_name: 'Kim',
-    email: 'akim0@nationalgeographic.com',
+    email: 'akim@na.com',
     user_name: 'akim',
-    password: 'ZzWHy0ZHRut',
+    password: '123',
     is_admin: false
   },
   kathy: {

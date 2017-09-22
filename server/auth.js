@@ -1,8 +1,8 @@
-const app = require('APP'), {env} = app
+const app = require('APP'), { env } = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
 
-const {User, OAuth, Order} = require('APP/db')
+const { User, OAuth, Order } = require('APP/db')
 const auth = require('express').Router()
 
 /*************************
@@ -120,14 +120,16 @@ passport.use(new (require('passport-local').Strategy)(
   }
 ))
 
-auth.get('/whoami', (req, res) => res.send(req.user))
+auth.get('/whoami', (req, res) => {
+  res.send(req.user)
+})
 
 // POST requests for local login:
 auth.post('/login/local', passport.authenticate('local', {successRedirect: '/'}))
 
 // GET requests for OAuth login:
 // Register this route as a callback URL with OAuth provider
-auth.get('/login/:strategy', (req, res, next) =>
+auth.get('/login/:strategy', (req, res, next) => {
   passport.authenticate(req.params.strategy, {
     scope: 'email', // You may want to ask for additional OAuth scopes. These are
                     // provider specific, and let you access additional data (like
@@ -135,7 +137,7 @@ auth.get('/login/:strategy', (req, res, next) =>
     successRedirect: '/',
     // Specify other config here
   })(req, res, next)
-)
+})
 
 auth.post('/logout', (req, res) => {
   req.logout()

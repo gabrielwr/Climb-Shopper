@@ -20,16 +20,23 @@ const ProductLink = styled(Link)`
   }
 `
 
+const Article = styled.article`
+  display: flex;
+  width: 100%;
+  color: ${ props => props.theme.text ? props.theme.text : 'black' };
+  background-color: ${ props => props.theme.bg ? props.theme.bg : 'white' };
+  padding: 1rem;
+`
+
 export default ({ productId, name, price, image, altText }) => {
-  return (<ProductLink to={`/products/${productId}`}>
-    <article>
-      <div>
-        <img alt={ altText } style={{ backgroundImage: `url(${image})` }} />
-      </div>
-      <div>
-        <h3>{ name }</h3>
-        <h3>{ formatPrice( price ) }</h3>
-      </div>
-    </article>
-  </ProductLink>)
+  return (
+    <ProductLink to={ `/products/${productId}` }>
+      <Article style={{ backgroundImage: `url(${image})` }}>
+        <div>
+          <h3>{ name }</h3>
+          <h3>{ formatPrice( price ) }</h3>
+        </div>
+      </Article>
+    </ProductLink>
+  )
 }
