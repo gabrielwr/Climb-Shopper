@@ -67,7 +67,6 @@ export class SingleProduct extends React.Component {
               <div>
                 <price>{ formatPrice(product.price) }</price>
                 { this.buttonSelector() }
-
               </div>
             </header>
           </Box>
