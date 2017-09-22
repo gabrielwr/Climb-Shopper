@@ -14,6 +14,7 @@ const NavLink = styled(Link)`
   padding-right: 3rem;
   min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
   text-decoration: none;
+
   &:hover {
     background-color: white;
     color: #15317e;

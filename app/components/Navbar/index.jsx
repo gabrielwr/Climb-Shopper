@@ -18,6 +18,10 @@ const Div = styled.div`
   align-items: center;
   color: ${ props => props.theme.text ? props.theme.text : 'white' };
   min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
+
+  @media (max-width: 768px) {
+    align-items: space-between;
+  }
 `
 
 const Nav = styled.nav`
@@ -52,17 +56,15 @@ class Navbar extends React.Component {
           <Div>
             <NavLink
               to='/products'
-              name='Climbing Areas'
+              logo='map-marker'
             />
             <NavLink
               to='/cart'
-              name='Cart'
               logo='shopping-cart'
             />
             <NavLink
               to='/authenticate'
-              name='Sign Up/Login'
-              logo='sign-in'
+              logo='user-circle'
             />
             { this.props.user ? <UserIcon /> : null }
           </Div>
