@@ -63,7 +63,7 @@ const products = seed(Product, {
     name: 'El Chorro',
     category: 'Sport',
     price: 185900,
-    images: 'image placeholder',
+    images: '2.jpg',
     quantity: 5,
     description: 'Come experience the beautiful limestone cliffs of El Chorro in southern Spain'
   },
@@ -71,7 +71,7 @@ const products = seed(Product, {
     name: 'Ceuse',
     category: 'Sport',
     price: 135900,
-    images: 'image placeholder',
+    images: '3.jpg',
     quantity: 5,
     description: 'Come take in the breathtaking views and climbing in the south of France.'
   },
@@ -79,7 +79,7 @@ const products = seed(Product, {
     name: 'Torres Del Paine',
     category: 'Trad',
     price: 210051,
-    images: 'image placeholder',
+    images: '4.jpg',
     quantity: 10,
     description: 'One of the great beauties of the world'
   },
@@ -87,7 +87,7 @@ const products = seed(Product, {
     name: 'Yosemite National Park',
     category: 'Trad',
     price: 20010051,
-    images: 'image placeholder',
+    images: '5.jpg',
     quantity: 1,
     description: 'Mecca. Come try your hand on the legendary walls of Yosemite'
   },
@@ -103,7 +103,7 @@ const products = seed(Product, {
     name: 'Rocky Mountain National Park',
     category: 'Bouldering',
     price: 210052,
-    images: 'image placeholder',
+    images: '6.jpg',
     quantity: 4,
     description: 'High mountains, perfect bouldering'
   },
@@ -111,7 +111,7 @@ const products = seed(Product, {
     name: 'Bishop',
     category: 'Bouldering',
     price: 40052,
-    images: 'image placeholder',
+    images: '7.jpg',
     quantity: 4,
     description: 'Bouldering set to the back drop of the Californian high mountains. Spectacular, hard, scary, and most of all -- fun.'
   },
@@ -119,7 +119,7 @@ const products = seed(Product, {
     name: 'Hueco Tanks State Park',
     category: 'Bouldering',
     price: 400052,
-    images: 'image placeholder',
+    images: '8.jpg',
     quantity: 3,
     description: 'The birthplace of hardcore bouldering-- the one and only Hueco Tanks'
   },
@@ -148,37 +148,37 @@ const orders = seed(Order,
 
 const items = seed(Item,
   ({ orders, products }) => ({
-    'orderOne has two Medium Mountain Bikes': {
+    'orderOne has Torres Del Paine': {
       price: 210051,
       quantity: 2,
       order_id: orders.orderOne.id,
       product_id: products.torres_del_paine.id
     },
-    'orderTwo has one discounted Medium Mountain Bikes': {
+    'orderTwo has Torres Del Paine': {
       price: 160051,
       quantity: 1,
       order_id: orders.orderTwo.id,
       product_id: products.torres_del_paine.id
     },
-    'orderThree has one Road Bike': {
+    'orderThree has Red Rock sport climbing': {
       price: 210052,
       quantity: 1,
       order_id: orders.orderThree.id,
       product_id: products.red_rock_sport.id
     },
-    'orderThree has one Large Mountain Bike ': {
+    'orderThree has Rocky Mountain National Park': {
       price: 210053,
       quantity: 1,
       order_id: orders.orderThree.id,
       product_id: products.rocky_mountain.id
     },
-    'orderFour has three discounted Large Mountain Bike ': {
+    'orderFour has Rocky Mountain National Park': {
       price: 150004,
       quantity: 3,
       order_id: orders.orderFour.id,
       product_id: products.rocky_mountain.id
     },
-    'orderFour has two Medium Mountain Bike ': {
+    'orderFour has Red Rock sport climbing': {
       price: 210058,
       quantity: 2,
       order_id: orders.orderFour.id,
