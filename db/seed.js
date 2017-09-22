@@ -52,7 +52,7 @@ const users = seed(User, {
 
 const products = seed(Product, {
   red_rock_sport: {
-    name: 'Red Rock Canyon',
+    name: 'Red Rock Canyon Sport',
     category: 'Sport',
     price: 135900,
     images: '1.jpg',
@@ -92,7 +92,7 @@ const products = seed(Product, {
     description: 'Mecca. Come try your hand on the legendary walls of Yosemite'
   },
   red_rock_trad: {
-    name: 'Red Rock Canyon',
+    name: 'Red Rock Canyon Trad',
     category: 'Trad',
     price: 210051,
     images: '1.jpg',
