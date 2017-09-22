@@ -9,15 +9,15 @@ const NavLink = styled(Link)`
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  background: ${ props => props.theme.primary ? props.theme.primary : '#15317e' };
-  color: ${ props => props.theme.text ? props.theme.text : 'white' };
-  padding: 1rem;
+  background: ${ props => props.theme.primary ? props.theme.primary : 'white' };
+  color: ${ props => props.theme.text ? props.theme.text : 'black' };
+  padding-right: 3rem;
   min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
   text-decoration: none;
   &:hover {
     background-color: white;
     color: #15317e;
-    font-size: 120%;
+    text-decoration: underline;
   }
 `
 
