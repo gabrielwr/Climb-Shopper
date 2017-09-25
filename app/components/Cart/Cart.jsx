@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link, browserHistory } from 'react-router'
+
 import styled from 'styled-components'
 
 //Components
@@ -12,28 +13,26 @@ import CheckoutButton from './CheckoutButton'
 //Reducers
 import { deleteItemFromDatabase } from 'APP/app/reducers/order'
 
-const HeaderCell = styled.th`
-  padding: 1rem;
-  margin: 1rem;
-  border-style: solid;
-  border-color: lightgrey;
+import CartItem from './CartItem'
+
+const Table = styled.table`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 
-const Cell = styled.td`
-  padding: 1rem;
-  margin: 1rem;
-  border-size: 1em;
-  border-style: solid;
-  border-color: lightgrey;
+const THead = styled.thead`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
-const TFRow = styled.tr`
-  padding-top: 500px;
-  border-size: 1em;
-  border-style: solid;
-  border-top-color: lightgrey;
+const TFoot = styled.tfoot`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
-
 
 /* -----------------    COMPONENT     ------------------ */
 export class Cart extends React.Component {
@@ -53,53 +52,49 @@ export class Cart extends React.Component {
     console.log('props check cart', this.props)
     return (
       <div>
-        <table>
-          <thead>
-            <tr >
-              <HeaderCell>
-                Product Name
-              </HeaderCell>
-              <HeaderCell>
-                Quantity
-              </HeaderCell>
-              <HeaderCell>
-                Price
-              </HeaderCell>
-              <HeaderCell>
-                Remove
-              </HeaderCell>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              this.props.currentOrder.items &&
-              this.props.currentOrder.items.map( item =>
-                (
-                  <Cell
-                    key={ item.id }
-                  >
-                    <Item
-                      item={ item }
-                      handleRemove={ this.props.handleRemove }
-                    />
-                  </Cell>
+        <div>
+          <Table>
+            <THead>
+              <tr >
+                <CartItem type='th' content='Product Name' />
+                <CartItem type='th' content='Quantity' />
+                <CartItem type='th' content='Price' />
+                <CartItem type='th' content='Remove' />
+              </tr>
+            </THead>
+            <tbody>
+              {
+                this.props.currentOrder.items &&
+                this.props.currentOrder.items.map( item =>
+                  (
+                    <Cell
+                      key={ item.id }
+                    >
+                      <Item
+                        item={ item }
+                        handleRemove={ this.props.handleRemove }
+                      />
+                    </Cell>
+                  )
                 )
-              )
-            }
-          </tbody>
-          <tfoot>
-            <tr>
-              <td />
-              <td />
-              <td>${this.calculateTotal()}</td>
-            </tr>
-          </tfoot>
-        </table>
-        <CheckoutButton
+              }
+            </tbody>
+            <TFoot>
+              <tr>
+                <CartItem type='tf' content='' />
+                <CartItem type='tf' content='' />
+                <CartItem type='tf' content='' />
+                <CartItem type='tf' content={`$${this.calculateTotal()}`} />
+                <CartItem type='tf' content={ <CheckoutButton
           handleClick={ null }
           text='Checkout!'
           iconName='money'
-        />
+        />} />
+              </tr>
+            </TFoot>
+          </Table>
+        </div>
+
       </div>
     )
   }

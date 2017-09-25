@@ -10,13 +10,12 @@ import formatPrice from 'APP/app/utils/priceFormatter'
 const Div = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
   align-items: center;
   background-color: grey;
-  color: ${ props => props.theme.text ? props.theme.text : 'white' };
+  color: white;
   min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
   &:hover {
-    background-color: lightgrey;
+    background-color: black;
   }
 `
 
