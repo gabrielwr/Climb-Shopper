@@ -8,6 +8,7 @@ export const Login = ({ loginUser }) => (
   <form onSubmit={evt => {
     evt.preventDefault()
     loginUser( evt.target.username.value, evt.target.password.value )
+    {/* should be .then here to update with icon */}
   }}>
     <input name="username" />
     <input name="password" type="password" />

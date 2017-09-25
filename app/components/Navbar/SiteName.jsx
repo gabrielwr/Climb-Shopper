@@ -3,41 +3,35 @@ import { Link } from 'react-router'
 import styled from 'styled-components'
 
 /* -----------------    STYLED COMPONENTS    ------------------ */
-const Div = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  color: ${ props => props.theme.text ? props.theme.text : 'black' };
-  min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
-`
-
 const NavLink = styled(Link)`
   display: flex;
-  flex-wrap: nowrap;
   align-items: center;
   color: black;
-  padding: .1rem;
+  padding-left: 3rem;
   min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
   text-decoration: none;
+
+  &:hover {
+    color: lightgreen;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    padding-top: .5rem;
+    padding-left: 0;
+    justify-content: center;
+    min-height: 100%;
+  }
 `
 
-const Anchor = styled.a`
-  text-decoration: none;
-  color: black;
-`
+//TODO:
+// Update font-family to look prettier
+
 /* -----------------    COMPONENT     ------------------ */
 const SiteName = () => (
-  <Div>
-    <NavLink to="/">
-      Climb Shopper
-    </NavLink>
-    <div>
-      <small>
-        &nbsp;styled with
-        <Anchor href='https://www.styled-components.com/'> Styled-Components</Anchor>
-      </small>
-    </div>
-  </Div>
+  <NavLink to="/">
+    Climb Shopper
+  </NavLink>
 )
 
 export default SiteName;
