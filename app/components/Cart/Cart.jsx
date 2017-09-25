@@ -85,11 +85,13 @@ export class Cart extends React.Component {
                 <CartItem type='tf' content='' />
                 <CartItem type='tf' content='' />
                 <CartItem type='tf' content={`$${this.calculateTotal()}`} />
-                <CartItem type='tf' content={ <CheckoutButton
-          handleClick={ null }
-          text='Checkout!'
-          iconName='money'
-        />} />
+                <CartItem type='tf' content={
+                  <CheckoutButton
+                    handleClick={ null }
+                    text='Checkout!'
+                    iconName='money'
+                  />
+                } />
               </tr>
             </TFoot>
           </Table>

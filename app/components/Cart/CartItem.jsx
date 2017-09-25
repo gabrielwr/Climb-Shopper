@@ -15,8 +15,9 @@ const Cell = styled.td`
   border-size: 1em;
 `
 
-const TFRow = styled.tr`
-
+const TFRow = styled.td`
+  padding: 1rem;
+  margin: 1rem;
 `
 
 const Cart = ({ type, content }) => {
