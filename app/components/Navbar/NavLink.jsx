@@ -11,14 +11,13 @@ const NavLink = styled(Link)`
   align-items: center;
   background: ${ props => props.theme.primary ? props.theme.primary : 'white' };
   color: ${ props => props.theme.text ? props.theme.text : 'black' };
-  padding-right: 3rem;
+  margin-right: 3rem;
   min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
   text-decoration: none;
 
   &:hover {
     background-color: white;
-    color: #15317e;
-    text-decoration: underline;
+    color: lightgreen;
   }
 
   @media (max-width: 768px) {

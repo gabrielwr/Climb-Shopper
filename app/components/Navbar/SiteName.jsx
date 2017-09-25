@@ -12,7 +12,7 @@ const NavLink = styled(Link)`
   text-decoration: none;
 
   &:hover {
-    color: #15317e;
+    color: lightgreen;
     text-decoration: underline;
   }
 
