@@ -18,7 +18,6 @@ const reducer = ( state = initialState, action ) => {
   const newState = Object.assign( {}, state )
   switch ( action.type ) {
     case AUTHENTICATED:
-      console.log('being authified', action.user)
       newState.authenticatedUser = action.user
       break
     default:

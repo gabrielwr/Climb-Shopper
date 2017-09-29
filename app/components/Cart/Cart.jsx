@@ -49,7 +49,6 @@ export class Cart extends React.Component {
   }
 
   render() {
-    console.log('props check cart', this.props)
     return (
       <div>
         <div>
@@ -96,7 +95,6 @@ export class Cart extends React.Component {
             </TFoot>
           </Table>
         </div>
-
       </div>
     )
   }
