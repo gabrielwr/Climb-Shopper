@@ -35,9 +35,9 @@ const users = seed(User, {
   kathy: {
     first_name: 'Kathy',
     last_name: 'Bailey',
-    email: 'kbailey1@army.mil',
+    email: 'kbai@go.com',
     user_name: 'kbailey',
-    password: 'aSyjEu',
+    password: '123',
     is_admin: false
   },
   deborah: {

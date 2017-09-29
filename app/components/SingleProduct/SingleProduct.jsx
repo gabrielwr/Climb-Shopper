@@ -11,7 +11,6 @@ import CartButton from './CartButton'
 import formatPrice from 'APP/app/utils/priceFormatter'
 import { Flex, Box } from 'grid-styled'
 
-
 const H1 = styled.h1`
 
 `
@@ -25,8 +24,6 @@ const Img = styled.img`
   width: 100%;
   height: 100%;
 `
-
-
 
 /*------------------- COMPONENT -----------------*/
 export class SingleProduct extends React.Component {
@@ -54,7 +51,6 @@ export class SingleProduct extends React.Component {
   }
 
   render() {
-    console.log('props are:', this.props)
     const product = this.props.singleProduct
     const reviews = this.props.reviews
     return (

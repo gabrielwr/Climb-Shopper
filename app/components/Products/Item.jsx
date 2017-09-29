@@ -7,7 +7,6 @@ import formatPrice from 'APP/app/utils/priceFormatter'
 const ProductLink = styled(Link)`
   display: flex;
   align-items: center;
-  border-size: .35em;
   border-style: solid;
   border-color: lightgrey;
   color: black;

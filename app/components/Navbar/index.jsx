@@ -18,7 +18,7 @@ const Div = styled.div`
   align-items: center;
   color: ${ props => props.theme.text ? props.theme.text : 'white' };
   min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
-
+  margin-left: 3rem;
   @media (max-width: 768px) {
     justify-content: space-around;
   }
