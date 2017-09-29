@@ -39,7 +39,8 @@ export class AllProducts extends React.Component {
                     image={ `/images/${product.images}` }
                   />
                 </Box>
-            )})
+              )
+            })
           }
         </Flex>
       </Div>

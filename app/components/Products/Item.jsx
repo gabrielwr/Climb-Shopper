@@ -4,15 +4,14 @@ import { Link } from 'react-router'
 import styled from 'styled-components'
 import formatPrice from 'APP/app/utils/priceFormatter'
 
-
 const ProductLink = styled(Link)`
   display: flex;
   align-items: center;
-  border-size: 1px;
+  border-size: .35em;
   border-style: solid;
-  border-color: black;
+  border-color: lightgrey;
   color: black;
-  padding: 1rem;
+
   min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
   text-decoration: none;
   &:hover {
@@ -22,28 +21,27 @@ const ProductLink = styled(Link)`
 
 const Article = styled.article`
   display: flex;
+  flex-direction: column;
   width: 100%;
   color: ${ props => props.theme.text ? props.theme.text : 'black' };
   background-color: ${ props => props.theme.bg ? props.theme.bg : 'white' };
   padding: 1rem;
 `
-const Div = styled.div`
-  min-height: 75%;
-  min-width: 75%
-`
 
 const Img = styled.img`
-  min-height: 75%;
+  height: 10rem;
   min-width: 100%;
+  &:hover {
+    opacity: 10%;
+    background-color: lightgrey;
+  }
 `
 
 export default ({ productId, name, price, image, altText }) => {
   return (
     <ProductLink to={ `/products/${productId}` }>
       <Article >
-        <Div>
-          <Img style={{ backgroundImage: `url(${image})` }} />
-        </Div>
+        <Img style={{ backgroundImage: `url(${image})` }} />
         <div>
           <h3>{ name }</h3>
           <h3>{ formatPrice( price ) }</h3>
