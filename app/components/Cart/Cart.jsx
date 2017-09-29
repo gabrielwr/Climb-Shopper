@@ -4,13 +4,13 @@ import { Link, browserHistory } from 'react-router'
 
 import styled from 'styled-components'
 
-//Components
+// Components
 import Login from '../Authentication/Login'
 import WhoAmI from '../Authentication/WhoAmI'
 import Item from '../Products/Item'
 import CheckoutButton from './CheckoutButton'
 
-//Reducers
+// Reducers
 import { deleteItemFromDatabase } from 'APP/app/reducers/order'
 
 import CartItem from './CartItem'
@@ -36,16 +36,16 @@ const TFoot = styled.tfoot`
 
 /* -----------------    COMPONENT     ------------------ */
 export class Cart extends React.Component {
-
   constructor(props) {
     super(props)
   }
 
   calculateTotal() {
-    return this.props.currentOrder.items &&
+    return this.props.currentOrder.items ?
       this.props.currentOrder.items.reduce(
-        (total, item) => (total + item.price * item.quantity), 0)
-        / 100
+        (total, item) => (total + item.price * item.quantity), 0
+      ) / 100
+      : 0
   }
 
   render() {
@@ -64,11 +64,8 @@ export class Cart extends React.Component {
             <tbody>
               {
                 this.props.currentOrder.items &&
-                this.props.currentOrder.items.map( item =>
-                  (
-                    <Cell
-                      key={ item.id }
-                    >
+                this.props.currentOrder.items.map(item => (
+                    <Cell key={ item.id }>
                       <Item
                         item={ item }
                         handleRemove={ this.props.handleRemove }
@@ -80,7 +77,6 @@ export class Cart extends React.Component {
             </tbody>
             <TFoot>
               <tr>
-                <CartItem type='tf' content='' />
                 <CartItem type='tf' content='' />
                 <CartItem type='tf' content='' />
                 <CartItem type='tf' content={`$${this.calculateTotal()}`} />

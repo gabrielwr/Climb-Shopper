@@ -11,11 +11,12 @@ const Div = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: grey;
+  background-color: black;
+  border-radius: 4%;
   color: white;
   min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
   &:hover {
-    background-color: black;
+    background-color: grey;
   }
 `
 

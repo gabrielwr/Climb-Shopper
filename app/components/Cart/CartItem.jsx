@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { Link, browserHistory } from 'react-router'
 import styled from 'styled-components'
 
-
 const HeaderCell = styled.th`
   padding: 1rem;
   margin: 1rem;
+  min-width: 8rem;
 `
 
 const Cell = styled.td`
@@ -15,17 +15,18 @@ const Cell = styled.td`
   border-size: 1em;
 `
 
-const TFRow = styled.td`
+const TFRow = styled.th`
   padding: 1rem;
   margin: 1rem;
+  min-width: 8rem;
 `
 
 const Cart = ({ type, content }) => {
-  if(type === 'th') {
+  if (type === 'th') {
     return <HeaderCell>{ content }</HeaderCell>
-  } else if(type === 'tf') {
+  } else if (type === 'tf') {
     return <TFRow>{ content }</TFRow>
-  } else if(type === 'td') {
+  } else if (type === 'td') {
     return <Cell>{ content }</Cell>
   }
 }
