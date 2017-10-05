@@ -2,70 +2,96 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link, browserHistory } from 'react-router'
 
-//Components
+import styled from 'styled-components'
+
+// Components
 import Login from '../Authentication/Login'
 import WhoAmI from '../Authentication/WhoAmI'
 import Item from '../Products/Item'
+import CheckoutButton from './CheckoutButton'
 
-//Reducers
+// Reducers
 import { deleteItemFromDatabase } from 'APP/app/reducers/order'
+
+import CartItem from './CartItem'
+
+const Table = styled.table`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+const THead = styled.thead`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const TFoot = styled.tfoot`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 /* -----------------    COMPONENT     ------------------ */
 export class Cart extends React.Component {
-
   constructor(props) {
     super(props)
   }
 
   calculateTotal() {
-    return this.props.currentOrder.items &&
+    return this.props.currentOrder.items ?
       this.props.currentOrder.items.reduce(
-        (total, item) => (total + item.price * item.quantity), 0)
-        / 100
+        (total, item) => (total + item.price * item.quantity), 0
+      ) / 100
+      : 0
   }
 
   render() {
     return (
-      <div className="container">
-      <div className="row clearfix">
-        <div className="col-md-12 column">
-          <table className="table  table-hover" id="tab_logic">
-            <thead>
+      <div>
+        <div>
+          <Table>
+            <THead>
               <tr >
-                <th className="text-center">
-                </th>
-                <th className="text-center">
-                  Product Name
-                </th>
-                <th className="text-center">
-                  Quantity
-                </th>
-                <th className="text-center">
-                  Price
-                </th>
-                <th className="text-center">
-                  Remove
-                </th>
+                <CartItem type='th' content='Product Name' />
+                <CartItem type='th' content='Quantity' />
+                <CartItem type='th' content='Price' />
+                <CartItem type='th' content='Remove' />
               </tr>
-            </thead>
+            </THead>
             <tbody>
-              {this.props.currentOrder.items && this.props.currentOrder.items.map((item) =>(<Item key={item.id} item={item} handleRemove={ this.props.handleRemove } />))}
+              {
+                this.props.currentOrder.items &&
+                this.props.currentOrder.items.map(item => (
+                    <Cell key={ item.id }>
+                      <Item
+                        item={ item }
+                        handleRemove={ this.props.handleRemove }
+                      />
+                    </Cell>
+                  )
+                )
+              }
             </tbody>
-            <tfoot>
+            <TFoot>
               <tr>
-                <td />
-                <td />
-                <td />
-                <td className='text-center'> ${this.calculateTotal()}</td>
-                <td className='text-center'>
-                  <a id='checkout' className="btn btn-default">Checkout</a>
-                </td>
+                <CartItem type='tf' content='' />
+                <CartItem type='tf' content='' />
+                <CartItem type='tf' content={`$${this.calculateTotal()}`} />
+                <CartItem type='tf' content={
+                  <CheckoutButton
+                    handleClick={ null }
+                    text='Checkout!'
+                    iconName='money'
+                  />
+                } />
               </tr>
-            </tfoot>
-          </table>
+            </TFoot>
+          </Table>
         </div>
-     </div>
-    </div>
+      </div>
     )
   }
 }
