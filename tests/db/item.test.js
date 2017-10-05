@@ -54,7 +54,6 @@ describe('The `Item` model', () => {
         })
     })
 
-
     it('errors if `price` is less than zero', () => {
       item.price = -20
 
@@ -64,7 +63,6 @@ describe('The `Item` model', () => {
           expect(result.message).to.contain('Validation error')
         })
     })
-
 
     it('requires `quantity` ', () => {
       item.quantity = null
@@ -101,8 +99,5 @@ describe('The `Item` model', () => {
           expect(result.message).to.contain('Validation error')
         })
     })
-
   })
-
-
 })
