@@ -10,7 +10,7 @@ const ProductLink = styled(Link)`
   border-style: solid;
   border-color: lightgrey;
   color: black;
-
+  max-width: 500px;
   min-height: ${ props => props.theme.height ? props.theme.height + 'px' : '50px' };
   text-decoration: none;
   &:hover {
@@ -24,12 +24,13 @@ const Article = styled.article`
   width: 100%;
   color: ${ props => props.theme.text ? props.theme.text : 'black' };
   background-color: ${ props => props.theme.bg ? props.theme.bg : 'white' };
-  padding: 1rem;
 `
 
 const Img = styled.img`
-  height: 10rem;
-  min-width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  max-width: 500px;
+  padding-bottom: 62.5%;
   &:hover {
     opacity: 10%;
     background-color: lightgrey;
