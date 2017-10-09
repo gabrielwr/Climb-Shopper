@@ -17,24 +17,11 @@ const LoginDiv = styled.div`
   height: 20rem;
 `
 
-const LoginBtn = styled.button`
-  display: block;
-`
-
 /* -----------------    COMPONENT     ------------------ */
 export const Authenticate = ({ login, logout }) => (
   <LoginDiv>
     <Login />
     <OAuth />
-    {/* <LoginBtn
-      onClick ={ evt => {
-          evt.preventDefault()
-          logout()
-        }
-      }
-      type="button">
-      Log Out!
-    </LoginBtn> */}
   </LoginDiv>
 )
 
