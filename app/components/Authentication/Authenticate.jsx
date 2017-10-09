@@ -2,29 +2,36 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Login from './Login'
+import OAuth from './OAuth'
+
 import { login, logout } from 'APP/app/reducers/auth'
+
+import styled from 'styled-components'
+
+/* -----------------    STYLED COMPONENTS     ------------------ */
+const LoginDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+`
 
 /* -----------------    COMPONENT     ------------------ */
 export const Authenticate = ({ login, logout }) => (
-  <div>
+  <LoginDiv>
     <Login />
-    <form action="/api/auth/login/google">
-      <input type="submit" value="Login with Google" />
-    </form>
-    <form action="/api/auth/login/facebook">
-      <input type="submit" value="Login with Facebook" />
-    </form>
-    <button
-      onClick ={ evt => {
-          evt.preventDefault()
-          logout()
-        }
-      }
-      type="button">
-      Log Out!
-    </button>
-  </div>
+    <OAuth />
+  </LoginDiv>
 )
+
+/*
+DESIGN NOTE:
+  If logged in, should only display "sign out" in dropdown menu.
+    -> this should then use toast to alert that you are logged out
+  Otherwise, display "sign in" which routes to modal
+    -> use toast after successfully signed in
+*/
 
 /* -----------------    CONTAINER     ------------------ */
 const mapState = state => ({})
