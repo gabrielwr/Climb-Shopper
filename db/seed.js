@@ -95,7 +95,7 @@ const products = seed(Product, {
     name: 'Red Rock Canyon Trad',
     category: 'Trad',
     price: 210051,
-    images: '1.jpg',
+    images: '9.jpg',
     quantity: 4,
     description: 'Neighboring some of the best sport climbing in the world is some of the best trad climbing in the world. Treat yourself.'
   },
