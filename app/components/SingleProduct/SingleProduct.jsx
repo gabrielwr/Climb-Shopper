@@ -19,10 +19,14 @@ const H3 = styled.h3`
 
 `
 
+const Article = styled.article`
+  display: flex;
+  flex-direction: row;
+  padding-top: 5%;
+`
+
 const Img = styled.img`
   display: flex;
-  width: 100%;
-  height: 100%;
 `
 
 /*------------------- COMPONENT -----------------*/
@@ -54,7 +58,7 @@ export class SingleProduct extends React.Component {
     const product = this.props.singleProduct
     const reviews = this.props.reviews
     return (
-      <article>
+      <Article>
         <Flex>
           <Box width={ 1/3 } p={ [1, 2, 3, 4] }>
             <header>
@@ -76,7 +80,7 @@ export class SingleProduct extends React.Component {
             }
           </Box>
         </Flex>
-      </article>
+      </Article>
     )
   }
 }
