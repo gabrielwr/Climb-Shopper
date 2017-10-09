@@ -2,8 +2,8 @@ import React from 'react'
 import { expect } from 'chai'
 import { shallow } from 'enzyme'
 
-import { Cart } from './Cart'
-import Item from '../Products/Item'
+import { Cart } from 'APP/app/components/Cart/Cart'
+import Item from 'APP/app/components/Products/Item'
 
 describe.only('<Cart />', () => {
 
