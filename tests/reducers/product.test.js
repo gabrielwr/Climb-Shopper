@@ -4,9 +4,8 @@ import {createStore} from 'redux'
 import {shallow} from 'enzyme'
 
 import rootReducer from 'APP/app/reducers/index'
-import {setProduct, addProductToOrder} from './product'
-import {AllProducts} from 'APP/app/components/AllProducts'
-
+import {setProduct, addProductToOrder} from 'APP/app/reducers/product'
+import {AllProducts} from 'APP/app/components/Products/AllProducts'
 
 describe('Product actions', () => {
   const testProduct = {
