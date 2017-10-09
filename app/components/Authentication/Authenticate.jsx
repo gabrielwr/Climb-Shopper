@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Login from './Login'
+import OAuth from './OAuth'
+
 import { login, logout } from 'APP/app/reducers/auth'
 
 import styled from 'styled-components'
@@ -15,19 +17,6 @@ const LoginDiv = styled.div`
   height: 20rem;
 `
 
-const Input = styled.input`
-  display: block;
-  margin-bottom: 1rem;
-`
-
-const OAuthDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding-left: 3rem;
-  border-left: .1rem solid black;
-`
-
 const LoginBtn = styled.button`
   display: block;
 `
@@ -36,14 +25,7 @@ const LoginBtn = styled.button`
 export const Authenticate = ({ login, logout }) => (
   <LoginDiv>
     <Login />
-    <OAuthDiv>
-      <form action="/api/auth/login/google">
-        <Input type="submit" value="Login with Google" />
-      </form>
-      <form action="/api/auth/login/facebook">
-        <Input type="submit" value="Login with Facebook" />
-      </form>
-    </OAuthDiv>
+    <OAuth />
     {/* <LoginBtn
       onClick ={ evt => {
           evt.preventDefault()
